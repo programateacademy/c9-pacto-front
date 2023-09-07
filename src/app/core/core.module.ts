@@ -4,6 +4,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { LoaderComponent } from './common/loader/loader.component';
 import { SkeletonComponent } from './common/skeleton/skeleton.component';
+import { ModalComponent } from './libs/modal.component';
 
 
 
@@ -12,7 +13,8 @@ import { SkeletonComponent } from './common/skeleton/skeleton.component';
     HeaderComponent,
     FooterComponent,
     LoaderComponent,
-    SkeletonComponent
+    SkeletonComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule
@@ -21,7 +23,8 @@ import { SkeletonComponent } from './common/skeleton/skeleton.component';
     HeaderComponent,
     FooterComponent,
     LoaderComponent,
-    SkeletonComponent
+    SkeletonComponent,
+    ModalComponent
   ]
 })
 
