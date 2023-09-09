@@ -1,1 +1,36 @@
+<div class="container ml-auto mr-auto flex items-center justify-center">
+  <div class="w-full ">
+    <div class="grid grid-flow-row sm:grid-flow-col md:grid-cols-2 gap-3">
+      <div class="flex justify-center items-center">
+        <img class="object-contain " src="../../../assets/img/cropped-logo_positivo.png" alt="Logo">
+      </div>
+      <form class="bg-white px-8 pt-6 pb-8 mb-4">
+        <div class="col-span-1 mb-4">
+          <h1 class="col-span-1 w-full flex justify-center font-bold mb-2">FORMULARIO DE REGISTRO</h1>
+          <div class="flex flex-col">
 
+            <!--user name-->
+            <div class="sm:col-span-4 justify-center">
+              <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="user-name">Usuario:</label>
+
+              <input type="text"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
+                id="user-name" name="user-name" placeholder="Introduzca su nombre de usuario" required>
+            </div>
+
+            <!--Password-->
+            <div class="sm:col-span-4 justify-center mt-6">
+              <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="password">Contraseña:</label>
+              <input type="text"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
+                id="password" name="password" placeholder="Introduzca su contraseña" required>
+            </div>
+          </div>
+          <div class="col-span-1 w-full flex justify-center items-center mt-4 h-10 ">
+            <button class="w-24 h-10 bg-blue-500 text-white">Registrar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
