@@ -5,9 +5,11 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
-  { path: 'profile', component: ProfileComponent },
+
+  { path: 'profile/:id', component: ProfileComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent }
+
 ];
 
 @NgModule({
