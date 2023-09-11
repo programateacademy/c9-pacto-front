@@ -15,7 +15,6 @@ export class AuthService {
   getLoggedInUserId(): string | null {
     const token = this.gettoken();
     if (token) {
-      // Decodificar el token y retorna el id si existe
       const payload = JSON.parse(atob(token.split('.')[1]));
       console.log('Valor id deccodificado: ', payload.id)
       if (payload.id) {
