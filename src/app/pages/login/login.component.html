@@ -1,33 +1,74 @@
 <div class="container ml-auto mr-auto flex items-center justify-center">
-  <div class="w-full ">
+  <div class="w-full mt-6">
     <div class="grid grid-flow-row sm:grid-flow-col md:grid-cols-2 gap-3">
-      <div class="flex justify-center items-center">
-        <img class="object-contain " src="../../../assets/img/cropped-logo_positivo.png" alt="Logo">
+
+      <!--Logo-->
+      <div class="flex justify-center items-center ">
+        <img class="object-contain w-10/12 h-96 " src="../../../assets/img/cropped-logo_positivo.png" alt="Logo">
       </div>
-      <form class="bg-white px-8 pt-6 pb-8 mb-4">
+
+      <!--Section of login-->
+      <form class="bg-white px-8 pt-6 pb-8  ml-10 mb-4">
         <div class="col-span-1 mb-4">
-          <h1 class="col-span-1 w-full flex justify-center font-bold mb-2">FORMULARIO DE REGISTRO</h1>
+          <h1 class="w-full flex justify-center font-bold text-3xl mb-8">Inicio de sesión</h1>
+
           <div class="flex flex-col">
-
-            <!--user name-->
+            <!--email-->
             <div class="sm:col-span-4 justify-center">
-              <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="user-name">Usuario:</label>
+              <label class="block text-black-700 text-lg font-bold mb2 mr-2" for="user-name">Email:</label>
 
-              <input type="text"
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
+              <input type="email"
+                class="shadow appearance-none h-12 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
                 id="user-name" name="user-name" placeholder="Introduzca su nombre de usuario" required>
             </div>
 
             <!--Password-->
             <div class="sm:col-span-4 justify-center mt-6">
-              <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="password">Contraseña:</label>
-              <input type="text"
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
+              <label class="block text-black-700 text-lg font-bold mb2 mr-2" for="password">Contraseña:</label>
+              <input type="password"
+                class="shadow appearance-none h-12 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
                 id="password" name="password" placeholder="Introduzca su contraseña" required>
             </div>
           </div>
+
+          <!--Checkbox remember username-->
+          <input type="checkbox" class="mt-4"> Recordar usuario
+
+          <!--Button login-->
           <div class="col-span-1 w-full flex justify-center items-center mt-4 h-10 ">
-            <button class="w-24 h-10 bg-blue-500 text-white">Registrar</button>
+            <button routerLink="/register"
+              class=" flex flex-row items-center w-44 h-12 bg-[#006186] text-white text-lg border rounded-lg border-r-2 border-b-2 border-l-0 border-t-0 border-black mt-6">
+
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="right-to-bracket"
+                class="svg-inline--fa fa-right-to-bracket w-26 h-8 border-collapse ml-4 mr-1" role="img"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                  d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z">
+                </path>
+              </svg>
+
+              Iniciar sesión
+            </button>
+          </div>
+
+          <!--To forget your password-->
+          <a class="w-full flex justify-center mt-6" href="">¿Olvidó su contraseña?</a>
+
+          <label class="w-full flex justify-center mt-6 font-bold">¿No tiene una cuenta?</label>
+
+          <!--Button register-->
+          <div class="col-span-1 w-full flex justify-center items-center mt-4 h-10 ">
+            <button routerLink="/register" type="button"
+              class="click-button flex flex-row items-center w-44 h-12 bg-[#006186] text-white text-lg border rounded-lg border-r-2 border-b-2 border-l-0 border-t-0 border-black ">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user-plus"
+                class="svg-inline--fa fa-user-plus w-26 h-8 border-collapse ml-4 mr-1" role="img"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                <path fill="currentColor"
+                  d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z">
+                </path>
+              </svg>
+              Pre-registro
+            </button>
           </div>
         </div>
       </form>
