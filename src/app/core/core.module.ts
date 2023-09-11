@@ -30,6 +30,7 @@ import { HeaderComponent } from './layout/header/header.component';
     SkeletonComponent,
     ModalComponent,
     HeaderComponent,
+    AsideComponent,
 
   ]
 })
