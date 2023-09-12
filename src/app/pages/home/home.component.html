@@ -7,22 +7,21 @@
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="home-content ">
-
+  <div class="header">
+    <app-header></app-header>
+  </div>
+  <div class="aside">
+    <app-aside></app-aside>
+  </div>
   <div class="bg-gray-100 min-h-screen flex justify-center items-center">
     <div class="w-full max-w-2xl bg-white rounded-lg shadow-lg p-4">
       <div class="flex">
-        <div class="w-1/4">
-          <app-aside></app-aside>
-        </div>
         <div class="w-3/4">
-          <div class="app-loader-overlay" *ngIf="isLoading">
-            <app-loader></app-loader>
-          </div>
           <div class="bg-white p-4 rounded-lg shadow mb-4">
             <!-- informacion del usuario y post input -->
             <div class="flex mb-4">
               <img src="https://www.softzone.es/app/uploads/2018/04/guest.png?x=480&quality=40" alt="Imagen de usuario" class="w-10 h-10 rounded-full user-image">
-              <input [(ngModel)]="postText" placeholder="Write your post..." class="w-full ml-4 p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"></textarea>
+              <textarea [(ngModel)]="postText" placeholder="Write your post..." class="w-full ml-4 p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"></textarea>
             </div>
             <div class="mt-2 flex justify-between">
               <div class="button-group">
@@ -49,20 +48,30 @@
             <div class="mt-4 post-actions">
               <button class="like-button" [ngClass]="{ 'liked': likedPublications[publication._id] }" (click)="likePublication(publication._id)"> I Like</button>
               <button class="comment-button" (click)="openCommentModal(publication._id)">Comment</button>
+
               <div class="comment-modal" *ngIf="isCommentModalVisible">
                 <div class="comment-modal-content">
                   <h2>Create Comment</h2>
                   <textarea [(ngModel)]="commentContent" placeholder="Write your comment"></textarea>
-                  <button class="publish-button" (click)="createComment(publication._id)">Post Comment</button>
+                  <button class="publish-button" (click)="createComment(publication._id, user)">Post Comment</button>
                   <button class="close-button" (click)="closeCommentModal()">Close Down</button>
                   <div class="comments-section">
-                    <h5>Comments</h5>
+                    <h5 class="comment-h5">Comments</h5>
                     <div *ngFor="let comment of comments">
-                      <p>{{comment.content}} - User ID: {{comment.user}}</p>
+                      <div class="comment">
+                      <div>
+                      <img [src]="comment.userAvatar" alt="Avatar" class="comment-avatar">
+                      </div>
+                      <div class="comment-content">
+                      <div class="comment-username">{{ comment.userName }}</div>
+                      <p>{{ comment.content }}</p>
+                    </div>
+                    </div>
                     </div>
                   </div>
                 </div>
               </div>
+
               <button class="share-button">Share</button>
             </div>
           </div>
