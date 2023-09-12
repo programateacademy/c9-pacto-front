@@ -5,6 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { CoreModule } from '../core/core.module';
+import { HttpClientJsonpModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +19,9 @@ import { CoreModule } from '../core/core.module';
   ],
   imports: [
     CommonModule,
-    CoreModule
+    CoreModule,
+    HttpClientJsonpModule,
+    FormsModule
   ]
 })
 export class PagesModule { }
