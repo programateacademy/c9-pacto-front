@@ -45,27 +45,29 @@
             <div class="mt-4 post-image" *ngIf="publication.image">
               <img class="w-full post-image-img" [src]="publication.image" alt="Imagen de la publicación">
             </div>
-            <div class="mt-4 post-actions space-y-2">
-              <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded like-button" [ngClass]="{ 'liked': likedPublications[publication._id] }" (click)="likePublication(publication._id)">
-                Like
-              </button>
-              <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded comment-button" (click)="openCommentModal(publication._id)">
-                Comment
-              </button>
-              <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded share-button">
-                Share
-              </button>
 
+            <div class="mt-4 post-actions space-y-2">
+              <div class="flex space-x-4">
+                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded like-button" [ngClass]="{ 'liked': likedPublications[publication._id] }" (click)="likePublication(publication._id)">
+                  Me gusta
+                </button>
+                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded comment-button" (click)="openCommentModal(publication._id)">
+                 Comentarios
+                </button>
+                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded share-button">
+                  Compartir
+                </button>
+              </div>
               <div class="comment-modal" *ngIf="isCommentModalVisible">
                 <div class="comment-modal-content p-4 border border-gray-300 rounded-lg shadow-lg">
                   <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-semibold">Create Comment</h2>
+                    <h2 class="text-xl font-semibold">Comentar</h2>
                     <button class="bg-red-500 hover:bg-red-600 text-gray-800 font-bold py-2 px-4 rounded close-button" (click)="closeCommentModal()">Cerrar</button>
                   </div>
-                  <input type="text" [(ngModel)]="commentContent" placeholder="Write your comment" class="border border-gray-300 rounded-lg p-2 w-full mb-4">
-                  <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded publish-button" (click)="createComment(publication._id, user)">Publish</button>
+                  <input type="text" [(ngModel)]="commentContent" placeholder="Escribe algo..." class="border border-gray-300 rounded-lg p-2 w-full mb-4">
+                  <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded publish-button" (click)="createComment(publication._id, user)">Publicar</button>
                   <div class="comments-section mt-4">
-                    <h5 class="text-lg font-semibold mb-2">Comments</h5>
+                    <h5 class="text-lg font-semibold mb-2">Comentarios</h5>
                     <div *ngFor="let comment of comments" class="mb-2">
                       <div class="flex items-center">
                         <img [src]="comment.userAvatar" alt="Avatar" class="comment-avatar rounded-full w-8 h-8 mr-2">
