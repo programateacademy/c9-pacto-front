@@ -5,8 +5,9 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { CoreModule } from '../core/core.module';
-import { HttpClientJsonpModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -20,8 +21,10 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     CoreModule,
-    HttpClientJsonpModule,
-    FormsModule
+    HttpClientModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PagesModule { }
