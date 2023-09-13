@@ -10,9 +10,9 @@
   <div class="header">
     <app-header></app-header>
   </div>
-  <!-- <div class="aside">
+  <div class="aside">
     <app-aside></app-aside>
-  </div> -->
+  </div>
   <div class="min-h-screen p-4 md:p-8 lg:p-12 xl:p-20">
     <div class=" max-w-4xl mx-auto">
       <div class="flex flex-col md:flex-row ">
@@ -58,10 +58,11 @@
                 </button>
               </div>
               <div class="comment-modal" *ngIf="isCommentModalVisible">
+                <div class="comment-modal-overlay"></div> <!-- Fondo oscuro detrás del modal -->
                 <div class="comment-modal-content p-4 border border-gray-300 rounded-lg shadow-lg">
                   <div class="flex justify-between items-center mb-4">
                     <h2 class="text-xl font-semibold">Comentar</h2>
-                    <button class="bg-red-500 hover:bg-red-600 text-gray-800 font-bold py-2 px-4 rounded close-button" (click)="closeCommentModal()">Cerrar</button>
+                    <button class="close font-bold py-2 px-4 rounded close-button" (click)="closeCommentModal()">Cerrar</button>
                   </div>
                   <input type="text" [(ngModel)]="commentContent" placeholder="Escribe algo..." class="border border-gray-300 rounded-lg p-2 w-full mb-4">
                   <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded publish-button" (click)="createComment(publication._id, user)">Publicar</button>
@@ -79,6 +80,8 @@
                   </div>
                 </div>
               </div>
+
+
             </div>
 
 
