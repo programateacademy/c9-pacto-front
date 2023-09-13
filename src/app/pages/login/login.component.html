@@ -1,5 +1,9 @@
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
 <div class="container ml-auto mr-auto flex items-center justify-center">
+  <div class="headerAuth">
+    <app-headerauth></app-headerauth>
+  </div>
   <div class="w-full mt-6">
     <div class="grid grid-flow-row sm:grid-flow-col md:grid-cols-2 gap-3">
 
@@ -10,7 +14,7 @@
 
       <!--Section of login-->
       <form (ngSubmit)="signIn()" [formGroup]="contactForm" class="bg-white px-8 pt-6 pb-8  ml-10 mb-4">
-        <div class="col-span-1 mb-4">
+        <div class="col-span-1 mb-6 mt-8">
           <h1 class="w-full flex justify-center font-bold text-3xl mb-8">Inicio de sesión</h1>
 
           <div class="flex flex-col">
