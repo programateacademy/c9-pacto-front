@@ -1,0 +1,46 @@
+/* Estilos generales del encabezado */
+.header {
+    background: white;
+    padding: 10px;
+    margin-bottom: 10px; /* Cambia el valor según tu preferencia */
+}
+
+.logo {
+  width: 10px;
+  height: 100px;
+  display: flex;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Estilos para el menú */
+.menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    margin-right: 20px; /* Espaciado entre elementos del menú */
+}
+
+.menu a {
+    text-decoration: none;
+    color: gray;
+}
+
+/* Estilos para los iconos */
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.icons a {
+    text-decoration: none;
+    color: gray;
+}
