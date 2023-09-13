@@ -11,145 +11,27 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-
-      <div class="float-right">
-        <div class="w-76 flex flex-col justify-end">
-
-            <div class="bg-white p-20 mb-4" style="border-radius: 10px;   margin-left: -20px;">
-                <div>
-                    <h2 class="text-lg font-semibold mb-2">Sugerencias de Amistad</h2>
-
-                    <!-- Sugerencia de amistad 1 -->
-                    <div class="flex items-center justify-between border-b pb-2 mb-4">
-                        <div class="flex items-center space-x-2">
-                            <img src="../../../../assets/img/perfil.png" alt="Usuario" class="w-11 h-11 rounded-full">
-                            <span>Usuario 1</span>
-                        </div>
-                        <button class="bg-teal-900 text-white px-2 py-1 rounded hover:bg-blue-600">
-                            <i class="fas fa-user-plus"></i> Seguir
-                        </button>
-                    </div>
-                    <!-- Sugerencia de amistad 2 -->
-                    <div class="flex items-center justify-between border-b pb-2 mb-4">
-                        <div class="flex items-center space-x-2">
-                            <img src="../../../../assets/img/perfil.png" alt="Usuario" class="w-11 h-11 rounded-full">
-                            <span>Usuario 2</span>
-                        </div>
-                        <button class="bg-teal-900 text-white px-2 py-1 rounded hover:bg-blue-600">
-                            <i class="fas fa-user-plus"></i> Seguir
-                        </button>
-                    </div>
-                    <!-- Sugerencia de amistad 3 -->
-                    <div class="flex items-center justify-between border-b pb-2 mb-4">
-                        <div class="flex items-center space-x-2">
-                            <img src="../../../../assets/img/perfil.png" alt="Usuario" class="w-11 h-11 rounded-full">
-                            <span>Usuario 3</span>
-                        </div>
-                        <button class="bg-teal-900 text-white px-2 py-1 rounded hover:bg-blue-600">
-                            <i class="fas fa-user-plus"></i> Seguir
-                        </button>
-                    </div>
-                    <!-- Sugerencia de amistad 4 -->
-                    <div class="flex items-center justify-between border-b pb-2 mb-4">
-                        <div class="flex items-center space-x-2">
-                            <img src="../../../../assets/img/perfil.png" alt="Usuario" class="w-11 h-11 rounded-full">
-                            <span>Usuario 4</span>
-                        </div>
-                        <button class="bg-teal-900 text-white px-2 py-1 rounded hover:bg-blue-600">
-                            <i class="fas fa-user-plus"></i> Seguir
-                        </button>
-                    </div>
-                    <!-- Sugerencia de amistad 5 -->
-                    <div class="flex items-center justify-between border-b pb-2 mb-4">
-                        <div class="flex items-center space-x-2">
-                            <img src="../../../../assets/img/perfil.png" alt="Usuario" class="w-11 h-11 rounded-full">
-                            <span>Usuario 5</span>
-                        </div>
-                        <button class="bg-teal-900 text-white px-2 py-1 rounded hover:bg-blue-600">
-                            <i class="fas fa-user-plus"></i> Seguir
-                        </button>
-                    </div>
-                    <!-- Sugerencia de amistad 6 -->
-                    <div class="flex items-center justify-between border-b pb-2">
-                        <div class="flex items-center space-x-2">
-                            <img src="../../../../assets/img/perfil.png" alt="Usuario" class="w-11 h-11 rounded-full">
-                            <span>Usuario 6</span>
-                        </div>
-                        <button class="bg-teal-900 text-white px-2 py-1 rounded hover:bg-blue-600">
-                            <i class="fas fa-user-plus"></i> Seguir
-                        </button>
-                    </div>
+  <!-- Utiliza la clase hidden lg:block para ocultar en pantallas pequeñas -->
+  <div class="hidden lg:block fixed float-left mt-10 px-4 w-1/4 max-h-screen overflow-y-auto">
+    <!-- Sugerencia de amistad 1 -->
+    <div class="bg-white p-4 m-10 rounded-lg">
+        <div>
+            <h2 class="text-lg font-semibold mb-2">Lista de Usuarios</h2>
+            <!-- Usuario en línea 1 -->
+            <div class="flex items-center justify-between border-b pb-2 mb-4">
+                <div class="flex items-center space-x-2">
+                    <img src="../../../../assets/img/perfil.png" alt="Usuario" class="w-11 h-11 rounded-full">
+                    <span>sergio nicolas paez duque </span>
                 </div>
             </div>
-
-            <!-- Contenedor de usuarios en línea -->
-            <div class="bg-white p-4" style="margin-bottom: -350px; border-radius: 10px;   margin-left: -20px;">
-                <!-- Usuarios en Línea -->
-                <div>
-                    <h2 class="text-lg font-semibold mb-2">Usuarios en Línea</h2>
-                    <!-- Usuario en línea 1 -->
-                    <div class="flex items-center justify-between border-b pb-2 mb-4">
-                        <div class="flex items-center space-x-2">
-                            <img src="../../../../assets/img/perfil.png" alt="Usuario" class="w-11 h-11 rounded-full">
-                            <span>Usuario 1</span>
-                        </div>
-                        <button class="bg-teal-900 text-white px-2 py-1 rounded ">
-                            <i class="fa-solid fa-comments"></i> Mensaje
-                        </button>
-                    </div>
-                    <!-- Usuario en línea 2 -->
-                    <div class="flex items-center justify-between border-b pb-2 mb-4">
-                        <div class="flex items-center space-x-2">
-                            <img src="../../../../assets/img/perfil.png" alt="Usuario" class="w-11 h-11 rounded-full">
-                            <span>Usuario 2</span>
-                        </div>
-                        <button class="bg-teal-900 text-white px-2 py-1 rounded ">
-                            <i class="fa-solid fa-comments"></i> Mensaje
-                        </button>
-                    </div>
-                    <!-- Usuario en línea 3 -->
-                    <div class="flex items-center justify-between border-b pb-2 mb-4">
-                        <div class="flex items-center space-x-2">
-                            <img src="../../../../assets/img/perfil.png" alt="Usuario" class="w-11 h-11 rounded-full">
-                            <span>Usuario 3</span>
-                        </div>
-                        <button class="bg-teal-900 text-white px-2 py-1 rounded ">
-                            <i class="fa-solid fa-comments"></i> Mensaje
-                        </button>
-                    </div>
-                    <!-- Usuario en línea 4 -->
-                    <div class="flex items-center justify-between border-b pb-2 mb-4">
-                        <div class="flex items-center space-x-2">
-                            <img src="../../../../assets/img/perfil.png" alt="Usuario" class="w-11 h-11 rounded-full">
-                            <span>Usuario 4</span>
-                        </div>
-                        <button class="bg-teal-900 text-white px-2 py-1 rounded ">
-                            <i class="fa-solid fa-comments"></i> Mensaje
-                        </button>
-                    </div>
-                    <!-- Usuario en línea 5 -->
-                    <div class="flex items-center justify-between border-b pb-2 mb-4">
-                        <div class="flex items-center space-x-2">
-                            <img src="../../../../assets/img/perfil.png" alt="Usuario" class="w-11 h-11 rounded-full">
-                            <span>Usuario 5</span>
-                        </div>
-                        <button class="bg-teal-900 text-white px-2 py-1 rounded ">
-                            <i class="fa-solid fa-comments"></i> Mensaje
-                        </button>
-                    </div>
-                    <!-- Usuario en línea 6 -->
-                    <div class="flex items-center justify-between border-b pb-2">
-                        <div class="flex items-center space-x-2">
-                            <img src="../../../../assets/img/perfil.png" alt="Usuario" class="w-11 h-11 rounded-full">
-                            <span>Usuario 6</span>
-                        </div>
-                        <button class="bg-teal-900 text-white px-2 py-1 rounded ">
-                            <i class="fa-solid fa-comments"></i> Mensaje
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <div class="flex items-center justify-between border-b pb-2 mb-4">
+              <div class="flex items-center space-x-2">
+                  <img src="../../../../assets/img/perfil.png" alt="Usuario" class="w-11 h-11 rounded-full">
+                  <span>sergio nicolas paez duque </span>
+              </div>
+          </div>
         </div>
-      </div>
+    </div>
+  </div>
 </body>
 </html>
