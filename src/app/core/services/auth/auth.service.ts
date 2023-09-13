@@ -7,10 +7,28 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   // URL solicitudes
-  private URL = ''
+  private URL = 'https://pooforoapi.onrender.com/admins'
 
   constructor(private http: HttpClient, private router: Router) { }
 
+
+  //Logueor, registro & cerrar sesión
+  public signUp(user:any) {
+    return this.http.post<any>(this.URL + '/signup',user)
+  }
+
+  public signIn(user:any){
+    return this.http.post<any>(this.URL + '/signin',user)
+  }
+
+  loggedIn() {
+    return !!localStorage.getItem('token');
+  }
+  
+  logout(){
+    localStorage.removeItem('token')
+    this.router.navigate(['/'])
+  }
   /// Obtener el Id del usuario logeado desde el token almacenado
   getLoggedInUserId(): string | null {
     const token = this.gettoken();
