@@ -7,7 +7,7 @@ import { ModalComponent } from './libs/modal.component';
 import { AsideComponent } from './layout/aside/aside.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { HeaderauthComponent } from './layout/headerauth/headerauth.component';
-
+import { RouterModule } from '@angular/router';
 
 
 
@@ -23,9 +23,10 @@ import { HeaderauthComponent } from './layout/headerauth/headerauth.component';
 
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
-  exports:[
+  exports: [
     FooterComponent,
     LoaderComponent,
     SkeletonComponent,

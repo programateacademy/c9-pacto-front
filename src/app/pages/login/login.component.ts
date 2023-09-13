@@ -25,7 +25,14 @@ export class LoginComponent {
       .subscribe(res => {
         console.log(res)
         localStorage.setItem('token', res.token)
-        this.router.navigate(['/home'])
+
+        const userId = this.authService.getLoggedInUserId();
+        console.log('Logged In User ID:', userId);
+        if (userId) {
+          this.router.navigate(['/home', userId]);
+        } else {
+          console.log('No Id found')
+        }
       },
         err => console.log(err)
       )
