@@ -5,15 +5,13 @@ import { capitales } from '../../core/services/formulario/capitales';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'] 
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
   capitalesdata = capitales;
   departamentosUnicos: string[] = [];
   municipiosUnicos: string[] = [];
 
-
-  constructor(private apiservice: ApiService) { }
 
   ngOnInit(): void {
     // Lógica para obtener listas de departamentos y municipios únicos
@@ -29,5 +27,9 @@ export class RegisterComponent {
   private obtenerMunicipiosUnicos(): string[] {
     const municipios: string[] = this.capitalesdata.map(capital => capital.municipio);
     return municipios.filter((municipio, index, self) => self.indexOf(municipio) === index);
+  }
+
+  countryAlert(): void {
+    window.alert('En el momento solo estamos en Colombia');
   }
 }
