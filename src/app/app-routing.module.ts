@@ -7,7 +7,7 @@ import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
 
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile/:id', component: ProfileComponent },
   { path: 'register', component: RegisterComponent },
   { path: '', component: LoginComponent },
   { path: 'home/:id', component: HomeComponent }
