@@ -5,6 +5,7 @@ import { Home, Interaction, Comment, User } from 'src/app/models/item';
 import { CommentsService } from 'src/app/core/services/comments/comments.service';
 import { SwitchService } from 'src/app/core/services/modal/switch.service';
 import { forkJoin } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -16,11 +17,20 @@ export class HomeComponent {
   constructor(private foroService: ForoService,
     private interactionService: InteractionService,
     private commentService: CommentsService,
-    private modalSS:SwitchService ){}
+    private modalSS: SwitchService,
+    private authService: AuthService) {
+    const userId = this.authService.getLoggedInUserId();
+    if (userId !== null) {
+      this.userId = userId;
+    } else {
+      console.error('El ID de usuario no está disponible.');
+    }
+  }
 
   @Input() publication: any;
   user: any
   title = 'home';
+  userId: string | undefined;
   //user: any = []
 
   //Data Homr
@@ -34,14 +44,14 @@ export class HomeComponent {
   isCommentModalVisible: boolean = false;
 
   likedPublications: { [key: string]: boolean } = {};
-  interactions: {[key: string]: Interaction} = {};
+  interactions: { [key: string]: Interaction } = {};
 
 
 
 
   ngOnInit(): void {
 
-    this.modalSS.$modal.subscribe((valu)=>{this.isModalVisible = valu})
+    this.modalSS.$modal.subscribe((valu) => { this.isModalVisible = valu })
 
     this.loadData();
   }
@@ -54,7 +64,7 @@ export class HomeComponent {
 
         forkJoin(requests).subscribe((responses: any[]) => {
           const usernames = responses.map(response => response.userName);
-          const userimgs = responses.map(responses => responses.userImg )
+          const userimgs = responses.map(responses => responses.userImg)
 
           this.listpublications = data.map((publication, index) => ({
             ...publication,
@@ -68,7 +78,7 @@ export class HomeComponent {
 
 
   //Modal
-  openModal(){
+  openModal() {
 
     this.isModalVisible = true
   }
@@ -110,30 +120,35 @@ export class HomeComponent {
   }
 
 
-// Comentarios
-openCommentModal(publicationId: string) {
-  this.isCommentModalVisible = true;
-  this.comments = []; // Limpiar los comentarios actuales antes de cargar nuevos
+  // Comentarios
+  openCommentModal(publicationId: string) {
+    this.isCommentModalVisible = true;
+    this.comments = []; // Limpiar los comentarios actuales antes de cargar nuevos
 
-  this.commentService.getComments(publicationId).subscribe((data: Comment[]) => {
-    const commentRequests = data.map(comment => this.foroService.getUsernameById(comment.user));
+    this.commentService.getComments(publicationId).subscribe((data: Comment[]) => {
+      const commentRequests = data.map(comment => this.foroService.getUsernameById(comment.user));
 
-    forkJoin(commentRequests).subscribe((responses: any[]) => {
-      for (let i = 0; i < data.length; i++) {
-        data[i].userName = responses[i].userName;
-        data[i].userAvatar = responses[i].userImg;
-      }
-      this.comments = data; // Almacenar los comentarios solo para la publicación actual
+      forkJoin(commentRequests).subscribe((responses: any[]) => {
+        for (let i = 0; i < data.length; i++) {
+          data[i].userName = responses[i].userName;
+          data[i].userAvatar = responses[i].userImg;
+        }
+        this.comments = data; // Almacenar los comentarios solo para la publicación actual
+      });
     });
-  });
-}
+  }
 
 
-  createComment(publicationId: string, user: User) {
-    if (user && user._id && typeof user._id === 'string') { // Verifica que user sea válido y tenga una propiedad _id
+  createComment(publicationId: string) {
+
+    const userId = this.authService.getLoggedInUserId();
+    console.log(this.commentContent)
+    console.log(userId)
+    console.log(publicationId)
+    if (this.userId && typeof this.userId === 'string') { // Verifica que user sea válido y tenga una propiedad _id
       const data = {
         content: this.commentContent,
-        user: user._id, // Utiliza user._id en lugar de user.id
+        userId: userId,
         publicationId: publicationId
       };
 
