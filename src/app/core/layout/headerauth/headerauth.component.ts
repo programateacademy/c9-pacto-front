@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./headerauth.component.css']
 })
 export class HeaderauthComponent {
+  isDropdownOpen = false;
 
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
 }
