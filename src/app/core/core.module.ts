@@ -6,7 +6,8 @@ import { SkeletonComponent } from './common/skeleton/skeleton.component';
 import { ModalComponent } from './libs/modal.component';
 import { AsideComponent } from './layout/aside/aside.component';
 import { HeaderComponent } from './layout/header/header.component';
-
+import { HeaderauthComponent } from './layout/headerauth/headerauth.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -18,19 +19,21 @@ import { HeaderComponent } from './layout/header/header.component';
     ModalComponent,
     AsideComponent,
     HeaderComponent,
-    HeaderComponent,
+    HeaderauthComponent
 
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
-  exports:[
+  exports: [
     FooterComponent,
     LoaderComponent,
     SkeletonComponent,
     ModalComponent,
     HeaderComponent,
     AsideComponent,
+    HeaderauthComponent
 
   ]
 })
