@@ -139,11 +139,16 @@ export class HomeComponent {
   }
 
 
-  createComment(publicationId: string, user: User) {
-    if (user && user._id && typeof user._id === 'string') { // Verifica que user sea válido y tenga una propiedad _id
+  createComment(publicationId: string) {
+
+    const userId = this.authService.getLoggedInUserId();
+    console.log(this.commentContent)
+    console.log(userId)
+    console.log(publicationId)
+    if (this.userId && typeof this.userId === 'string') { // Verifica que user sea válido y tenga una propiedad _id
       const data = {
         content: this.commentContent,
-        user: user._id, // Utiliza user._id en lugar de user.id
+        userId: userId,
         publicationId: publicationId
       };
 
