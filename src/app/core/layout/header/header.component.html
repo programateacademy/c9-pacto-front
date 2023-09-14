@@ -16,33 +16,36 @@
 </head>
 
 <body>
-  <header class="fixed top-0 left-0 w-full bg-white z-50 shadow-md p-5">
-    <nav class="container mx-auto flex justify-center items-center space-x-20">
-      <div class="flex items-center">
-        <img src="../../../../assets/img/cropped-logo_positivo.png" alt="logo" class="w-20 h-10" />
+  <header class="h-18 fixed top-0 left-0 w-full bg-white z-50 shadow-md p-5">
+    <nav class="mt-[-11px] container mx-auto flex justify-between items-center md:space-x-20">
+        <!-- Mostrar el logo solo en pantallas medianas y grandes -->
+        <img src="../../../../assets/img/cropped-logo_positivo.png" alt="logo" class="w-20 h-10 hidden md:block" />
         <a href="#" class="text-blue-600 text-2xl ml-5">
           <i class="fas fa-home"></i>
         </a>
-      </div>
-      <form action="/buscar" method="GET" class="flex items-center">
-        <input type="text" name="q" placeholder="Buscar..." class="mx-2">
-        <button type="submit" class="text-black px-2 py-1 rounded-r-lg">
-          <i class="fas fa-search fa-lg"></i>
-        </button>
-      </form>
+
+        <div class="lg:w-fullv md:w-full">
+          <form action="/buscar" method="GET" class="flex items-center">
+            <input type="text" name="q" placeholder="Buscar..." class="mx-2 border rounded-l-lg py-2 px-2 w-full lg:w-full">
+            <button type="submit" class="text-blue-600 px-4 py-2 rounded-r-lg bg-white">
+              <i class="fas fa-search fa-lg"></i>
+            </button>
+          </form>
+        </div>
       <div class="flex items-center space-x-10">
-        <div class="menu">
+
+        <div class="group relative">
           <a class="text-blue-600 text-2xl">
             <i class="fas fa-user"></i>
           </a>
-          <div class="menu-options">
-            <a class="menu-option" [routerLink]="['/profile', userId]">Perfil</a>
-            <a [routerLink]="['']" class="menu-option">Cerrar sesión</a>
+          <div class="hidden group-hover:block absolute left-0 top-full bg-white border border-black border-solid rounded-md shadow-md p-2 w-48 text-left">
+            <a [routerLink]="['/profile', userId]" class="block px-4 py-2">Perfil</a>
+            <a [routerLink]="['']" class="block px-4 py-2">Cerrar sesión</a>
           </div>
         </div>
       </div>
     </nav>
   </header>
 </body>
-
 </html>
+

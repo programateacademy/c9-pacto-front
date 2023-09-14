@@ -9,12 +9,12 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
+  result: string;
   contactForm!: FormGroup;
 
   constructor(private authService: AuthService,
     private router: Router,
-    private readonly fb: FormBuilder) { }
+    private readonly fb: FormBuilder) { this.result = ''; }
 
   ngOnInit(): void {
     this.contactForm = this.initFrom();
@@ -40,6 +40,10 @@ export class LoginComponent {
 
   onSubmit(): void {
     console.log('form ->', this.contactForm.value);
+
+    if (this.contactForm.value) {
+      this.result = 'User or password does not exist';
+    }
   }
 
   initFrom(): FormGroup {
@@ -47,5 +51,13 @@ export class LoginComponent {
       email: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(8)]],
     })
+  }
+
+  //Alert
+  showAlert() {
+    const title = 'Aviso';
+    const message = ' El usuario o contraseña no existe.';
+    window.alert(`${title}: ${message}`);
+    this.result = '';
   }
 }

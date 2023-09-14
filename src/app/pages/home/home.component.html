@@ -15,10 +15,10 @@
   <div class="aside">
     <app-aside></app-aside>
   </div>
-  <div class="min-h-screen p-4 md:p-8 lg:p-12 xl:p-20">
-    <div class=" max-w-4xl mx-auto">
-      <div class="flex flex-col md:flex-row ">
-        <div class="w-full md:w-3/4 md:mr-4">
+  <div class="min-h-screen sm:ml-0 p-4 md:p-8 lg:p-12">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex flex-col md:flex-row">
+        <div class="w-full  md:w-3/4 md:mr-4 sm:ml-0 my-20 md:ml-28 ">
           <div class="bg-white p-4 md:p-6 lg:p-8 rounded-lg shadow mb-4">
             <!-- Información del usuario y entrada de publicación -->
             <div class="flex mb-4">
@@ -31,6 +31,11 @@
               <div class="space-x-4">
                 <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded comment-button"
                   (click)="openModal()">Insert Image</button>
+
+                <div class="custom-modal" *ngIf="isModalVisible == true">
+                  <app-modal></app-modal>
+                </div>
+
                 <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded comment-button"
                   (click)="publishPost()">Publish</button>
               </div>
@@ -95,23 +100,12 @@
                   </div>
                 </div>
               </div>
-
-
             </div>
-
-
           </div>
         </div>
       </div>
     </div>
   </div>
-
-  <div class="custom-modal" *ngIf="isModalVisible == true">
-    <app-modal></app-modal>
-  </div>
-
-
-
 </body>
 
 </html>
