@@ -6,28 +6,32 @@
   <title>Document</title>
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="home-content ">
+<body class="bg-gray-100">
   <div class="header">
     <app-header></app-header>
   </div>
   <div class="aside">
     <app-aside></app-aside>
   </div>
-  <div class="bg-gray-100 min-h-screen flex justify-center items-center p-20">
-    <div class="w-full flex justify-center max-w-2xl bg-transparent rounded-lg p-4">
-      <div class="flex">
-        <div class="w-3/4">
-          <div class="bg-white p-4 rounded-lg shadow mb-4">
-            <!-- informacion del usuario y post input -->
+  <div class="min-h-screen sm:ml-0 p-4 md:p-8 lg:p-12 xl:p-20">
+    <div class=" mr-4 max-w-4xl mx-auto">
+      <div class="flex flex-col md:flex-row">
+        <div class="w-full  md:w-3/4 md:mr-4 sm:ml-0 md:ml-28 ">
+          <div class="bg-white p-4 md:p-6 lg:p-8 rounded-lg shadow mb-4">
+            <!-- Información del usuario y entrada de publicación -->
             <div class="flex mb-4">
               <img src="https://www.softzone.es/app/uploads/2018/04/guest.png?x=480&quality=40" alt="Imagen de usuario" class="w-10 h-10 rounded-full user-image">
               <input type="text" [(ngModel)]="postText" placeholder="Write your post..." class="w-full ml-4 p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
             </div>
             <div class="mt-2 flex justify-between">
-              <div class="button-group">
-                <button class="text-blue-500 hover:underline insert-button" (click)="openModal()">Insertar Imagen</button>
-                <!-- <button class="text-blue-500 hover:underline insert-button" (click)="openModal()">Insertar archivo </button> -->
-                <button class="text-blue-500 hover:underline justify-end publish-button" (click)="publishPost()">Publicar</button>
+              <div class="space-x-4">
+                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded comment-button" (click)="openModal()">Insert Image</button>
+
+                <div class="custom-modal" *ngIf="isModalVisible == true">
+                  <app-modal></app-modal>
+                </div>
+
+                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded comment-button" (click)="publishPost()">Publish</button>
               </div>
             </div>
           </div>
@@ -45,27 +49,30 @@
             <div class="mt-4 post-image" *ngIf="publication.image">
               <img class="w-full post-image-img" [src]="publication.image" alt="Imagen de la publicación">
             </div>
-            <div class="mt-4 post-actions space-y-2">
-              <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded like-button" [ngClass]="{ 'liked': likedPublications[publication._id] }" (click)="likePublication(publication._id)">
-                Like
-              </button>
-              <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded comment-button" (click)="openCommentModal(publication._id)">
-                Comment
-              </button>
-              <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded share-button">
-                Share
-              </button>
 
+            <div class="mt-4 post-actions space-y-2">
+              <div class="flex flex-col space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0">
+                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded like-button sm:w-1/3" [ngClass]="{ 'liked': likedPublications[publication._id] }" (click)="likePublication(publication._id)">
+                  Me gusta
+                </button>
+                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded comment-button sm:w-1/3" (click)="openCommentModal(publication._id)">
+                  Comentarios
+                </button>
+                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded share-button sm:w-1/3">
+                  Compartir
+                </button>
+              </div>
               <div class="comment-modal" *ngIf="isCommentModalVisible">
+                <div class="comment-modal-overlay"></div>
                 <div class="comment-modal-content p-4 border border-gray-300 rounded-lg shadow-lg">
                   <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-semibold">Create Comment</h2>
-                    <button class="bg-red-500 hover:bg-red-600 text-gray-800 font-bold py-2 px-4 rounded close-button" (click)="closeCommentModal()">Cerrar</button>
+                    <h2 class="text-xl font-semibold">Comentar</h2>
+                    <button class="close font-bold py-2 px-4 rounded close-button" (click)="closeCommentModal()">Cerrar</button>
                   </div>
-                  <input type="text" [(ngModel)]="commentContent" placeholder="Write your comment" class="border border-gray-300 rounded-lg p-2 w-full mb-4">
-                  <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded publish-button" (click)="createComment(publication._id, user)">Publish</button>
+                  <input type="text" [(ngModel)]="commentContent" placeholder="Escribe algo..." class="border border-gray-300 rounded-lg p-2 w-full mb-4">
+                  <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded publish-button" (click)="createComment(publication._id, user)">Publicar</button>
                   <div class="comments-section mt-4">
-                    <h5 class="text-lg font-semibold mb-2">Comments</h5>
+                    <h5 class="text-lg font-semibold mb-2">Comentarios</h5>
                     <div *ngFor="let comment of comments" class="mb-2">
                       <div class="flex items-center">
                         <img [src]="comment.userAvatar" alt="Avatar" class="comment-avatar rounded-full w-8 h-8 mr-2">
@@ -79,18 +86,11 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
     </div>
   </div>
-
-  <div class="custom-modal" *ngIf="isModalVisible == true">
-    <app-modal></app-modal>
-  </div>
-
-
-
 </body>
+
 </html>

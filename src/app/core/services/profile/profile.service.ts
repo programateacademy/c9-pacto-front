@@ -10,7 +10,7 @@ import { User } from 'src/app/models/item';
 })
 export class ProfileService {
 
-  private URL = ''
+  private URL = 'https://pooforoapi.onrender.com/'
 
   constructor(private http: HttpClient,
     private router: Router) { }
