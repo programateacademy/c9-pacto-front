@@ -18,11 +18,19 @@ export class HomeComponent {
     private interactionService: InteractionService,
     private commentService: CommentsService,
     private modalSS: SwitchService,
-    private authService: AuthService) { }
+    private authService: AuthService) {
+    const userId = this.authService.getLoggedInUserId();
+    if (userId !== null) {
+      this.userId = userId;
+    } else {
+      console.error('El ID de usuario no está disponible.');
+    }
+  }
 
   @Input() publication: any;
   user: any
   title = 'home';
+  userId: string | undefined;
   //user: any = []
 
   //Data Homr
