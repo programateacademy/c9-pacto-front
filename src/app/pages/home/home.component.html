@@ -26,6 +26,11 @@
             <div class="mt-2 flex justify-between">
               <div class="space-x-4">
                 <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded comment-button" (click)="openModal()">Insert Image</button>
+
+                  <div class="custom-modal" *ngIf="isModalVisible == true">
+                    <app-modal></app-modal>
+                  </div>
+
                 <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded comment-button" (click)="publishPost()">Publish</button>
               </div>
             </div>
@@ -58,7 +63,7 @@
                 </button>
               </div>
               <div class="comment-modal" *ngIf="isCommentModalVisible">
-                <div class="comment-modal-overlay"></div> 
+                <div class="comment-modal-overlay"></div>
                 <div class="comment-modal-content p-4 border border-gray-300 rounded-lg shadow-lg">
                   <div class="flex justify-between items-center mb-4">
                     <h2 class="text-xl font-semibold">Comentar</h2>
@@ -90,12 +95,5 @@
       </div>
     </div>
   </div>
-
-  <div class="custom-modal" *ngIf="isModalVisible == true">
-    <app-modal></app-modal>
-  </div>
-
-
-
 </body>
 </html>
