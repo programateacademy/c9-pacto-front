@@ -24,21 +24,21 @@
       <div class="hidden md:block">
         <ul class="flex space-x-4 md:space-x-6 lg:space-x-22">
           <!-- En pantallas pequeñas, oculta el menú -->
-          <li class="md:hidden lg:block"><a href="#" class="text-gray-500">Inicio</a></li>
-          <li class="md:hidden lg:block"><a href="#" class="text-gray-500">Sobre Nosotros</a></li>
-          <li class="md:hidden lg:block"><a href="#" class="text-gray-500">Modelos Territorial</a></li>
-          <li class="md:hidden lg:block"><a href="#" class="text-gray-500">Lo Que Hacemos</a></li>
-          <li class="md:hidden lg:block"><a href="#" class="text-gray-500">Conocimiento</a></li>
-          <li class="md:hidden lg:block"><a href="#" class="text-gray-500">Escuela Virtual</a></li>
-          <li class="md:hidden lg:block"><a href="#" class="text-gray-500">Contacto</a></li>
+          <li class="md:hidden lg:block"><a href="#" class="text-gray-500 transition-colors duration-300 hover:text-blue-600">Inicio</a></li>
+          <li class="md:hidden lg:block"><a href="#" class="text-gray-500 transition-colors duration-300 hover:text-blue-600">Sobre Nosotros</a></li>
+          <li class="md:hidden lg:block"><a href="#" class="text-gray-500 transition-colors duration-300 hover:text-blue-600">Modelos Territorial</a></li>
+          <li class="md:hidden lg:block"><a href="#" class="text-gray-500 transition-colors duration-300 hover:text-blue-600">Lo Que Hacemos</a></li>
+          <li class="md:hidden lg:block"><a href="#" class="text-gray-500 transition-colors duration-300 hover:text-blue-600">Conocimiento</a></li>
+          <li class="md:hidden lg:block"><a href="#" class="text-gray-500 transition-colors duration-300 hover:text-blue-600">Escuela Virtual</a></li>
+          <li class="md:hidden lg:block"><a href="#" class="text-gray-500 transition-colors duration-300 hover:text-blue-600">Contacto</a></li>
           <!-- En pantallas medianas, reduce el tamaño del texto -->
-          <li class="hidden md:block lg:hidden"><a href="#" class="text-gray-500 text-sm">Inicio</a></li>
-          <li class="hidden md:block lg:hidden"><a href="#" class="text-gray-500 text-sm">Sobre Nosotros</a></li>
-          <li class="hidden md:block lg:hidden"><a href="#" class="text-gray-500 text-sm">Modelos Territorial</a></li>
-          <li class="hidden md:block lg:hidden"><a href="#" class="text-gray-500 text-sm">Lo Que Hacemos</a></li>
-          <li class="hidden md:block lg:hidden"><a href="#" class="text-gray-500 text-sm">Conocimiento</a></li>
-          <li class="hidden md:block lg:hidden"><a href="#" class="text-gray-500 text-sm">Escuela Virtual</a></li>
-          <li class="hidden md:block lg:hidden"><a href="#" class="text-gray-500 text-sm">Contacto</a></li>
+          <li class="hidden md:block lg:hidden"><a href="#" class="text-gray-500 text-sm transition-colors duration-300 hover:text-blue-600">Inicio</a></li>
+          <li class="hidden md:block lg:hidden"><a href="#" class="text-gray-500 text-sm transition-colors duration-300 hover:text-blue-600">Sobre Nosotros</a></li>
+          <li class="hidden md:block lg:hidden"><a href="#" class="text-gray-500 text-sm transition-colors duration-300 hover:text-blue-600">Modelos Territorial</a></li>
+          <li class="hidden md:block lg:hidden"><a href="#" class="text-gray-500 text-sm transition-colors duration-300 hover:text-blue-600">Lo Que Hacemos</a></li>
+          <li class="hidden md:block lg:hidden"><a href="#" class="text-gray-500 text-sm transition-colors duration-300 hover:text-blue-600">Conocimiento</a></li>
+          <li class="hidden md:block lg:hidden"><a href="#" class="text-gray-500 text-sm transition-colors duration-300 hover:text-blue-600">Escuela Virtual</a></li>
+          <li class="hidden md:block lg:hidden"><a href="#" class="text-gray-500 text-sm transition-colors duration-300 hover:text-blue-600">Contacto</a></li>
         </ul>
       </div>
       <div class="fixed inset-y-2 right-6 z-50">
@@ -49,20 +49,34 @@
                 <a class="text-blue-600 text-2xl" (click)="toggleDropdown()">
                   <i class="fa-solid fa-bars"></i>
                 </a>
-                <div *ngIf="isDropdownOpen" class="absolute right-0 top-0 bg-white border border-black border-solid rounded-md shadow-md p-2 w-48 text-left">
+                <div *ngIf="isDropdownOpen" class="absolute right-0 top-10 bg-white border border-solid rounded-md shadow-md p-2 w-48 text-left">
                   <!-- Agrega el botón de cierre ("X") -->
-                  <button class="close-button text-gray-500 hover:text-gray-700" aria-label="Cerrar" (click)="toggleDropdown()">
+                  <a href="#" class="close-button text-gray-500 text-red-500 hover:text-gray-700 transition-colors duration-300 absolute top-0 right-0 p-2" aria-label="Cerrar" (click)="toggleDropdown()">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
-                  </button>
-                  <p>Inicio</p>
-                  <p>Sobre Nosotros</p>
-                  <p>Modelos Territorial</p>
-                  <p>Lo Que Hacemos</p>
-                  <p>Conocimiento</p>
-                  <p>Escuela Virtual</p>
-                  <p>Contacto</p>
+                  </a>
+                  <a href="#" class="block w-full text-left hover:text-blue-600 focus:outline-none p-1 mt-1 rounded transition-colors duration-300">
+                    Inicio
+                  </a>
+                  <a href="#" class="block w-full text-left hover:text-blue-600 focus:outline-none p-1 mt-1 rounded transition-colors duration-300">
+                    Sobre Nosotros
+                  </a>
+                  <a href="#" class="block w-full text-left hover:text-blue-600 focus:outline-none p-1 mt-1 rounded transition-colors duration-300">
+                    Modelos Territorial
+                  </a>
+                  <a href="#" class="block w-full text-left hover:text-blue-600 focus:outline-none p-1 mt-1 rounded transition-colors duration-300">
+                    Lo Que Hacemos
+                  </a>
+                  <a href="#" class="block w-full text-left hover:text-blue-600 focus:outline-none p-1 mt-1 rounded transition-colors duration-300">
+                    Conocimiento
+                  </a>
+                  <a href="#" class="block w-full text-left hover:text-blue-600 focus:outline-none p-1 mt-1 rounded transition-colors duration-300">
+                    Escuela Virtual
+                  </a>
+                  <a href="#" class="block w-full text-left hover:text-blue-600 focus:outline-none p-1 mt-1 rounded transition-colors duration-300">
+                    Contacto
+                  </a>
                 </div>
               </div>
             </div>
