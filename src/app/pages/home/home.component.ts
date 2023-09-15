@@ -123,11 +123,11 @@ export class HomeComponent {
 
 
   // Comentarios
-  openCommentModal(publicationId: string) {
+  openCommentModal() {
     this.isCommentModalVisible = true;
     this.comments = []; // Limpiar los comentarios actuales antes de cargar nuevos
 
-    this.commentService.getComments(publicationId).subscribe((data: Comment[]) => {
+    this.commentService.getComments(this.publicationId).subscribe((data: Comment[]) => {
       const commentRequests = data.map(comment => this.foroService.getUsernameById(comment.user));
 
       forkJoin(commentRequests).subscribe((responses: any[]) => {
