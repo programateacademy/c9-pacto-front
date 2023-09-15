@@ -152,28 +152,26 @@ export class HomeComponent {
     console.log(this.commentContent)
     console.log(userId)
     console.log(publicationId)
-    if (this.userId && typeof this.userId === 'string') { // Verifica que user sea válido y tenga una propiedad _id
-      const data = {
-        content: this.commentContent,
-        userId: userId,
-        publicationId: publicationId
-      };
+    // Verifica que user sea válido y tenga una propiedad _id
+    const data = {
+      content: this.commentContent,
+      userId: userId,
+      publicationId: publicationId
+    };
 
-      // Ahora puedes usar la variable 'data' en la llamada a this.commentService.createComment
-      this.commentService.createComment(data).subscribe(
-        (response) => {
-          console.log('Comentario creado', response);
-          this.commentService.getComments(publicationId).subscribe((data: Comment[]) => {
-            this.comments = data;
-          });
-        },
-        (error) => {
-          console.error('Error al crear comentario:', error);
-        }
-      );
-    } else {
-      console.error('El objeto user o su propiedad _id no están definidos correctamente.');
-    }
+    // Ahora puedes usar la variable 'data' en la llamada a this.commentService.createComment
+    this.commentService.createComment(data).subscribe(
+      (response) => {
+        console.log('Comentario creado', response);
+        this.commentService.getComments(publicationId).subscribe((data: Comment[]) => {
+          this.comments = data;
+        });
+      },
+      (error) => {
+        console.error('Error al crear comentario:', error);
+      }
+    );
+
   }
 
 
