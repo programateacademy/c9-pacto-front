@@ -11,6 +11,8 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 export class LoginComponent {
   result: string;
   contactForm!: FormGroup;
+  showAlertMessage: boolean = false;
+  public isLoading: boolean = false;
 
   constructor(private authService: AuthService,
     private router: Router,
@@ -20,31 +22,32 @@ export class LoginComponent {
     this.contactForm = this.initFrom();
   }
 
+
   signIn() {
+    this.isLoading = true; // Agregar isLoading para mostrar el loader
     this.authService.signIn(this.contactForm.value)
-      .subscribe(res => {
-        console.log(res)
-        localStorage.setItem('token', res.token)
+      .subscribe(
+        (res) => {
+          console.log(res);
+          localStorage.setItem('token', res.token);
 
-        const userId = this.authService.getLoggedInUserId();
-        console.log('Logged In User ID:', userId);
-        if (userId) {
-          this.router.navigate(['/home', userId]);
-        } else {
-          console.log('No Id found')
+          const userId = this.authService.getLoggedInUserId();
+          console.log('Logged In User ID:', userId);
+          if (userId) {
+            this.router.navigate(['/home', userId]);
+          } else {
+            console.log('No Id found');
+          }
+          this.isLoading = false; // Establecer isLoading en falso cuando se complete la solicitud
+        },
+        (err) => {
+          console.log(err);
+          this.showAlertMessage = true; // Mostrar el mensaje de error solo cuando los datos son incorrectos
+          this.isLoading = false; // Establecer isLoading en falso cuando se complete la solicitud
         }
-      },
-        err => console.log(err)
-      )
+      );
   }
 
-  onSubmit(): void {
-    console.log('form ->', this.contactForm.value);
-
-    if (this.contactForm.value) {
-      this.result = 'User or password does not exist';
-    }
-  }
 
   initFrom(): FormGroup {
     return this.fb.group({
@@ -55,9 +58,6 @@ export class LoginComponent {
 
   //Alert
   showAlert() {
-    const title = 'Aviso';
-    const message = ' El usuario o contraseña no existe.';
-    window.alert(`${title}: ${message}`);
-    this.result = '';
+    this.showAlertMessage = true;
   }
 }
