@@ -146,24 +146,20 @@ export class HomeComponent {
   }
 
 
-  createComment(publicationId: string) {
+  createComment() {
 
     const userId = this.authService.getLoggedInUserId();
-    console.log(this.commentContent)
-    console.log(userId)
-    console.log(publicationId)
-    // Verifica que user sea válido y tenga una propiedad _id
     const data = {
       content: this.commentContent,
       userId: userId,
-      publicationId: publicationId
+      publicationId: this.publicationId
     };
 
     // Ahora puedes usar la variable 'data' en la llamada a this.commentService.createComment
     this.commentService.createComment(data).subscribe(
       (response) => {
         console.log('Comentario creado', response);
-        this.commentService.getComments(publicationId).subscribe((data: Comment[]) => {
+        this.commentService.getComments(this.publicationId).subscribe((data: Comment[]) => {
           this.comments = data;
         });
       },
