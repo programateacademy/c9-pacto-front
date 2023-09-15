@@ -52,7 +52,7 @@ export class RegisterComponent {
 
   initFrom(): FormGroup {
     return this.fb.group({
-      names: ['', [Validators.required, Validators.pattern('[A-Za-z\s]+')]],
+      names: ['', [Validators.required,Validators.minLength(3), Validators.pattern('[A-Za-z\s]+')]],
       surNames: ['', [Validators.required, Validators.pattern('[A-Za-z\s]+')]],
       userName: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required]],
