@@ -25,12 +25,14 @@ export class HomeComponent {
     } else {
       console.error('El ID de usuario no está disponible.');
     }
+    this.publicationId = '';
   }
 
   @Input() publication: any;
   user: any
   title = 'home';
   userId: string | undefined;
+  publicationId: string;
   //user: any = []
 
   //Data Homr
@@ -119,13 +121,19 @@ export class HomeComponent {
     }
   }
 
+  setPublicationIdAndOpenModal(publicationId: string) {
+    this.publicationId = publicationId;
+    this.openCommentModal();
+  }
+
 
   // Comentarios
-  openCommentModal(publicationId: string) {
+  openCommentModal() {
+    console.log(this.publicationId)
     this.isCommentModalVisible = true;
     this.comments = []; // Limpiar los comentarios actuales antes de cargar nuevos
 
-    this.commentService.getComments(publicationId).subscribe((data: Comment[]) => {
+    this.commentService.getComments(this.publicationId).subscribe((data: Comment[]) => {
       const commentRequests = data.map(comment => this.foroService.getUsernameById(comment.user));
 
       forkJoin(commentRequests).subscribe((responses: any[]) => {
@@ -139,34 +147,30 @@ export class HomeComponent {
   }
 
 
-  createComment(publicationId: string) {
+  createComment() {
 
     const userId = this.authService.getLoggedInUserId();
+    const data = {
+      content: this.commentContent,
+      userId: userId,
+      publicationId: this.publicationId
+    };
     console.log(this.commentContent)
     console.log(userId)
-    console.log(publicationId)
-    if (this.userId && typeof this.userId === 'string') { // Verifica que user sea válido y tenga una propiedad _id
-      const data = {
-        content: this.commentContent,
-        userId: userId,
-        publicationId: publicationId
-      };
+    console.log(this.publicationId)
+    // Ahora puedes usar la variable 'data' en la llamada a this.commentService.createComment
+    this.commentService.createComment(data).subscribe(
+      (response) => {
+        console.log('Comentario creado', response);
+        this.commentService.getComments(this.publicationId).subscribe((data: Comment[]) => {
+          this.comments = data;
+        });
+      },
+      (error) => {
+        console.error('Error al crear comentario:', error);
+      }
+    );
 
-      // Ahora puedes usar la variable 'data' en la llamada a this.commentService.createComment
-      this.commentService.createComment(data).subscribe(
-        (response) => {
-          console.log('Comentario creado', response);
-          this.commentService.getComments(publicationId).subscribe((data: Comment[]) => {
-            this.comments = data;
-          });
-        },
-        (error) => {
-          console.error('Error al crear comentario:', error);
-        }
-      );
-    } else {
-      console.error('El objeto user o su propiedad _id no están definidos correctamente.');
-    }
   }
 
 

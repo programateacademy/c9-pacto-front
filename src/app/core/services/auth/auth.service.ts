@@ -13,19 +13,19 @@ export class AuthService {
 
 
   //Logueor, registro & cerrar sesión
-  public signUp(user:any) {
-    return this.http.post<any>(this.URL + '/signup',user)
+  public signUp(user: any) {
+    return this.http.post<any>(this.URL + '/signup', user)
   }
 
-  public signIn(user:any){
-    return this.http.post<any>(this.URL + '/signin',user)
+  public signIn(user: any) {
+    return this.http.post<any>(this.URL + '/signin', user)
   }
 
   loggedIn() {
     return !!localStorage.getItem('token');
   }
-  
-  logout(){
+
+  logout() {
     localStorage.removeItem('token')
     this.router.navigate(['/'])
   }
@@ -34,7 +34,7 @@ export class AuthService {
     const token = this.gettoken();
     if (token) {
       const payload = JSON.parse(atob(token.split('.')[1]));
-      console.log('Valor id deccodificado: ', payload.id)
+
       if (payload.id) {
         return payload.id;
       }
