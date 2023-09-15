@@ -121,6 +121,11 @@ export class HomeComponent {
     }
   }
 
+  setPublicationIdAndOpenModal(publicationId: string) {
+    this.publicationId = publicationId;
+    this.openCommentModal();
+  }
+
 
   // Comentarios
   openCommentModal() {
