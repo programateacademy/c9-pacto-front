@@ -25,12 +25,14 @@ export class HomeComponent {
     } else {
       console.error('El ID de usuario no está disponible.');
     }
+    this.publicationId = '';
   }
 
   @Input() publication: any;
   user: any
   title = 'home';
   userId: string | undefined;
+  publicationId: string;
   //user: any = []
 
   //Data Homr
