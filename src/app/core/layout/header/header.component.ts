@@ -12,8 +12,15 @@ export class HeaderComponent {
 
   constructor(private authService: AuthService, private el: ElementRef, private renderer: Renderer2) {}
 
+
   ngOnInit(): void {
     this.userId = this.authService.getLoggedInUserId();
+  }
+
+
+  //Cerrar sesión
+  logout(){
+    this.authService.logout()
   }
 
   // Método para alternar la visibilidad del menú
