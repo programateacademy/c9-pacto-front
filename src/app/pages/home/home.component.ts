@@ -129,6 +129,7 @@ export class HomeComponent {
 
   // Comentarios
   openCommentModal() {
+    console.log(this.publicationId)
     this.isCommentModalVisible = true;
     this.comments = []; // Limpiar los comentarios actuales antes de cargar nuevos
 
@@ -154,7 +155,9 @@ export class HomeComponent {
       userId: userId,
       publicationId: this.publicationId
     };
-
+    console.log(this.commentContent)
+    console.log(userId)
+    console.log(this.publicationId)
     // Ahora puedes usar la variable 'data' en la llamada a this.commentService.createComment
     this.commentService.createComment(data).subscribe(
       (response) => {
