@@ -4,18 +4,18 @@
     <app-headerauth></app-headerauth>
   </div>
   <div class="w-full">
-    <form class="bg-white px-8 pt-6 pb-8 mb-4">
+    <form (ngSubmit)="signUp()" [formGroup]="contactForm" class="bg-white px-8 pt-6 pb-8 mb-4">
       <div class="mb-4 mt-12">
         <h1 class="font-bold mb-6 mt-4 md:text-4xl">FORMULARIO DE REGISTRO</h1>
         <div class="grid grid-flow-row sm:grid-flow-col gap-3 md:grid-cols-2">
 
           <!--Column left-->
           <div class="row-auto">
-            <!--First-name-->
+            <!--names-->
             <div class="sm:col-span-4 justify-center mb-2">
               <a href="https://www.youtube.com/watch?v=V9auOG6U0rY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=15"
                 target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="first-name">Nombres</label>
+                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="names">Nombres</label>
                 <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
                   class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 576 512">
@@ -25,15 +25,27 @@
                 </svg>:
               </a>
               <input type="text"
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                id="first-name" name="first-name" placeholder="Inserte sus nombres" required>
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                id="names" name="names" placeholder="Inserte sus nombres"
+                [formControl]="contactForm.get('names') as FormControl">
+
+              <div
+                *ngIf="contactForm.controls.names.invalid && (contactForm.controls.names.dirty || contactForm.controls.names.touched)"
+                class="alert alert-danger">
+                <div *ngIf="contactForm.controls.names.errors?.required">
+                  Este campo es requerido.
+                </div>
+                <div *ngIf="contactForm.controls.names.errors?.pattern">
+                  Este campo no admite caracteres especiales.
+                </div>
+              </div>
             </div>
 
-            <!--Age-->
+            <!--years-->
             <div class="sm:col-span-4 justify-center mb-2">
               <a href="https://www.youtube.com/watch?v=nIMLCn9S0VY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=24"
                 target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="age">Edad</label>
+                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="years">Edad</label>
                 <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
                   class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 576 512">
@@ -44,14 +56,14 @@
               </a>
               <input type="number"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                id="age" name="age" placeholder="Inserte su edad" required>
+                id="years" name="years" placeholder="Inserte su edad" required>
             </div>
 
-            <!--"I-am-a-person.-->
+            <!--" person.-->
             <div class="sm:col-span-4 justify-center mb-2 ">
               <a href="https://www.youtube.com/watch?v=Gd2-ldzBTZk&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=5"
                 target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="i-am-a-person">Soy una
+                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="person">Soy una
                   persona</label>
                 <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
                   class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +75,7 @@
               </a>
               <select
                 class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                name="i-am-a-person" id="i-am-a-person" required>
+                name=" person" id=" person" required>
                 <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="auditory">Con discapacidad auditiva
                 </option>
                 <option value="autism">Con autismo</option>
@@ -81,8 +93,8 @@
             <div class="sm:col-span-4  justify-center mb-2">
               <a href="https://www.youtube.com/watch?v=CrY7GS6KKnM&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=3"
                 target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="type-of-entity">Tipo de entidad o
-                  actor social</label>
+                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="typEntitySocialActor">Tipo de
+                  entidad o actor social</label>
                 <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
                   class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 576 512">
@@ -93,11 +105,11 @@
               </a>
               <select
                 class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                name="type-of-entity" id="type-of-entity" required>
+                name="typEntitySocialActor" id="typEntitySocialActor" required>
                 <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="company">Empresa privada</option>
                 <option value="organization">Organización de personas con discapacidad</option>
                 <option value="public entity">Entidad publica - rerritorial(Alcaldia, Gobernación o Ministerio)</option>
-                <option value="Intermediary entity">Entidad de intermediación laboral (Agencia de gestión y colocación
+                <option value="Intermediary entity">Entidad de intermediación laboral (yearsncia de gestión y colocación
                   de empleo, bolsa de empleo)</option>
                 <option value="Training entity">Entidad de formación para el trabajo(SENA, institución de formación,
                   etc.)</option>
@@ -107,11 +119,12 @@
               </select>
             </div>
 
-            <!--company-name-->
+            <!--companyNameOrentity-->
             <div class="sm:col-span-4 justify-center mb-2">
               <a href="https://www.youtube.com/watch?v=ZcMy1mrsO0A&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=18"
                 target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="company-name">Razón social o nombre
+                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="companyNameOrentity">Razon social o
+                  nombre
                   de la entidad</label>
                 <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
                   class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +136,7 @@
               </a>
               <input type="text"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                id="company-name" name="company-name" placeholder="Inserte la razón social" required>
+                id="companyNameOrentity" name="companyNameOrentity" placeholder="Inserte la razón social" required>
             </div>
 
             <!--Departments-->
@@ -170,11 +183,11 @@
           <!-- --------------------------------------------------------- -->
           <!--Column right -->
           <div class="row-auto">
-            <!--Last-name-->
+            <!--surNames-->
             <div class="sm:col-span-4 justify-center mb-2">
               <a href="https://www.youtube.com/watch?v=aNWSJpAvs1g&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=22&ab_channel=PactodeProductividad"
                 target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="last-name">Apellidos</label>
+                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="surNames">Apellidos</label>
                 <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
                   class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 576 512">
@@ -185,7 +198,7 @@
               </a>
               <input type="text"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                id="last-name" name="last-name" placeholder="Inserte sus apellidos" required>
+                id="surNames" name="surNames" placeholder="Inserte sus apellidos" required>
             </div>
 
             <!--Gender-->
@@ -213,11 +226,11 @@
               </select>
             </div>
 
-            <!--Personal-description-->
+            <!--ethnicity-->
             <div class="sm:col-span-4 justify-center mb-2">
               <a href="https://www.youtube.com/watch?v=u7YTICI2qcE&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=26"
                 target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="personal-description">¿Cúal de estas
+                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="ethnicity">¿Cúal de estas
                   opciones te describen mejor?</label>
                 <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
                   class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
@@ -229,7 +242,7 @@
               </a>
               <select
                 class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                name="personal-description" id="personal-description">
+                name="ethnicity" id="ethnicity">
                 <option value="womam">Indigena</option>
                 <option value="man">Gitano (Rom)</option>
                 <option value="trans-man">Palenqueto</option>
@@ -237,11 +250,11 @@
               </select>
             </div>
 
-            <!--Phone-->
+            <!--phoneNumber-->
             <div class="sm:col-span-4 justify-center mb-2">
               <a href="https://www.youtube.com/watch?v=q7jhWAhy_Vg&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=25"
                 target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="phone">Celular</label>
+                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="phoneNumber">Celular</label>
 
                 <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
                   class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
@@ -253,8 +266,9 @@
               </a>
               <input type="text"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                id="phone" name="phone" placeholder="Inserte su número de celular" required>
+                id="phoneNumber" name="phoneNumber" placeholder="Inserte su número de celular" required>
             </div>
+
             <!--country-->
             <div class="sm:col-span-4 justify-center mb-2">
               <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="country">País:</label>
@@ -263,11 +277,11 @@
                 id="country" name="country" value="Colombia" readonly>
             </div>
 
-            <!--Cities-->
+            <!--city-->
             <div class="sm:col-span-4 justify-center mb-2">
               <a href="https://www.youtube.com/watch?v=v9JDSXL9fZY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=29"
                 target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="cities">En que ciudad esta
+                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="city">En que ciudad esta
                   ubicado</label>
                 <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
                   class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
@@ -285,17 +299,7 @@
 
             <!--password-->
             <div class="sm:col-span-4 justify-center mb-2 ">
-              <a href="https://www.youtube.com/watch?v=JX51GuYLHlY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=9&pp=iAQB&ab_channel=PactodeProductividad"
-                target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="password">Contraseña</label>
-                <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
-                  class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 576 512">
-                  <path fill="currentColor"
-                    d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
-                  </path>
-                </svg>:
-              </a>
+              <label class="block text-black-700 text-sm font-bold mt-4 mr-2" for="password">Contraseña:</label>
               <input type="password"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
                 id="password" name="password" placeholder="Inserte su contraseña" required>
