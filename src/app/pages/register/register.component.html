@@ -27,15 +27,15 @@
               <input type="text"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 id="names" name="names" placeholder="Inserte sus nombres"
-                [formControl]="contactForm.get('names') as FormControl">
+                formControlName="names">
 
               <div
-                *ngIf="contactForm.controls.names.invalid && (contactForm.controls.names.dirty || contactForm.controls.names.touched)"
+              *ngIf="contactForm.controls['names'].invalid && (contactForm.controls['names'].dirty || contactForm.controls['names'].touched)"
                 class="alert alert-danger">
-                <div *ngIf="contactForm.controls.names.errors?.required">
+                <div *ngIf="contactForm.controls['names'].errors?.['required']">
                   Este campo es requerido.
                 </div>
-                <div *ngIf="contactForm.controls.names.errors?.pattern">
+                <div *ngIf="contactForm.controls['names'].errors?.['pattern']">
                   Este campo no admite caracteres especiales.
                 </div>
               </div>
@@ -318,4 +318,7 @@
       </div>
     </form>
   </div>
+</div>
+<div class="footer">
+  <app-footer></app-footer>
 </div>
