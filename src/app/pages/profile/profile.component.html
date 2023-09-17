@@ -6,43 +6,46 @@
   <title>Perfil de Usuario</title>
   <link href="https://unpkg.com/tailwindcss@^2.2.16/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<div class="header">
-  <app-header></app-header>
-</div>
-<div class="aside">
-  <app-aside></app-aside>
-</div>
-<body class="bg-gray-100 flex justify-center items-center h-screen">
-  <div class="max-w-4xl">
-    <div class="bg-white sm:ml-0 sm:p-8 md:p-6 lg:p-8 rounded-lg shadow mb-4">
-      <!-- Información del usuario y entrada de publicación -->
-      <div class="flex mb-4 justify-center">
-        <img src="../../../assets/img/perfil.png" alt="Foto de perfil" class="w-40 h-40 rounded-full">
-      </div>
-      <h1 class="font-bold mb-2 text-center text-4xl md:text-5xl">Nombre de Usuario</h1>
-      <hr class="my-2 border-t border-gray-300">
-      <div class="flex justify-center items-center text-gray-600 my-4 md:my-8 space-x-4 md:space-x-9">
-        <p class="text-center">Actor Social:</p>
-        <p class="text-center">Entidad:</p>
-        <p class="text-center">Aportes a la comunidad:</p>
-      </div>
-      <div class="sm:mx-2"> <!-- Contenedor con margen solo en pantallas pequeñas -->
-        <div class="bg-gray-300 p-2 sm:p-4 rounded-lg shadow">
-          <h2 class="text-lg sm:text-xl font-semibold mb-2">Descripción del Perfil:</h2>
-          <p class="my-2">Texto de la descripción...</p>
+<body class="bg-gray-100">
+  <header class="bg-blue-500 p-4">
+    <!-- Encabezado de la página -->
+    <app-header></app-header>
+  </header>
+  <aside class="bg-gray-200 p-4">
+    <!-- Barra lateral -->
+    <app-aside></app-aside>
+  </aside>
+  <main class="flex justify-center items-center min-h-screen">
+    <div class="max-w-4xl">
+      <div class="bg-white sm:ml-0 sm:p-8 md:p-6 lg:p-8 rounded-lg shadow mb-4">
+        <!-- Información del usuario y entrada de publicación -->
+        <div class="flex mb-4 justify-center">
+          <img src="../../../assets/img/perfil.png" alt="Foto de perfil" class="w-40 h-40 rounded-full">
         </div>
-        <div class="bg-gray-300 mt-2 sm:mt-4 rounded-lg shadow">
-          <h2 class="text-lg sm:text-xl font-semibold mb-2">Intereses de Conocimiento:</h2>
-          <p class="my-2">Texto de intereses...</p>
+        <h1 class="font-bold mb-2 text-center text-4xl md:text-5xl">Nombre de Usuario</h1>
+        <hr class="my-2 border-t border-gray-300">
+        <div class="flex justify-center items-center text-gray-600 my-4 md:my-8 space-x-4 md:space-x-9">
+          <p class="text-center">Actor Social:</p>
+          <p class="text-center">Entidad:</p>
+          <p class="text-center">Aportes a la comunidad:</p>
+        </div>
+        <div class="sm:mx-2"> <!-- Contenedor con margen solo en pantallas pequeñas -->
+          <div class="bg-gray-300 p-2 sm:p-4 rounded-lg shadow">
+            <h2 class="text-lg sm:text-xl font-semibold mb-2">Descripción del Perfil:</h2>
+            <p class="my-2">Texto de la descripción...</p>
+          </div>
+          <div class="bg-gray-300 mt-2 sm:mt-4 rounded-lg shadow">
+            <h2 class="text-lg sm:text-xl font-semibold mb-2">Intereses de Conocimiento:</h2>
+            <p class="my-2">Texto de intereses...</p>
+          </div>
+        </div>
+        <div class="flex justify-center items-center mt-4 sm:mt-8">
+          <button type="submit" class="text-blue-700 text-lg sm:text-3xl">
+            <i class="fas fa-location-dot fa-bounce"></i>
+          </button>
         </div>
       </div>
-      <div class="flex justify-center items-center mt-4 sm:mt-8">
-        <button type="submit" class="text-blue-700 text-lg sm:text-3xl">
-          <i class="fa-sharp fa-solid fa-location-dot fa-bounce"></i>/
-        </button>
-      </div>
-
     </div>
-  </div>
+  </main>
 </body>
 </html>
