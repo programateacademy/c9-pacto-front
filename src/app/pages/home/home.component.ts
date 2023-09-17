@@ -132,6 +132,7 @@ export class HomeComponent {
   // Comentarios
   openCommentModal() {
     console.log(this.publicationId)
+    this.renderer.setStyle(document.body, 'overflow', 'hidden');
     this.isCommentModalVisible = true;
     this.comments = []; // Limpiar los comentarios actuales antes de cargar nuevos
 
@@ -177,6 +178,7 @@ export class HomeComponent {
 
 
   closeCommentModal() {
+    this.renderer.removeStyle(document.body, 'overflow');
     this.isCommentModalVisible = false;
   }
 
