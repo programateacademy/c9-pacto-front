@@ -6,6 +6,7 @@ import { CommentsService } from 'src/app/core/services/comments/comments.service
 import { SwitchService } from 'src/app/core/services/modal/switch.service';
 import { forkJoin } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,8 @@ export class HomeComponent {
     private interactionService: InteractionService,
     private commentService: CommentsService,
     private modalSS: SwitchService,
-    private authService: AuthService) {
+    private authService: AuthService,
+    private renderer: Renderer2) {
     const userId = this.authService.getLoggedInUserId();
     if (userId !== null) {
       this.userId = userId;
