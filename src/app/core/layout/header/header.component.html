@@ -42,8 +42,8 @@
               <button class="close-button text-gray-500 transition-colors duration-300 hover:text-red-500 absolute top-0 right-0 p-2" aria-label="Cerrar" (click)="closeDropdownWithButton()">
                 <i class="fas fa-times"></i>
               </button>
-              <a [routerLink]="['/profile', userId]" class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600">Perfil</a>
-              <a (click)="logout()" class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600">Cerrar sesión</a>
+              <a [routerLink]="['/profile', userId]" class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600 cursor-pointer">Perfil</a>
+              <a (click)="logout()" class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600 cursor-pointer">Cerrar sesión</a>
             </div>
           </div>
 

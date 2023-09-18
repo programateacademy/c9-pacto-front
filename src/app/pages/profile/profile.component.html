@@ -8,17 +8,14 @@
 </head>
 <body class="bg-gray-100">
   <header class="bg-blue-500 p-4">
-    <!-- Encabezado de la página -->
     <app-header></app-header>
   </header>
   <aside class="bg-gray-200 p-4">
-    <!-- Barra lateral -->
     <app-aside></app-aside>
   </aside>
   <main class="flex justify-center items-center min-h-screen">
-    <div class="max-w-4xl">
+    <div class="max-w-6xl">
       <div class="bg-white sm:ml-0 sm:p-8 md:p-6 lg:p-8 rounded-lg shadow mb-4">
-        <!-- Información del usuario y entrada de publicación -->
         <div class="flex mb-4 justify-center">
           <img src="../../../assets/img/perfil.png" alt="Foto de perfil" class="w-40 h-40 rounded-full">
         </div>
@@ -29,7 +26,7 @@
           <p class="text-center">Entidad:</p>
           <p class="text-center">Aportes a la comunidad:</p>
         </div>
-        <div class="sm:mx-2"> <!-- Contenedor con margen solo en pantallas pequeñas -->
+        <div class="sm:mx-2">
           <div class="bg-gray-300 p-2 sm:p-4 rounded-lg shadow">
             <h2 class="text-lg sm:text-xl font-semibold mb-2">Descripción del Perfil:</h2>
             <p class="my-2">Texto de la descripción...</p>
@@ -39,9 +36,13 @@
             <p class="my-2">Texto de intereses...</p>
           </div>
         </div>
-        <div class="flex justify-center items-center mt-4 sm:mt-8">
-          <button type="submit" class="text-blue-700 text-lg sm:text-3xl">
-            <i class="fas fa-location-dot fa-bounce"></i>
+        <div class="flex flex-col items-center mt-4 sm:mt-8">
+          <button type="submit" class="text-blue-700 text-lg sm:text-xl flex flex-col items-center">
+            <i class="fas fa-location-dot fa-bounce text-2xl mb-1"></i>
+            Bogota/Colombia
+          </button>
+          <button type="submit" class="text-black bg-[#006186] h-11 w-52 rounded-lg shadow text-lg sm:text-xl">
+            Actualizar perfil
           </button>
         </div>
       </div>
