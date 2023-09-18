@@ -26,11 +26,10 @@
               </a>
               <input type="text"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                id="names" name="names" placeholder="Inserte sus nombres"
-                formControlName="names">
+                id="names" name="names" placeholder="Inserte sus nombres" formControlName="names">
 
               <div
-              *ngIf="contactForm.controls['names'].invalid && (contactForm.controls['names'].dirty || contactForm.controls['names'].touched)"
+                *ngIf="contactForm.controls['names'].invalid && (contactForm.controls['names'].dirty || contactForm.controls['names'].touched)"
                 class="alert alert-danger">
                 <div *ngIf="contactForm.controls['names'].errors?.['required']">
                   Este campo es requerido.
@@ -198,7 +197,18 @@
               </a>
               <input type="text"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                id="surNames" name="surNames" placeholder="Inserte sus apellidos" required>
+                id="surNames" name="surNames" placeholder="Inserte sus apellidos" required formControlName="surNames">
+
+              <div
+                *ngIf="contactForm.controls['names'].invalid && (contactForm.controls['surNames'].dirty || contactForm.controls['surNames'].touched)"
+                class="alert alert-danger">
+                <div *ngIf="contactForm.controls['surNames'].errors?.['required']">
+                  Este campo es requerido.
+                </div>
+                <div *ngIf="contactForm.controls['surNames'].errors?.['pattern']">
+                  Este campo no admite caracteres especiales.
+                </div>
+              </div>
             </div>
 
             <!--Gender-->
