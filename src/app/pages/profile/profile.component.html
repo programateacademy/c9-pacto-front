@@ -41,9 +41,12 @@
             <i class="fas fa-location-dot fa-bounce text-2xl mb-1"></i>
             Bogota/Colombia
           </button>
-          <button type="submit" class="text-black bg-[#006186] h-11 w-52 rounded-lg shadow text-lg sm:text-xl">
+          <button type="submit" class="text-black bg-[#006186] h-11 w-52 rounded-lg shadow text-lg sm:text-xl" (click)="openModal()">
             Actualizar perfil
           </button>
+          <div class="custom-modal" *ngIf="isModalVisible == true">
+            <app-modal-user></app-modal-user>
+          </div>
         </div>
       </div>
     </div>
