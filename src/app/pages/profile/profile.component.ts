@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/item';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { SwitchUserService } from 'src/app/core/services/modalUs/switch-user.service';
 
 
 @Component({
@@ -17,7 +18,18 @@ export class ProfileComponent {
   user: User | null = null;
   users: User[] = [];
 
-  constructor() { }
+  constructor(private modalUser: SwitchUserService) { }
 
+  isModalVisible !: boolean;
 
+  ngOnInit(): void {
+
+    this.modalUser.$modal.subscribe((valu) => { this.isModalVisible = valu })
+    
+  }
+
+  openModal() {
+
+    this.isModalVisible = true
+  }
 }
