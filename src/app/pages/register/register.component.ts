@@ -53,10 +53,20 @@ export class RegisterComponent {
   initFrom(): FormGroup {
     return this.fb.group({
       names: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\s]+')]],
+      years: ['', [Validators.required, Validators.minLength(2)]],
+      person: ['', Validators.required],
+      typEntitySocialActor: [''],
+      companyNameOrentity: ['', Validators.required],
+      departamentoSelect: ['', Validators.required],
+      email: ['', Validators.required],
       surNames: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\s]+')]],
-      userName: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required]],
+      gender: ['', Validators.required],
+      ethnicity: [''],
+      phoneNumber: [''],
+      country: ['Colombia'],
+      municipioSelect: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],
+      termsAndconditions: [false, Validators.requiredTrue]
     })
   }
 
@@ -77,5 +87,9 @@ export class RegisterComponent {
 
   countryAlert(): void {
     window.alert('En el momento solo estamos en Colombia');
+  }
+
+  termsAndconditionsAlert(): void {
+    window.alert('')
   }
 }
