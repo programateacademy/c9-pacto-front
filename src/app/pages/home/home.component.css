@@ -53,3 +53,16 @@
   color: red;
 }
 
+/* Para el botón de "like" sin clic */
+.like-button {
+  background-color: #ccc;
+  /* Color predeterminado */
+  /* Otros estilos */
+}
+
+/* Para el botón de "like" después de hacer clic */
+.like-button.liked {
+  background-color: #f00;
+  /* Cambia el color cuando se le da "like" */
+  /* Otros estilos */
+}

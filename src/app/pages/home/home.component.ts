@@ -101,6 +101,8 @@ export class HomeComponent {
 
   likePublication(publicationId: string) {
     const userId = this.authService.getLoggedInUserId();
+    console.log(publicationId)
+    console.log(this.userId)
     if (!userId) {
       // El usuario no está autenticado, maneja el caso en consecuencia
       console.error('El usuario no está autenticado');
