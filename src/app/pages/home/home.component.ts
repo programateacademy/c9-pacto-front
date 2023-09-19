@@ -151,29 +151,39 @@ export class HomeComponent {
 
 
   createComment() {
-
     const userId = this.authService.getLoggedInUserId();
     const data = {
       content: this.commentContent,
       userId: userId,
       publicationId: this.publicationId
     };
-    console.log(this.commentContent)
-    console.log(userId)
-    console.log(this.publicationId)
-    // Ahora puedes usar la variable 'data' en la llamada a this.commentService.createComment
+
+    console.log(this.commentContent);
+    console.log(userId);
+    console.log(this.publicationId);
+
+    // Crear el comentario
     this.commentService.createComment(data).subscribe(
       (response) => {
         console.log('Comentario creado', response);
-        this.commentService.getComments(this.publicationId).subscribe((data: Comment[]) => {
-          this.comments = data;
+
+        // Después de crear el comentario, obtén la lista actualizada de comentarios
+        this.commentService.getComments(this.publicationId).subscribe((comments: Comment[]) => {
+          const commentRequests = comments.map(comment => this.foroService.getUsernameById(comment.user));
+
+          forkJoin(commentRequests).subscribe((responses: any[]) => {
+            for (let i = 0; i < comments.length; i++) {
+              comments[i].userName = responses[i].userName;
+              comments[i].userAvatar = responses[i].userImg;
+            }
+            this.comments = comments; // Actualizar la lista de comentarios
+          });
         });
       },
       (error) => {
         console.error('Error al crear comentario:', error);
       }
     );
-
   }
 
 
