@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/item';
+import { throwError } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -52,5 +55,39 @@ export class AuthService {
 
   getUsersByRole(): Observable<User[]> {
     return this.http.get<User[]>(this.URL + '/usersByRole');
+  }
+
+
+
+  getLikesForUser(userId: string): Observable<any> {
+    // Obtener el token de autorización del usuario autenticado
+    const token = localStorage.getItem('token');
+    if (!token) {
+      // Manejo de errores: el usuario no está autenticado
+      return throwError('Usuario no autenticado');
+    }
+
+    // Realizar una solicitud al servidor para obtener los "likes" del usuario
+    return this.http.get<any>(`${this.URL}publictpoofo/users/${userId}/likes`, {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      })
+    });
+  }
+
+  updateUserLikes(likedPublications: { [key: string]: boolean }): Observable<any> {
+    // Obtener el token de autorización del usuario autenticado
+    const token = localStorage.getItem('token');
+    if (!token) {
+      // Manejo de errores: el usuario no está autenticado
+      return throwError('Usuario no autenticado');
+    }
+
+    // Realizar una solicitud al servidor para actualizar los "likes" del usuario
+    return this.http.put<any>(`${this.URL}/publictpoofo/likes`, likedPublications, {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      })
+    });
   }
 }
