@@ -4,7 +4,7 @@
     <app-headerauth></app-headerauth>
   </div>
   <div class="w-full">
-    <form (ngSubmit)="signUp()" [formGroup]="contactForm" class="bg-white px-8 pt-6 pb-8 mb-4">
+    <form (ngSubmit)="onSubmit()" [formGroup]="contactForm" class="bg-white px-8 pt-6 pb-8 mb-4">
       <div class="mb-4 mt-12">
         <h1 class="font-bold mb-6 mt-4 md:text-4xl">FORMULARIO DE REGISTRO</h1>
         <div class="grid grid-flow-row sm:grid-flow-col gap-3 md:grid-cols-2">
@@ -28,6 +28,7 @@
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 id="names" name="names" placeholder="Inserte sus nombres" formControlName="names">
 
+              <!-- Validators of names-->
               <div
                 *ngIf="contactForm.controls['names'].invalid && (contactForm.controls['names'].dirty || contactForm.controls['names'].touched)"
                 class="alert alert-danger">
@@ -53,12 +54,19 @@
                   </path>
                 </svg>:
               </a>
-              <input type="number"
+              <input type="text"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                id="years" name="years" placeholder="Inserte su edad" required>
+                id="years" name="years" placeholder="Inserte su edad" required formControlName="years">
+
+              <!--Validators years-->
+              <div *ngIf="contactForm.get('years')?.touched && contactForm.get('years')?.errors?.['required']"
+                class="alert alert-danger">Este campo es obligatorio.</div>
+              <div *ngIf="contactForm.get('years')?.touched && contactForm.get('years')?.errors?.['minlength']"
+                class="alert alert-danger">Este campo debe tener minimo 2
+                {{contactForm.get('years')?.errors?.['minlength'].requiredlength}} digitos.</div>
             </div>
 
-            <!--" person.-->
+            <!--"person.-->
             <div class="sm:col-span-4 justify-center mb-2 ">
               <a href="https://www.youtube.com/watch?v=Gd2-ldzBTZk&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=5"
                 target="_blank" class="flex flex-row items-center">
@@ -74,7 +82,7 @@
               </a>
               <select
                 class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                name=" person" id=" person" required>
+                name="person" id="person" required formControlName="person">
                 <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="auditory">Con discapacidad auditiva
                 </option>
                 <option value="autism">Con autismo</option>
@@ -86,6 +94,9 @@
                 <option value="visual">Con discapacidad visual</option>
                 <option value="Non-disabled">Sin descapacidad</option>
               </select>
+              <!--Validators person-->
+              <div *ngIf="contactForm.get('person')?.touched && contactForm.get('person')?.errors?.['required']"
+                class="alert alert-danger">Este campo es obligatorio.</div>
             </div>
 
             <!--Type of entity or social actor-->
@@ -104,8 +115,8 @@
               </a>
               <select
                 class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                name="typEntitySocialActor" id="typEntitySocialActor" required>
-                <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="company">Empresa privada</option>
+                name="typEntitySocialActor" id="typEntitySocialActor" required formControlName="typEntitySocialActor">
+                <option class="grid grid-flow-row sm:grid-flow-col gap-3">Empresa privada</option>
                 <option value="organization">Organización de personas con discapacidad</option>
                 <option value="public entity">Entidad publica - rerritorial(Alcaldia, Gobernación o Ministerio)</option>
                 <option value="Intermediary entity">Entidad de intermediación laboral (yearsncia de gestión y colocación
@@ -116,6 +127,11 @@
                 <option value="Educational institution">Institución de educación superior</option>
                 <option value="other">Otra</option>
               </select>
+              <!--Validators password-->
+              <div
+                *ngIf="contactForm.get('typEntitySocialActor')?.touched && contactForm.get('typEntitySocialActor')?.errors?.['required']"
+                class="alert alert-danger">Este campo es obligatorio.
+              </div>
             </div>
 
             <!--companyNameOrentity-->
@@ -135,14 +151,20 @@
               </a>
               <input type="text"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                id="companyNameOrentity" name="companyNameOrentity" placeholder="Inserte la razón social" required>
+                id="companyNameOrentity" name="companyNameOrentity" placeholder="Inserte la razón social" required
+                formControlName="companyNameOrentity">
+              <!--Validators companyNameOrentity-->
+              <div
+                *ngIf="contactForm.get('companyNameOrentity')?.touched && contactForm.get('companyNameOrentity')?.errors?.['required']"
+                class="alert alert-danger">Este campo es obligatorio.
+              </div>
             </div>
 
             <!--Departments-->
             <div class="sm:col-span-4 justify-center mb-2">
-              <a href="https://www.youtube.com/watch?v=ZcMy1mrsO0A&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=18"
+              <a href=""
                 target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="departments">Departamentos</label>
+                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="departamentoSelect">Departamentos</label>
                 <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
                   class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 576 512">
@@ -151,14 +173,22 @@
                   </path>
                 </svg>:
               </a>
+              
               <select id="departamentoSelect"
-                class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none">
-                <option *ngFor="let departamento of departamentosUnicos" [value]="departamento">{{departamento }}
+                class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                name="departamento" formControlName="departamento" (change)="onDepartamentoChange()" required>
+                <option *ngFor="let departamento of departamentosUnicos" [value]="departamento">{{departamento}}
+
                 </option>
               </select>
+              <!--Validators companyNameOrentity-->
+              <div
+                *ngIf="contactForm.get('departamentoSelect')?.touched && contactForm.get('departamentoSelect')?.errors?.['required']"
+                class="alert alert-danger">Este campo es obligatorio.
+              </div>
             </div>
 
-            <!--Email-->
+            <!--email-->
             <div class="sm:col-span-4 justify-center mb-2 ">
               <a href="https://www.youtube.com/watch?v=JX51GuYLHlY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=9&pp=iAQB&ab_channel=PactodeProductividad"
                 target="_blank" class="flex flex-row items-center">
@@ -173,7 +203,14 @@
               </a>
               <input type="email"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                id="email" name="email" placeholder="correo@gmail.com" required>
+                id="email" name="email" placeholder="correo@gmail.com" required ngModel [email]="true"
+                formControlName="email">
+              <!--Validators companyNameOrentity-->
+              <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['required']"
+                class="alert alert-danger">Este campo es obligatorio.
+              </div>
+              <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['email']"
+                class="alert alert-danger">Este campo tiene que ser un correo electrónico válido.</div>
             </div>
 
           </div>
@@ -227,13 +264,17 @@
               </a>
               <select
                 class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                name="gender" id="gender" required>
+                name="gender" id="gender" required formControlName="gender">
                 <option value="womam">Mujer</option>
                 <option value="man">Hombre</option>
                 <option value="trans-man">Hombre trans(transexual, transgenero, travesti)</option>
                 <option value="trans-woman">Mujer trans(transexual, transgenero, travesti)</option>
                 <option value="others">Otras</option>
               </select>
+              <!--Validators gender-->
+              <div *ngIf="contactForm.get('gender')?.touched && contactForm.get('gender')?.errors?.['required']"
+                class="alert alert-danger">Este campo es obligatorio.
+              </div>
             </div>
 
             <!--ethnicity-->
@@ -252,12 +293,17 @@
               </a>
               <select
                 class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                name="ethnicity" id="ethnicity">
+                name="ethnicity" id="ethnicity" formControlName="ethnicity">
                 <option value="womam">Indigena</option>
                 <option value="man">Gitano (Rom)</option>
-                <option value="trans-man">Palenqueto</option>
-                <option value="trans-woman">Raizal del archipielago</option>
+                <option value="transMan">Palenqueto</option>
+                <option value="transWoman">Raizal del archipielago</option>
+                <option value="">No aplica</option>
               </select>
+              <!--Validators ethnicity-->
+              <div *ngIf="contactForm.get('ethnicity')?.touched && contactForm.get('ethnicity')?.errors?.['required']"
+                class="alert alert-danger">Este campo es obligatorio.
+              </div>
             </div>
 
             <!--phoneNumber-->
@@ -276,24 +322,29 @@
               </a>
               <input type="text"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                id="phoneNumber" name="phoneNumber" placeholder="Inserte su número de celular" required>
+                id="phoneNumber" name="phoneNumber" placeholder="Inserte su número de celular" required
+                formControlName="phoneNumber">
+              <!--Validators phoneNumber-->
+              <div *ngIf="contactForm.get('phoneNumber')?.touched && contactForm.get('phoneNumber')?.errors?.['required']"
+                class="alert alert-danger">Este campo es obligatorio.
+              </div>
             </div>
 
             <!--country-->
             <div class="sm:col-span-4 justify-center mb-2">
               <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="country">País:</label>
-              <input type="email" (click)="countryAlert()"
+              <input type="text" (click)="countryAlert()"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                id="country" name="country" value="Colombia" readonly>
+                id="country" name="country" value="Colombia" readonly formControlName="country">
             </div>
 
-            <!--city-->
+
+            <!--Municipios-->
             <div class="sm:col-span-4 justify-center mb-2">
-              <a href="https://www.youtube.com/watch?v=v9JDSXL9fZY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=29"
+              <a href="https://youtu.be/v9JDSXL9fZY?si=0jFhazNYtqRT7ft6"
                 target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="city">En que ciudad esta
-                  ubicado</label>
-                <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
+              <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="municipio">En que ciudad estas ubicado </label>
+              <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
                   class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 576 512">
                   <path fill="currentColor"
@@ -301,10 +352,19 @@
                   </path>
                 </svg>:
               </a>
-              <select id="municipioSelect"
-                class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none">
-                <option *ngFor="let municipio of municipiosUnicos" [value]="municipio">{{ municipio }}</option>
+
+              <select id="municipio"
+                class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                name="municipio" formControlName="municipio" required>
+                <option *ngFor="let municipio of filteredMunicipios" [value]="municipio">{{municipio}}
+                </option>
+
               </select>
+              <!--Validators municipioSelect-->
+              <div
+                *ngIf="contactForm.get('municipioSelect')?.touched && contactForm.get('municipioSelect')?.errors?.['required']"
+                class="alert alert-danger">Este campo es obligatorio.
+              </div>
             </div>
 
             <!--password-->
@@ -312,18 +372,31 @@
               <label class="block text-black-700 text-sm font-bold mt-4 mr-2" for="password">Contraseña:</label>
               <input type="password"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                id="password" name="password" placeholder="Inserte su contraseña" required>
+                id="password" name="password" placeholder="Inserte su contraseña" required formControlName="password">
+              <!--Validators password-->
+              <div *ngIf="contactForm.get('password')?.touched && contactForm.get('password')?.errors?.['required']"
+                class="alert alert-danger">Este campo es obligatorio.
+              </div>
             </div>
-
           </div>
         </div>
+
         <!--Checkbox -->
         <label class="flex w-full justify-center">
-          <input type="checkbox" class="mr-1">
+          <input type="checkbox" class="mr-1" id="termsAndconditions" name="termsAndconditions"
+            formControlName="termsAndconditions">
           Acepto los términos y condiciones</label>
-        <div class="col-span-1 w-full flex justify-center items-center mt-4 h-10 ">
-          <button routerLink="/register"
-            class=" flex flex-row justify-center items-center w-44 h-12 bg-[#006186] text-white text-lg border rounded-lg border-r-2 border-b-2 border-l-0 border-t-0 border-black mt-6">Registrarme</button>
+        <!--Validators password-->
+        <div
+          *ngIf="contactForm.get('termsAndconditions')?.touched && contactForm.get('termsAndconditions')?.errors?.['pattern']"
+          class="flex w-full justify-center alert alert-danger">Este campo es obligatorio.
+        </div>
+
+        <!--Button register-->
+        <div class="col-span-1 w-full flex justify-center items-center mt-4 h-10">
+          <button routerLink="/register" name="button_register" id="button_register"
+            class=" flex flex-row justify-center items-center w-44 h-12 bg-[#006186] text-white text-lg border rounded-lg border-r-2 border-b-2 border-l-0 border-t-0 border-black mt-6"
+            type="submit" [disabled]="!contactForm.valid">Registrarme</button>
         </div>
       </div>
     </form>
