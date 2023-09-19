@@ -79,7 +79,8 @@ export class HomeComponent {
           this.listpublications = data.map((publication, index) => ({
             ...publication,
             username: usernames[index],
-            userimg: userimgs[index]
+            userimg: userimgs[index],
+            liked: this.likedPublications[publication._id] === true
           }));
           this.isLoading = false;
         });
@@ -106,19 +107,30 @@ export class HomeComponent {
   //interactions
 
   likePublication(publicationId: string) {
+    localStorage.setItem('userLikes', JSON.stringify(this.likedPublications));
+
     const userId = this.authService.getLoggedInUserId();
-    console.log(publicationId)
-    console.log(this.userId)
+    console.log('Inicio de likePublication. publicationId:', publicationId, 'userId:', userId);
+
     if (!userId) {
       // El usuario no está autenticado, maneja el caso en consecuencia
       console.error('El usuario no está autenticado');
       return;
     }
-    if (this.likedPublications[publicationId]) {
+    const hasLiked = this.likedPublications[publicationId];
+
+    if (hasLiked) {
       // Ya dio "like", entonces quitar el "like"
       this.interactionService.unlikePublication(publicationId, userId).subscribe(
         (response) => {
           this.likedPublications[publicationId] = false;
+          console.log('likedPublications después de quitar like:', this.likedPublications);
+
+          // Actualiza la propiedad publication.isLiked según corresponda
+          // const publication = this.listpublications.find((p) => p._id === publicationId);
+          // if (publication) {
+          //   publication.isLiked = false;
+          // }
         },
         (error) => {
           console.error('Error al quitar like:', error);
@@ -132,6 +144,7 @@ export class HomeComponent {
         },
         (error) => {
           console.error('Error al dar like:', error);
+          console.log('likedPublications después de dar like:', this.likedPublications);
         }
       );
     }
