@@ -127,6 +127,11 @@
                 <option value="Educational institution">Institución de educación superior</option>
                 <option value="other">Otra</option>
               </select>
+              <!--Validators password-->
+              <div
+                *ngIf="contactForm.get('typEntitySocialActor')?.touched && contactForm.get('typEntitySocialActor')?.errors?.['required']"
+                class="alert alert-danger">Este campo es obligatorio.
+              </div>
             </div>
 
             <!--companyNameOrentity-->
@@ -293,6 +298,10 @@
                 <option value="transWoman">Raizal del archipielago</option>
                 <option value="">No aplica</option>
               </select>
+              <!--Validators ethnicity-->
+              <div *ngIf="contactForm.get('ethnicity')?.touched && contactForm.get('ethnicity')?.errors?.['required']"
+                class="alert alert-danger">Este campo es obligatorio.
+              </div>
             </div>
 
             <!--phoneNumber-->
@@ -313,6 +322,10 @@
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
                 id="phoneNumber" name="phoneNumber" placeholder="Inserte su número de celular" required
                 formControlName="phoneNumber">
+              <!--Validators phoneNumber-->
+              <div *ngIf="contactForm.get('phoneNumber')?.touched && contactForm.get('phoneNumber')?.errors?.['required']"
+                class="alert alert-danger">Este campo es obligatorio.
+              </div>
             </div>
 
             <!--country-->
@@ -370,15 +383,15 @@
           Acepto los términos y condiciones</label>
         <!--Validators password-->
         <div
-          *ngIf="contactForm.get('termsAndconditions')?.touched && contactForm.get('termsAndconditions')?.errors?.['required']"
-          class="alert alert-danger">Este campo es obligatorio.
+          *ngIf="contactForm.get('termsAndconditions')?.touched && contactForm.get('termsAndconditions')?.errors?.['pattern']"
+          class="flex w-full justify-center alert alert-danger">Este campo es obligatorio.
         </div>
 
         <!--Button register-->
         <div class="col-span-1 w-full flex justify-center items-center mt-4 h-10">
-          <button routerLink="/register"
-            class=" flex flex-row justify-center items-center w-44 h-12 bg-[#006186] text-white text-lg border rounded-lg border-r-2 border-b-2 border-l-0 border-t-0 border-black mt-6" type="submit"
-            [disabled]="contactForm.invalid">Registrarme</button>
+          <button routerLink="/register" name="button_register" id="button_register"
+            class=" flex flex-row justify-center items-center w-44 h-12 bg-[#006186] text-white text-lg border rounded-lg border-r-2 border-b-2 border-l-0 border-t-0 border-black mt-6"
+            type="submit" [disabled]="!contactForm.valid">Registrarme</button>
         </div>
       </div>
     </form>
