@@ -11,11 +11,13 @@ export class InteractionService {
   constructor(private http: HttpClient) { }
 
   likePublication(publicationId: string, userId: string): Observable<any> {
-    return this.http.put(`${this.apiUrl}interactions/like/${publicationId}`, null);
+    const requestBody = { userId: userId };
+    return this.http.put(`${this.apiUrl}interactions/like/${publicationId}`, requestBody);
   }
 
   unlikePublication(publicationId: string, userId: string): Observable<any> {
-    return this.http.put(`${this.apiUrl}interactions/unlike/${publicationId}`, null);
+    const requestBody = { userId: userId };
+    return this.http.put(`${this.apiUrl}interactions/unlike/${publicationId}`, requestBody);
   }
 
   commentPublication(publicationId: string): Observable<any> {
