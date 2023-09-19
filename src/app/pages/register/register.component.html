@@ -162,9 +162,9 @@
 
             <!--Departments-->
             <div class="sm:col-span-4 justify-center mb-2">
-              <a href="https://www.youtube.com/watch?v=ZcMy1mrsO0A&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=18"
+              <a href=""
                 target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="departments">Departamentos</label>
+                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="departamentoSelect">Departamentos</label>
                 <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
                   class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 576 512">
@@ -173,10 +173,12 @@
                   </path>
                 </svg>:
               </a>
-              <select id="departamentoSelect" name="departamentoSelect"
+              
+              <select id="departamentoSelect"
                 class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                formControlName="departamentoSelect">
-                <option *ngFor="let departamento of departamentosUnicos" [value]="departamento">{{departamento }}
+                name="departamento" formControlName="departamento" (change)="onDepartamentoChange()" required>
+                <option *ngFor="let departamento of departamentosUnicos" [value]="departamento">{{departamento}}
+
                 </option>
               </select>
               <!--Validators companyNameOrentity-->
@@ -336,13 +338,13 @@
                 id="country" name="country" value="Colombia" readonly formControlName="country">
             </div>
 
-            <!--city-->
+
+            <!--Municipios-->
             <div class="sm:col-span-4 justify-center mb-2">
-              <a href="https://www.youtube.com/watch?v=v9JDSXL9fZY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=29"
+              <a href="https://youtu.be/v9JDSXL9fZY?si=0jFhazNYtqRT7ft6"
                 target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="city">En que ciudad esta
-                  ubicado</label>
-                <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
+              <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="municipio">En que ciudad estas ubicado </label>
+              <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
                   class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 576 512">
                   <path fill="currentColor"
@@ -350,10 +352,13 @@
                   </path>
                 </svg>:
               </a>
-              <select id="municipioSelect"
+
+              <select id="municipio"
                 class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                formControlName="municipioSelect">
-                <option *ngFor="let municipio of municipiosUnicos" [value]="municipio">{{ municipio }}</option>
+                name="municipio" formControlName="municipio" required>
+                <option *ngFor="let municipio of filteredMunicipios" [value]="municipio">{{municipio}}
+                </option>
+
               </select>
               <!--Validators municipioSelect-->
               <div
