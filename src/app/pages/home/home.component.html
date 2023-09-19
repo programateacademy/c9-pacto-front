@@ -24,22 +24,15 @@
             <div class="flex mb-4">
               <img src="https://www.softzone.es/app/uploads/2018/04/guest.png?x=480&quality=40"
                 alt="Imagen de usuario" class="w-10 h-10 rounded-full user-image">
-              <input type="text" [(ngModel)]="postText" placeholder="Write your post..."
-                class="w-full ml-4 p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+              <button class="w-full ml-4 p-2 border shadow-md text-gray-400 border-gray-400 bg-transparent hover:bg-gray-100 rounded-lg focus:outline-none focus:border-blue-500 text-left"
+                (click)="openModal()">Crea tu publicación...</button>
             </div>
+
             <div class="mt-2 flex justify-between">
               <div class="space-x-4">
-                <button
-                  class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded comment-button"
-                  (click)="openModal()">Insert Image</button>
-
                 <div class="custom-modal" *ngIf="isModalVisible == true">
                   <app-modal></app-modal>
                 </div>
-
-                <button
-                  class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded comment-button"
-                  (click)="publishPost()">Publish</button>
               </div>
             </div>
           </div>
