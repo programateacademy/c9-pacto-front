@@ -12,12 +12,12 @@ export class InteractionService {
 
   likePublication(publicationId: string, userId: string): Observable<any> {
     const requestBody = { userId: userId };
-    return this.http.put(`${this.apiUrl}interactions/like/${publicationId}`, requestBody);
+    return this.http.post(`${this.apiUrl}publictpoofo/${publicationId}/like`, requestBody);
   }
 
   unlikePublication(publicationId: string, userId: string): Observable<any> {
     const requestBody = { userId: userId };
-    return this.http.put(`${this.apiUrl}interactions/unlike/${publicationId}`, requestBody);
+    return this.http.delete(`${this.apiUrl}publictpoofo/${publicationId}/unlike`, { body: requestBody });
   }
 
   commentPublication(publicationId: string): Observable<any> {
