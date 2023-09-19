@@ -1,10 +1,11 @@
 <div class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
   <div class="insert-modal-content p-4 bg-white rounded-lg shadow-lg">
     <h1 class="text-2xl font-semibold mb-4">Insertar URL de Imagen</h1>
-    <input type="text" placeholder="Insertar URL..." class="border border-gray-300 rounded-lg p-2 w-full mb-4 focus:outline-none focus:ring focus:border-blue-300">
+    <textarea placeholder="Añade una publicación" rows="4" class="border border-gray-300 rounded-lg p-2 w-full mb-4 resize-none focus:outline-none focus:ring focus:border-blue-300"></textarea>
+    <input type="text" placeholder="Insertar URL de imagen..." class="border border-gray-300 rounded-lg p-2 w-full mb-4 focus:outline-none focus:ring focus:border-blue-300">
     <textarea placeholder="Descripción de la imagen para personas con discapacidad..." rows="4" class="border border-gray-300 rounded-lg p-2 w-full mb-4 resize-none focus:outline-none focus:ring focus:border-blue-300"></textarea>
     <div class="flex justify-between">
-      <button class="click text-white bg-gray-500 hover:bg-gray-600 font-bold py-2 px-4 rounded">Insertar</button>
+      <button class="click text-white bg-gray-500 hover:bg-gray-600 font-bold py-2 px-4 rounded">Publicar</button>
       <button class="close text-gray-600 hover:text-gray-800 font-bold py-2 px-4 rounded" (click)="closeModal()">Cancelar</button>
     </div>
   </div>
