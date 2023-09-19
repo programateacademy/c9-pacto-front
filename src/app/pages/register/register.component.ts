@@ -17,8 +17,6 @@ export class RegisterComponent {
 
   contactForm!: FormGroup;
   capitalesdata = capitales;
-  names: string = "";
-  surNames: string = "";
 
   departamentosUnicos: string[] = [];
   municipiosUnicos: string[] = [];
@@ -33,6 +31,11 @@ export class RegisterComponent {
     this.municipiosUnicos = this.obtenerMunicipiosUnicos();
   }
 
+  onPathvalue(): void {
+    this.contactForm.patchValue({
+
+    })
+  }
 
   signUp() {
     this.authService.signUp(this.contactForm.value)
@@ -53,10 +56,20 @@ export class RegisterComponent {
   initFrom(): FormGroup {
     return this.fb.group({
       names: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\s]+')]],
+      years: ['', [Validators.required, Validators.minLength(2)]],
+      person: ['', Validators.required],
+      typEntitySocialActor: ['',Validators.required],
+      companyNameOrentity: ['', Validators.required],
+      departamentoSelect: ['', Validators.required],
+      email: ['', Validators.required],
       surNames: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\s]+')]],
-      userName: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required]],
+      gender: ['', Validators.required],
+      ethnicity: ['',Validators.required],
+      phoneNumber: ['',Validators.required],
+      country: ['Colombia'],
+      municipioSelect: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],
+      termsAndconditions: [false, Validators.pattern('true')]
     })
   }
 
@@ -77,5 +90,9 @@ export class RegisterComponent {
 
   countryAlert(): void {
     window.alert('En el momento solo estamos en Colombia');
+  }
+
+  formRegisterAlert(): void {
+    window.alert('Todos los campos con * son obligatorios')
   }
 }
