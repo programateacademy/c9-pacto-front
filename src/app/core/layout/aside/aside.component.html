@@ -18,18 +18,12 @@
         <div>
             <h2 class="text-lg font-semibold mb-2">Lista de Usuarios</h2>
             <!-- Usuario en línea 1 -->
-            <div class="flex items-center justify-between border-b pb-2 mb-4">
+            <div class="flex items-center justify-between border-b pb-2 mb-4" *ngFor="let user of users">
                 <div class="flex items-center space-x-2">
-                    <img src="../../../../assets/img/perfil.png" alt="Usuario" class="w-11 h-11 rounded-full">
-                    <span>sergio nicolas paez duque </span>
+                    <img [src]="user.userImg" alt="Usuario" class="w-11 h-11 rounded-full">
+                    <span>{{user.userName}}</span>
                 </div>
             </div>
-            <div class="flex items-center justify-between border-b pb-2 mb-4">
-              <div class="flex items-center space-x-2">
-                  <img src="../../../../assets/img/perfil.png" alt="Usuario" class="w-11 h-11 rounded-full">
-                  <span>sergio nicolas paez duque </span>
-              </div>
-          </div>
         </div>
     </div>
   </div>
