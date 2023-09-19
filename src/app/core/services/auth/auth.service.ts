@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/models/item';
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +48,9 @@ export class AuthService {
   // Almacena el token
   gettoken() {
     return localStorage.getItem('token')
+  }
+
+  getUsersByRole(): Observable<User[]> {
+    return this.http.get<User[]>(this.URL + '/usersByRole');
   }
 }
