@@ -20,7 +20,7 @@ export class InteractionService {
     return this.http.delete(`${this.apiUrl}publictpoofo/${publicationId}/unlike`, { body: requestBody });
   }
 
-  commentPublication(publicationId: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}comments/create/${publicationId}`, { comment: String })
+  commentPublication(publicationId: string, comment: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}comments/create/${publicationId}`, { comment })
   }
 }
