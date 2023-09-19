@@ -24,14 +24,15 @@
           <i class="fas fa-home"></i>
         </a>
 
-        <div class="lg:w-fullv md:w-full">
+        <!-- Barra de busqueda, se deja comentarado ya que para esta etapa no es necesario-->
+        <!-- <div class="lg:w-fullv md:w-full">
           <form action="/buscar" method="GET" class="flex items-center">
             <input type="text" name="q" placeholder="Buscar..." class="mx-2 border rounded-l-lg py-2 px-2 w-full lg:w-full">
             <button type="submit" class="text-blue-600 px-4 py-2 rounded-r-lg bg-white">
               <i class="fas fa-search fa-lg"></i>
             </button>
           </form>
-        </div>
+        </div> -->
           <!-- Menú de usuario -->
           <div class="flex items-center relative">
             <a class="text-2xl relative transition-colors duration-300 text-blue-600 hover:text-blue-800" (click)="toggleDropdown()">
@@ -42,8 +43,8 @@
               <button class="close-button text-gray-500 transition-colors duration-300 hover:text-red-500 absolute top-0 right-0 p-2" aria-label="Cerrar" (click)="closeDropdownWithButton()">
                 <i class="fas fa-times"></i>
               </button>
-              <a [routerLink]="['/profile', userId]" class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600">Perfil</a>
-              <a (click)="logout()" class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600">Cerrar sesión</a>
+              <a [routerLink]="['/profile', userId]" class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600 cursor-pointer">Perfil</a>
+              <a (click)="logout()" class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600 cursor-pointer">Cerrar sesión</a>
             </div>
           </div>
 

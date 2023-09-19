@@ -8,6 +8,7 @@ import { AsideComponent } from './layout/aside/aside.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { HeaderauthComponent } from './layout/headerauth/headerauth.component';
 import { RouterModule } from '@angular/router';
+import { ModalUserComponent } from './libs/modal-user/modal-user.component';
 
 
 
@@ -19,7 +20,8 @@ import { RouterModule } from '@angular/router';
     ModalComponent,
     AsideComponent,
     HeaderComponent,
-    HeaderauthComponent
+    HeaderauthComponent,
+    ModalUserComponent
 
   ],
   imports: [
@@ -33,7 +35,8 @@ import { RouterModule } from '@angular/router';
     ModalComponent,
     HeaderComponent,
     AsideComponent,
-    HeaderauthComponent
+    HeaderauthComponent,
+    ModalUserComponent
 
   ]
 })

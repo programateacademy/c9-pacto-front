@@ -1,14 +1,23 @@
 export interface User {
   _id: string;
-  names:string;
-  surNames:string;
-  phoneNumber:number;
+  names: string;
+  years: number;
+  person: String;
+  typEntitySocialActor: String;
+  companyNameOrentity: String;
+  departamentoSelect: String;
+  email: String;
+  surNames: string;
+  gender: String;
+  ethnicity: String;
+  phoneNumber: number;
+  country: String;
+  municipioSelect: String;
   userName: string;
-  email: string;
   password: string;
   userImg: string;
 }
-export interface Interaction{
+export interface Interaction {
 
   _id: string;
   userId: string;
@@ -28,7 +37,7 @@ export interface Home extends User {
 export interface Comment extends User {
   _id: string;
   content: string;
-  user:string;
+  user: string;
   publication: string; // Cambia esto si el tipo de publication es diferente
   createdAt: Date;
   updatedAt: Date;

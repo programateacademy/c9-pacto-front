@@ -21,8 +21,8 @@ export class RegisterComponent {
 
   contactForm!: FormGroup;
   capitalesdata = capitales;
-  names: string = "";
-  surNames: string = "";
+
+
   departamentosUnicos: string[] = [];
   filteredMunicipios: string[] = [];
 
@@ -32,6 +32,7 @@ export class RegisterComponent {
     // Lógica para obtener listas de departamentos y municipios únicos
     this.departamentosUnicos = this.obtenerDepartamentosUnicos();
   }
+
 
   signUp() {
     this.authService.signUp(this.contactForm.value)
@@ -52,13 +53,23 @@ export class RegisterComponent {
   initFrom(): FormGroup {
     return this.fb.group({
       names: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\s]+')]],
-      surNames: ['', [Validators.required, Validators.pattern('[A-Za-z\s]+')]],
-      userName: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required]],
+
+      years: ['', [Validators.required, Validators.minLength(2)]],
+      person: ['', Validators.required],
+      typEntitySocialActor: ['',Validators.required],
+      companyNameOrentity: ['', Validators.required],
+      departamento: ['', Validators.required],
+      email: ['', Validators.required],
+      surNames: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\s]+')]],
+      gender: ['', Validators.required],
+      ethnicity: ['',Validators.required],
+      phoneNumber: ['',Validators.required],
+      country: ['Colombia'],
+      municipio: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      departamento: ['', [Validators.required]],
-      municipio: ['', [Validators.required]],
-    });
+      termsAndconditions: [false, Validators.pattern('true')]
+    })
+
   }
 
   saveForm(form: FormGroup) {
@@ -84,5 +95,9 @@ export class RegisterComponent {
 
   countryAlert(): void {
     window.alert('En el momento solo estamos en Colombia');
+  }
+
+  formRegisterAlert(): void {
+    window.alert('Todos los campos con * son obligatorios')
   }
 }
