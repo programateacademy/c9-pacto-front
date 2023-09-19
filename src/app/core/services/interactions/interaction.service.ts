@@ -10,15 +10,15 @@ export class InteractionService {
   private apiUrl = 'https://pooforoapi.onrender.com/'
   constructor(private http: HttpClient) { }
 
-  likePublication(interactionId: string): Observable<any> {
-    return this.http.put(`${this.apiUrl}interactions/like/${interactionId}`, null);
+  likePublication(publicationId: string, userId: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}interactions/like/${publicationId}`, null);
   }
 
-  unlikePublication(interactionId: string): Observable<any> {
-    return this.http.put(`${this.apiUrl}interactions/unlike/${interactionId}`,null);
+  unlikePublication(publicationId: string, userId: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}interactions/unlike/${publicationId}`, null);
   }
 
-  commentPublication(publicationId:string):Observable<any>{
-    return this.http.post(`${this.apiUrl}comments/create/${publicationId}`,{comment: String})
+  commentPublication(publicationId: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}comments/create/${publicationId}`, { comment: String })
   }
 }
