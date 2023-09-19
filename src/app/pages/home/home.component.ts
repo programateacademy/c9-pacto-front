@@ -100,9 +100,15 @@ export class HomeComponent {
   //interactions
 
   likePublication(publicationId: string) {
+    const userId = this.authService.getLoggedInUserId();
+    if (!userId) {
+      // El usuario no está autenticado, maneja el caso en consecuencia
+      console.error('El usuario no está autenticado');
+      return;
+    }
     if (this.likedPublications[publicationId]) {
       // Ya dio "like", entonces quitar el "like"
-      this.interactionService.unlikePublication(publicationId).subscribe(
+      this.interactionService.unlikePublication(publicationId, userId).subscribe(
         (response) => {
           this.likedPublications[publicationId] = false;
         },
@@ -112,7 +118,7 @@ export class HomeComponent {
       );
     } else {
       // No dio "like", dar el "like"
-      this.interactionService.likePublication(publicationId).subscribe(
+      this.interactionService.likePublication(publicationId, userId).subscribe(
         (response) => {
           this.likedPublications[publicationId] = true;
         },
