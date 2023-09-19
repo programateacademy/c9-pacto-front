@@ -32,6 +32,15 @@ export class LoginComponent {
           localStorage.setItem('token', res.token);
 
           const userId = this.authService.getLoggedInUserId();
+
+          // Realiza una solicitud para obtener los "likes" y almacénalos en localStorage
+          if (userId !== null) { // Verifica que userId no sea nulo antes de usarlo
+            this.authService.getLikesForUser(userId).subscribe((likes) => {
+              localStorage.setItem('userLikes', JSON.stringify(likes));
+              console.log(likes)
+            });
+          }
+
           console.log('Logged In User ID:', userId);
           if (userId) {
             this.router.navigate(['/home', userId]);

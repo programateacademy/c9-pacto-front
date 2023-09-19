@@ -13,7 +13,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class AuthService {
   // URL solicitudes
   private URL = 'https://pooforoapi.onrender.com/admins'
-
+  private URL2 = 'https://pooforoapi.onrender.com/'
   constructor(private http: HttpClient, private router: Router) { }
 
 
@@ -68,7 +68,7 @@ export class AuthService {
     }
 
     // Realizar una solicitud al servidor para obtener los "likes" del usuario
-    return this.http.get<any>(`${this.URL}publictpoofo/users/${userId}/likes`, {
+    return this.http.get<any>(`${this.URL2}publictpoofo/users/${userId}/likes`, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`
       })
@@ -84,7 +84,7 @@ export class AuthService {
     }
 
     // Realizar una solicitud al servidor para actualizar los "likes" del usuario
-    return this.http.put<any>(`${this.URL}/publictpoofo/likes`, likedPublications, {
+    return this.http.put<any>(`${this.URL2}/publictpoofo/likes`, likedPublications, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`
       })
