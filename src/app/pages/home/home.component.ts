@@ -50,13 +50,19 @@ export class HomeComponent {
   likedPublications: { [key: string]: boolean } = {};
   interactions: { [key: string]: Interaction } = {};
 
-
+  liked: boolean = false;
 
 
   ngOnInit(): void {
 
     this.modalSS.$modal.subscribe((valu) => { this.isModalVisible = valu })
 
+    // Recupera los likes almacenados en localStorage y asígnalos a this.likedPublications
+    const userLikesFromLocalStorage = localStorage.getItem('userLikes');
+    if (userLikesFromLocalStorage) {
+      this.likedPublications = JSON.parse(userLikesFromLocalStorage);
+      console.log('Likes del usuario (recuperados de localStorage):', this.likedPublications);
+    }
     this.loadData();
   }
 
