@@ -13,38 +13,38 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 })
 export class RegisterComponent {
 
-  constructor(private authService: AuthService, readonly fb: FormBuilder, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   contactForm!: FormGroup;
   capitalesdata = capitales;
-  names: string = "";
-  surNames: string = "";
+
 
   departamentosUnicos: string[] = [];
-  municipiosUnicos: string[] = [];
-
+  filteredMunicipios: string[] = [];
 
   ngOnInit(): void {
-
     this.contactForm = this.initFrom();
-    this.signUp()
+
     // Lógica para obtener listas de departamentos y municipios únicos
     this.departamentosUnicos = this.obtenerDepartamentosUnicos();
-    this.municipiosUnicos = this.obtenerMunicipiosUnicos();
   }
 
 
   signUp() {
     this.authService.signUp(this.contactForm.value)
-      .subscribe(res => {
-        console.log(res)
-        localStorage.setItem('token', res.token)
-        this.router.navigate(['/home'])
-      },
+      .subscribe(
+        res => {
+          console.log(res);
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['/home']);
+        },
         err => console.log(err)
       )
   }
-
 
   onSubmit(): void {
     console.log('form ->', this.contactForm.value);
@@ -53,29 +53,51 @@ export class RegisterComponent {
   initFrom(): FormGroup {
     return this.fb.group({
       names: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\s]+')]],
+
+      years: ['', [Validators.required, Validators.minLength(2)]],
+      person: ['', Validators.required],
+      typEntitySocialActor: ['',Validators.required],
+      companyNameOrentity: ['', Validators.required],
+      departamento: ['', Validators.required],
+      email: ['', Validators.required],
       surNames: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\s]+')]],
-      userName: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required]],
+      gender: ['', Validators.required],
+      ethnicity: ['',Validators.required],
+      phoneNumber: ['',Validators.required],
+      country: ['Colombia'],
+      municipio: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],
+      termsAndconditions: [false, Validators.pattern('true')]
     })
+
   }
 
   saveForm(form: FormGroup) {
     console.log('Valid?', form.valid); // true or false
   }
 
-  //Components para obtener Departamentos, ciudades
+  // Componentes para obtener Departamentos, municipios
   private obtenerDepartamentosUnicos(): string[] {
     const departamentos: string[] = this.capitalesdata.map(capital => capital.departamento);
     return departamentos.filter((departamento, index, self) => self.indexOf(departamento) === index);
   }
 
-  private obtenerMunicipiosUnicos(): string[] {
-    const municipios: string[] = this.capitalesdata.map(capital => capital.municipio);
-    return municipios.filter((municipio, index, self) => self.indexOf(municipio) === index);
+  onDepartamentoChange(): void {
+    const selectedDepartamento = this.contactForm.get('departamento')?.value;
+    if (selectedDepartamento) {
+      this.filteredMunicipios = this.capitalesdata
+        .filter(capital => capital.departamento === selectedDepartamento)
+        .map(capital => capital.municipio);
+    } else {
+      this.filteredMunicipios = [];
+    }
   }
 
   countryAlert(): void {
     window.alert('En el momento solo estamos en Colombia');
+  }
+
+  formRegisterAlert(): void {
+    window.alert('Todos los campos con * son obligatorios')
   }
 }

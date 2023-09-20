@@ -8,6 +8,9 @@ import { CoreModule } from '../core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { AdminComponent } from './admin/admin.component';
+import { PasswordComponent } from './password/password.component';
+import { EmailComponent } from './email/email.component';
 
 
 
@@ -16,7 +19,10 @@ import { RouterModule } from '@angular/router';
     HomeComponent,
     LoginComponent,
     ProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminComponent,
+    PasswordComponent,
+    EmailComponent
   ],
   imports: [
     CommonModule,
