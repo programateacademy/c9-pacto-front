@@ -58,14 +58,13 @@ export class HomeComponent {
     this.modalSS.$modal.subscribe((valu) => { this.isModalVisible = valu })
 
     // Recupera los likes almacenados en localStorage y asígnalos a this.likedPublications
-    const userLikesFromLocalStorage = localStorage.getItem('userLikes');
-    if (userLikesFromLocalStorage) {
-      this.likedPublications = JSON.parse(userLikesFromLocalStorage);
-      console.log('Likes del usuario (recuperados de localStorage):', this.likedPublications);
-    }
+    // const userLikesFromLocalStorage = localStorage.getItem('userLikes');
+    // if (userLikesFromLocalStorage) {
+    //   this.likedPublications = JSON.parse(userLikesFromLocalStorage);
+    //   console.log('Likes del usuario (recuperados de localStorage):', this.likedPublications);
+    // }
     this.loadData();
   }
-
 
   public loadData() {
     this.foroService.getTask('https://pooforoapi.onrender.com/publictpoofo/')
@@ -74,14 +73,23 @@ export class HomeComponent {
 
         forkJoin(requests).subscribe((responses: any[]) => {
           const usernames = responses.map(response => response.userName);
-          const userimgs = responses.map(responses => responses.userImg)
+          const userimgs = responses.map(response => response.userImg);
+
+          // Map the likes information
+          const likes = data.map(publication => {
+            return {
+              publicationId: publication._id,
+              likedBy: publication.likes
+            };
+          });
 
           this.listpublications = data.map((publication, index) => ({
             ...publication,
             username: usernames[index],
             userimg: userimgs[index],
-            liked: this.likedPublications[publication._id] === true
-          }));
+            liked: this.likedPublications[publication._id] === true,
+            likes: likes.find(like => like.publicationId === publication._id)?.likedBy || []
+          })); console.log('Likes por publicaicon', likes)
           this.isLoading = false;
         });
       });
