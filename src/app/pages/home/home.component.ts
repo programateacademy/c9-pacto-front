@@ -133,12 +133,6 @@ export class HomeComponent {
         (response) => {
           this.likedPublications[publicationId] = false;
           console.log('likedPublications después de quitar like:', this.likedPublications);
-
-          // Actualiza la propiedad publication.isLiked según corresponda
-          // const publication = this.listpublications.find((p) => p._id === publicationId);
-          // if (publication) {
-          //   publication.isLiked = false;
-          // }
         },
         (error) => {
           console.error('Error al quitar like:', error);
