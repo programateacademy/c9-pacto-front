@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { User } from 'src/app/models/item';
 import { throwError } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
-
+import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -72,22 +72,11 @@ export class AuthService {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`
       })
-    });
-  }
-
-  updateUserLikes(likedPublications: { [key: string]: boolean }): Observable<any> {
-    // Obtener el token de autorización del usuario autenticado
-    const token = localStorage.getItem('token');
-    if (!token) {
-      // Manejo de errores: el usuario no está autenticado
-      return throwError('Usuario no autenticado');
-    }
-
-    // Realizar una solicitud al servidor para actualizar los "likes" del usuario
-    return this.http.put<any>(`${this.URL2}/publictpoofo/likes`, likedPublications, {
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${token}`
+    }).pipe(
+      tap((likes) => {
+        console.log('Likes del usuario (recuperados del servidor) authservices:', likes);
       })
-    });
+    );
   }
+
 }
