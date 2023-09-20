@@ -17,4 +17,8 @@ export class ForoService {
     const userUrl = `https://pooforoapi.onrender.com/poofo/${userId}`
     return this.http.get<string>(userUrl)
   }
+
+  createPost(url:string, item: any): Observable<Home>{
+    return this.http.post<Home>(url, item)
+  }
 }
