@@ -8,18 +8,24 @@ import { enviroment } from 'src/environments/environment.dev';
 })
 export class ForoService {
 
-  constructor(private http: HttpClient) { }
+  private baseURL : string;
 
-  getTask(url: string): Observable<Home[]> {
+  constructor(private http: HttpClient) {
+    this.baseURL = enviroment.apiUrl
+  }
+
+  getTask(endpoint: string): Observable<Home[]> {
+    const url = `${this.baseURL}${endpoint}`;
     return this.http.get<Home[]>(url);
   }
 
-  getUsernameById(userId: String): Observable<string> {
-    const userUrl = enviroment.apiUrl + `poofo/${userId}`
-    return this.http.get<string>(userUrl)
+  getUsernameById(userId: string): Observable<string> {
+    const url = `${this.baseURL}poofo/${userId}`;
+    return this.http.get<string>(url);
   }
 
-  createPost(url:string, item: any): Observable<Home>{
-    return this.http.post<Home>(url, item)
+  createPost(endpoint: string, item: any): Observable<Home> {
+    const url = `${this.baseURL}${endpoint}`;
+    return this.http.post<Home>(url, item);
   }
 }
