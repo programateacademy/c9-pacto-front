@@ -29,12 +29,12 @@
           <p class="text-center">Entidad:</p>
           <p class="text-center">Aportes a la comunidad:</p>
         </div>
-        <div class="sm:mx-2">
-          <div class="bg-gray-300 p-2 sm:p-4 rounded-lg shadow">
+        <div class="sm:mx-2 mb-8">
+          <div class="bg-gray-300 p-2 sm:p-4 rounded-lg shadow mb-8">
             <h2 class="text-lg sm:text-xl font-semibold mb-2">Descripción del Perfil:</h2>
             <p class="my-2">Texto de la descripción...</p>
           </div>
-          <div class="bg-gray-300 mt-2 sm:mt-4 rounded-lg shadow">
+          <div class="bg-gray-300 p-2 sm:p-4 rounded-lg shadow">
             <h2 class="text-lg sm:text-xl font-semibold mb-2">Intereses de Conocimiento:</h2>
             <p class="my-2">Texto de intereses...</p>
           </div>
@@ -44,13 +44,19 @@
             <i class="fas fa-location-dot fa-bounce text-2xl mb-1"></i>
             Bogota/Colombia
           </button>
-          <button type="submit" class="text-black bg-[#006186] h-11 w-52 rounded-lg shadow text-lg sm:text-xl"
-            (click)="openModal()">
+          
+          <button type="submit" class="text-black bg-[#006186] h-11 w-52 rounded-lg shadow text-lg sm:text-xl" (click)="openModal()">
+            
             Actualizar perfil
           </button>
-          <div class="custom-modal" *ngIf="isModalVisible == true">
-            <app-modal-user></app-modal-user>
-          </div>
+
+          <div class="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50" *ngIf="isModalVisible">
+            <div class="fixed top-0 left-0 w-full h-full bg-black opacity-50"></div>
+
+              <div class="bg-white p-4 rounded-lg shadow-lg z-10 max-h-[80vh] overflow-y-auto">
+                <app-modal-user></app-modal-user>
+              </div>
+           </div>
         </div>
       </div>
     </div>

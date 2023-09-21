@@ -18,4 +18,8 @@ export class ForoService {
     const userUrl = enviroment.apiUrl + `poofo/${userId}`
     return this.http.get<string>(userUrl)
   }
+
+  createPost(url:string, item: any): Observable<Home>{
+    return this.http.post<Home>(url, item)
+  }
 }

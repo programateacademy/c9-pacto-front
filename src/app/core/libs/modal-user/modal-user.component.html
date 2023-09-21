@@ -1,33 +1,169 @@
-<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Actualizar perfil</title>
+</head>
+<body>
+    <section class="relative max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 ">
+        <div class="absolute top-2 right-2">
+          <div class="icon-background">
+            <button class="close-button text-gray-500 transition-colors duration-300 hover:text-red-500 absolute top-0 right-0 p-2" aria-label="Cerrar" (click)="closeModal()">
+              <i class="fas fa-times"></i>
+            </button>
+        </div>
 
-<section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
-  <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">Account settings</h2>
+        </div>
+        <h2 class="text-lg font-semibold text-black capitalize dark:text-white">Actualizar perfil</h2>
 
-  <form>
-      <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
-          <div>
-              <label class="text-gray-700 dark:text-gray-200" for="username">Username</label>
-              <input id="username" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+        <form class="mt-12">
+            <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+
+                <div class="relative">
+                    <label class="text-black dark:text-gray-200" for="name">
+                        Nombres
+                        <a href="https://www.youtube.com/watch?v=V9auOG6U0rY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=16" target="_blank" class="ml-2 p-2 text-red-600">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </label>
+                    <input id="name" type="text" placeholder="Inserte sus nombres" class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                </div>
+
+                <div class="relative">
+                    <label class="text-black dark:text-gray-200" for="SocialActor">
+                        Apellidos
+                        <a href="https://www.youtube.com/watch?v=aNWSJpAvs1g&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=23" target="_blank" class="ml-2 p-2 text-red-600">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </label>
+                    <input id="SocialActor" type="text"  placeholder="Inserte sus Apellidos" class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                </div>
+
+                <div class="relative">
+                  <label class="text-black dark:text-gray-200" for="person">Soy una
+                    persona
+                        <a href="https://www.youtube.com/watch?v=Gd2-ldzBTZk&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=5" target="_blank" class="ml-2 p-2 text-red-600">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </label>
+                    <select id="person" name="person" placeholder="Con discapacidad" class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" disabled></select>
+                </div>
+
+                <div class="relative">
+                  <label class="text-black dark:text-gray-200" for="gender">
+                      ¿Con qué género te identificas?
+                      <a href="https://www.youtube.com/watch?v=__kMM2bBTgI&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=19" target="_blank" class="ml-2 p-2 text-red-600">
+                          <i class="fab fa-youtube"></i>
+                      </a>
+                  </label>
+                  <select id="gender" name="gender" class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" disabled></select>
+              </div>
+
+              <div class="relative">
+                <label class="text-black dark:text-gray-200" for="years">Edad
+                      <a href="https://www.youtube.com/watch?v=nIMLCn9S0VY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=24" target="_blank" class="ml-2 p-2 text-red-600">
+                          <i class="fab fa-youtube"></i>
+                      </a>
+                  </label>
+                  <input id="years" type="number"  placeholder="Ingrese su edad" class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+              </div>
+
+              <div class="relative">
+                <label class="text-black dark:text-gray-200" for="ethnicity">
+                  ¿Cúal de estas opciones te describen mejor?
+                    <a href="https://www.youtube.com/watch?v=u7YTICI2qcE&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=26" target="_blank" class="ml-2 p-2 text-red-600">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </label>
+                <select id="ethnicity" name="ethnicity"  class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" disabled></select>
+            </div>
+
+            <div class="relative">
+              <label class="text-black dark:text-gray-200" for="phoneNumber">
+                  Celular
+                  <a href="https://www.youtube.com/watch?v=q7jhWAhy_Vg&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=25" target="_blank" class="ml-2 p-2 text-red-600">
+                      <i class="fab fa-youtube"></i>
+                  </a>
+              </label>
+              <input id="phoneNumber" name="phoneNumber" placeholder="Inserte su número de celular" class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
           </div>
 
-          <div>
-              <label class="text-gray-700 dark:text-gray-200" for="emailAddress">Email Address</label>
-              <input id="emailAddress" type="email" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-          </div>
+          <div class="relative">
+            <label class="text-black dark:text-gray-200" for="ethnicity">
+              Tipo de entidad o actor social
+                <a href="https://www.youtube.com/watch?v=CrY7GS6KKnM&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=3" class="ml-2 p-2 text-red-600">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </label>
+            <select id="ethnicity" name="ethnicity"  class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" disabled></select>
+        </div>
 
-          <div>
-              <label class="text-gray-700 dark:text-gray-200" for="password">Password</label>
-              <input id="password" type="password" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-          </div>
-
-          <div>
-              <label class="text-gray-700 dark:text-gray-200" for="passwordConfirmation">Password Confirmation</label>
-              <input id="passwordConfirmation" type="password" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-          </div>
+        <div class="relative">
+          <label class="text-black dark:text-gray-200" for="country">
+              Pais
+          </label>
+          <input id="country" name="country" placeholder="Colombia" class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" disabled>
       </div>
 
-      <div class="flex justify-end mt-6">
-          <button class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Save</button>
-      </div>
-  </form>
-</section>
+      <div class="relative">
+        <label class="text-black dark:text-gray-200" for="companyNameOrentity">
+          Razon social o nombre de la entidad
+            <a href="https://www.youtube.com/watch?v=ZcMy1mrsO0A&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=18" target="_blank" class="ml-2 p-2 text-red-600">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </label>
+        <input id="companyNameOrentity" name="companyNameOrentity" placeholder="Inserte la razon social" class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+    </div>
+
+    <div class="relative">
+      <label class="text-black dark:text-gray-200" for="departments">Departamentos
+
+            <a href="https://www.youtube.com/watch?v=Gd2-ldzBTZk&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=5" target="_blank" class="ml-2 p-2 text-red-600">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </label>
+        <select id="departments" name="departments" placeholder="Con discapacidad" class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" disabled></select>
+    </div>
+
+    <div class="relative">
+      <label class="text-black dark:text-gray-200" for="city">
+        En que ciudad esta ubicado
+          <a href="https://www.youtube.com/watch?v=v9JDSXL9fZY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=29" target="_blank" class="ml-2 p-2 text-red-600">
+              <i class="fab fa-youtube"></i>
+          </a>
+      </label>
+      <select id="city" name="city" class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" disabled></select>
+  </div>
+
+  <div class="relative">
+    <label class="text-black dark:text-gray-200" for="description">
+        Descripcion del perfil
+        <a href="https://www.youtube.com/watch?v=V9auOG6U0rY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=16" target="_blank" class="ml-2 p-2 text-red-600">
+            <i class="fab fa-youtube"></i>
+        </a>
+    </label>
+    <input id="description" type="text" placeholder="Ingrese la descripción de su perfil" class="block w-full px-4 py-6 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+</div>
+
+<div class="relative">
+  <label class="text-black dark:text-gray-200" for="interests">
+    Intereses de Conocimiento
+      <a href="https://www.youtube.com/watch?v=V9auOG6U0rY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=16" target="_blank" class="ml-2 p-2 text-red-600">
+          <i class="fab fa-youtube"></i>
+      </a>
+  </label>
+  <input id="interests" type="text" placeholder="Ingrese los interses de Conocimiento" class="block w-full px-4 py-6 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+</div>
+
+            </div>
+
+            <div class="flex justify-end mt-6">
+                <button class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-[#006186] rounded-md hover:bg-blue-600 focus:outline-none focus:bg-gray-600">Save</button>
+            </div>
+        </form>
+    </section>
+</body>
+</html>
