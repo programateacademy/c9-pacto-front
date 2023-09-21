@@ -15,7 +15,7 @@ import { enviroment } from 'src/environments/environment.dev';
 export class AuthService {
   // URL solicitudes
 
-  private URL = enviroment.apiUrl + 'admins'
+  private URL = enviroment.apiUrl
 
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -23,11 +23,11 @@ export class AuthService {
 
   //Logueor, registro & cerrar sesión
   public signUp(user: any) {
-    return this.http.post<any>(this.URL + '/signup', user)
+    return this.http.post<any>(this.URL + 'admins/signup', user)
   }
 
   public signIn(user: any) {
-    return this.http.post<any>(this.URL + '/signin', user)
+    return this.http.post<any>(this.URL + 'admins/signin', user)
   }
 
   loggedIn() {
@@ -58,7 +58,7 @@ export class AuthService {
   }
 
   getUsersByRole(): Observable<User[]> {
-    return this.http.get<User[]>(this.URL + '/usersByRole');
+    return this.http.get<User[]>(this.URL + 'admins/usersByRole');
   }
 
 
@@ -72,7 +72,7 @@ export class AuthService {
     }
 
     // Realizar una solicitud al servidor para obtener los "likes" del usuario
-    return this.http.get<any>(`${this.URL2}publictpoofo/users/${userId}/likes`, {
+    return this.http.get<any>(`${this.URL}publictpoofo/users/${userId}/likes`, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`
       })
