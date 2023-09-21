@@ -9,6 +9,8 @@ import { HeaderComponent } from './layout/header/header.component';
 import { HeaderauthComponent } from './layout/headerauth/headerauth.component';
 import { RouterModule } from '@angular/router';
 import { ModalUserComponent } from './libs/modal-user/modal-user.component';
+import { SkeletonProfileComponent } from './common/skeleton-profile/skeleton-profile.component';
+import { SkeletonAsideComponent } from './common/skeleton-aside/skeleton-aside.component';
 
 
 
@@ -21,7 +23,9 @@ import { ModalUserComponent } from './libs/modal-user/modal-user.component';
     AsideComponent,
     HeaderComponent,
     HeaderauthComponent,
-    ModalUserComponent
+    ModalUserComponent,
+    SkeletonProfileComponent,
+    SkeletonAsideComponent
 
   ],
   imports: [
