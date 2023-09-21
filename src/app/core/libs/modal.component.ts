@@ -36,7 +36,7 @@ export class ModalComponent {
     }
 
 
-    this.foroService.createPost("https://pooforoapi.onrender.com/publictpoofo/create", newPost)
+    this.foroService.createPost("publictpoofo/create", newPost)
     .subscribe((data: Home) =>{
       this.newPublication.emit(data);
       this.changeDetectorRef.detectChanges();

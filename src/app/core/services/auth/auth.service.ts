@@ -6,14 +6,18 @@ import { User } from 'src/app/models/item';
 import { throwError } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs';
+import { enviroment } from 'src/environments/environment.dev';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   // URL solicitudes
-  private URL = 'https://pooforoapi.onrender.com/admins'
-  private URL2 = 'https://pooforoapi.onrender.com/'
+
+  private URL = enviroment.apiUrl + 'admins'
+
+
   constructor(private http: HttpClient, private router: Router) { }
 
 
