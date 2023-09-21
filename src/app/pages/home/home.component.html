@@ -32,7 +32,7 @@
             <div class="mt-2 flex justify-between">
               <div class="space-x-4">
                 <div class="custom-modal" *ngIf="isModalVisible == true">
-                  <app-modal></app-modal>
+                  <app-modal (newPublication)="newPostCreating($event)"></app-modal>
                 </div>
               </div>
             </div>

@@ -35,6 +35,7 @@ export class HomeComponent {
   title = 'home';
   userId: string | undefined;
   publicationId: string;
+  public allPublication: any = []
   //user: any = []
 
   //Data Homr
@@ -95,22 +96,17 @@ export class HomeComponent {
       });
   }
 
+  //Evento Crear publicacion
+  newPostCreating(newPublication:Home){
+    this.listpublications.unshift(newPublication)
+
+  }
 
   //Modal
   openModal() {
 
     this.isModalVisible = true
   }
-
-
-  // Simulacion para publicaciones
-  postText: string = '';
-
-  public publishPost() {
-    // Lógica para publicar la entrada aquí
-    console.log('Publicar entrada:', this.postText);
-  }
-
 
   //interactions
 

@@ -35,7 +35,6 @@ export interface Home extends User {
   _id: string;
   username: string;
   userimg: string;
-  reactions: boolean;
   likes: Like[];
   interactions: Interaction[]
 }
