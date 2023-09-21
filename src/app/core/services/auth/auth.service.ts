@@ -3,14 +3,20 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/item';
+import { throwError } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
+import { tap } from 'rxjs';
 import { enviroment } from 'src/environments/environment.dev';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   // URL solicitudes
+
   private URL = enviroment.apiUrl + 'admins'
+
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -54,4 +60,27 @@ export class AuthService {
   getUsersByRole(): Observable<User[]> {
     return this.http.get<User[]>(this.URL + '/usersByRole');
   }
+
+
+
+  getLikesForUser(userId: string): Observable<any> {
+    // Obtener el token de autorización del usuario autenticado
+    const token = localStorage.getItem('token');
+    if (!token) {
+      // Manejo de errores: el usuario no está autenticado
+      return throwError('Usuario no autenticado');
+    }
+
+    // Realizar una solicitud al servidor para obtener los "likes" del usuario
+    return this.http.get<any>(`${this.URL2}publictpoofo/users/${userId}/likes`, {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      })
+    }).pipe(
+      tap((likes) => {
+        console.log('Likes del usuario (recuperados del servidor) authservices:', likes);
+      })
+    );
+  }
+
 }

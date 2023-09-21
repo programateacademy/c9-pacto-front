@@ -26,4 +26,9 @@ export class InteractionService {
     return this.http.post(`${this.apiUrl}comments/create/${publicationId}`, { comment })
 
   }
+
+  getLikedPublications(userId: string): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}publictpoofo/users/${userId}/likes`);
+  }
+
 }

@@ -23,6 +23,10 @@ export interface Interaction {
   userId: string;
   publicationId: string
 }
+export interface Like {
+  _id: string; // ID único del like
+  userId: string; // ID del usuario que dio like
+}
 export interface Home extends User {
   user: string;
   date_create: Date;
@@ -31,6 +35,7 @@ export interface Home extends User {
   _id: string;
   username: string;
   userimg: string;
+  likes: Like[];
   interactions: Interaction[]
 }
 export interface Comment extends User {
