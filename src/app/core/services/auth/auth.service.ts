@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/item';
+import { enviroment } from 'src/environments/environment.dev';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   // URL solicitudes
-  private URL = 'https://pooforoapi.onrender.com/admins'
+  private URL = enviroment.apiUrl + 'admins'
 
   constructor(private http: HttpClient, private router: Router) { }
 
