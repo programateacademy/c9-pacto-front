@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perfil de Usuario</title>
   <link href="https://unpkg.com/tailwindcss@^2.2.16/dist/tailwind.min.css" rel="stylesheet">
 </head>
+
 <body class="bg-gray-100">
   <header class="bg-blue-500 p-4">
     <app-header></app-header>
@@ -16,10 +18,11 @@
   <main class="flex justify-center items-center min-h-screen">
     <div class="max-w-6xl">
       <div class="bg-white sm:ml-0 sm:p-8 md:p-6 lg:p-8 rounded-lg shadow mb-4">
+        <div *ngIf="user"></div>
         <div class="flex mb-4 justify-center">
-          <img src="../../../assets/img/perfil.png" alt="Foto de perfil" class="w-40 h-40 rounded-full">
+          <img class="imagen" [src]="user?.userImg" alt="Mi Foto de Perfil" class="w-40 h-40 rounded-full">
         </div>
-        <h1 class="font-bold mb-2 text-center text-4xl md:text-5xl">Nombre de Usuario</h1>
+        <h1 class="font-bold mb-2 text-center text-4xl md:text-5xl">{{ user?.userName }}</h1>
         <hr class="my-2 border-t border-gray-300">
         <div class="flex justify-center items-center text-gray-600 my-4 md:my-8 space-x-4 md:space-x-9">
           <p class="text-center">Actor Social:</p>
@@ -41,7 +44,8 @@
             <i class="fas fa-location-dot fa-bounce text-2xl mb-1"></i>
             Bogota/Colombia
           </button>
-          <button type="submit" class="text-black bg-[#006186] h-11 w-52 rounded-lg shadow text-lg sm:text-xl" (click)="openModal()">
+          <button type="submit" class="text-black bg-[#006186] h-11 w-52 rounded-lg shadow text-lg sm:text-xl"
+            (click)="openModal()">
             Actualizar perfil
           </button>
           <div class="custom-modal" *ngIf="isModalVisible == true">
@@ -52,4 +56,5 @@
     </div>
   </main>
 </body>
+
 </html>
