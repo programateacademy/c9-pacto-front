@@ -35,6 +35,7 @@ export class HomeComponent {
   title = 'home';
   userId: string | undefined;
   publicationId: string;
+  public allPublication: any = []
   //user: any = []
 
   //Data Homr
@@ -80,6 +81,11 @@ export class HomeComponent {
       });
   }
 
+  //Evento Crear publicacion
+  newPostCreating(newPublication:Home){
+    this.listpublications.unshift(newPublication)
+
+  }
 
   //Modal
   openModal() {
@@ -87,22 +93,20 @@ export class HomeComponent {
     this.isModalVisible = true
   }
 
-
-  // Simulacion para publicaciones
-  postText: string = '';
-
-  public publishPost() {
-    // Lógica para publicar la entrada aquí
-    console.log('Publicar entrada:', this.postText);
-  }
-
-
   //interactions
 
   likePublication(publicationId: string) {
+    const userId = this.authService.getLoggedInUserId();
+    console.log(publicationId)
+    console.log(this.userId)
+    if (!userId) {
+      // El usuario no está autenticado, maneja el caso en consecuencia
+      console.error('El usuario no está autenticado');
+      return;
+    }
     if (this.likedPublications[publicationId]) {
       // Ya dio "like", entonces quitar el "like"
-      this.interactionService.unlikePublication(publicationId).subscribe(
+      this.interactionService.unlikePublication(publicationId, userId).subscribe(
         (response) => {
           this.likedPublications[publicationId] = false;
         },
@@ -112,7 +116,7 @@ export class HomeComponent {
       );
     } else {
       // No dio "like", dar el "like"
-      this.interactionService.likePublication(publicationId).subscribe(
+      this.interactionService.likePublication(publicationId, userId).subscribe(
         (response) => {
           this.likedPublications[publicationId] = true;
         },
