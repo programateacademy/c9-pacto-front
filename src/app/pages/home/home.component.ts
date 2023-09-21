@@ -7,6 +7,7 @@ import { SwitchService } from 'src/app/core/services/modal/switch.service';
 import { forkJoin } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { Renderer2 } from '@angular/core';
+import { enviroment } from 'src/environments/environment.dev';
 
 @Component({
   selector: 'app-home',
@@ -62,7 +63,7 @@ export class HomeComponent {
 
 
   public loadData() {
-    this.foroService.getTask('https://pooforoapi.onrender.com/publictpoofo/')
+    this.foroService.getTask(enviroment.apiUrl + 'publictpoofo/')
       .subscribe((data: Home[]) => {
         const requests = data.map(publication => this.foroService.getUsernameById(publication.user));
 

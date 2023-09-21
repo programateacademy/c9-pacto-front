@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/item';
+import { enviroment } from 'src/environments/environment.dev';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { User } from 'src/app/models/item';
 })
 export class ProfileService {
 
-  private URL = 'https://pooforoapi.onrender.com/'
+  private URL = enviroment.apiUrl
 
   constructor(private http: HttpClient,
     private router: Router) { }
