@@ -7,7 +7,7 @@ import { SwitchService } from 'src/app/core/services/modal/switch.service';
 import { forkJoin } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { Renderer2 } from '@angular/core';
-import { enviroment } from 'src/environments/environment.dev';
+
 
 @Component({
   selector: 'app-home',
@@ -64,13 +64,13 @@ export class HomeComponent {
 
 
   public loadData() {
-    this.foroService.getTask(enviroment.apiUrl + 'publictpoofo/')
+    this.foroService.getTask('publictpoofo/')
       .subscribe((data: Home[]) => {
         const requests = data.map(publication => this.foroService.getUsernameById(publication.user));
 
         forkJoin(requests).subscribe((responses: any[]) => {
-          const usernames = responses.map(response => response.userName);
-          const userimgs = responses.map(responses => responses.userImg)
+          const usernames = responses.map(response => response?.userName);
+          const userimgs = responses.map(responses => responses?.userImg)
 
           this.listpublications = data.map((publication, index) => ({
             ...publication,
@@ -128,6 +128,10 @@ export class HomeComponent {
     }
   }
 
+
+
+  // comentarios
+
   setPublicationIdAndOpenModal(publicationId: string) {
     this.publicationId = publicationId;
     this.openCommentModal();
@@ -146,8 +150,8 @@ export class HomeComponent {
 
       forkJoin(commentRequests).subscribe((responses: any[]) => {
         for (let i = 0; i < data.length; i++) {
-          data[i].userName = responses[i].userName;
-          data[i].userAvatar = responses[i].userImg;
+          data[i].userName = responses[i]?.userName;
+          data[i].userAvatar = responses[i]?.userImg;
         }
         this.comments = data; // Almacenar los comentarios solo para la publicación actual
       });
@@ -178,8 +182,8 @@ export class HomeComponent {
 
           forkJoin(commentRequests).subscribe((responses: any[]) => {
             for (let i = 0; i < comments.length; i++) {
-              comments[i].userName = responses[i].userName;
-              comments[i].userAvatar = responses[i].userImg;
+              comments[i].userName = responses[i]?.userName;
+              comments[i].userAvatar = responses[i]?.userImg;
             }
             this.comments = comments; // Actualizar la lista de comentarios
           });

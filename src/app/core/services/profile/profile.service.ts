@@ -24,7 +24,7 @@ export class ProfileService {
 
   // Metodo par aobtener los datos del usuario logeado por su ID
   getUser(id: string): Observable<User> {
-    const url = `${this.URL}/${id}`;
+    const url = `${this.URL}${id}`;
     console.log('Requesting user data from:', url);
     return this.http.get<User>(url);
   }
