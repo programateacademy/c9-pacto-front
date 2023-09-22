@@ -1,13 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { ForoService } from 'src/app/core/services/home/home.service';
 import { InteractionService } from 'src/app/core/services/interactions/interaction.service';
-import { Home, Interaction, Comment, User } from 'src/app/models/item';
+import { Home, Comment } from 'src/app/models/item';
 import { CommentsService } from 'src/app/core/services/comments/comments.service';
 import { SwitchService } from 'src/app/core/services/modal/switch.service';
 import { forkJoin } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { Renderer2 } from '@angular/core';
-
 
 @Component({
   selector: 'app-home',
@@ -32,46 +31,46 @@ export class HomeComponent {
   }
 
   @Input() publication: any;
-  user: any
+  user: any;
   title = 'home';
   userId: string | undefined;
   publicationId: string;
-  public allPublication: any = []
-  //user: any = []
-
-  //Data Homr
+  public allPublication: any = [];
   public listpublications: Home[] = [];
   public comments: Comment[] = [];
 
   public isLoading: boolean = true;
   commentContent?: string;
   imageURL: string = '';
-  isModalVisible !: boolean;
+  isModalVisible!: boolean;
   isCommentModalVisible: boolean = false;
 
-  likedPublications: { [key: string]: boolean } = {};
-  interactions: { [key: string]: Interaction } = {};
+  likedByUser(publicationId: string): boolean {
+    return !!this.userId && !!this.likedPublications[this.userId] && this.likedPublications[this.userId][publicationId] === true;
+  }
 
-  liked: boolean = false;
-
+  likedPublications: { [userId: string]: { [publicationId: string]: boolean } } = {};
 
   ngOnInit(): void {
-
-     // Cargar información de "likes" del almacenamiento local
-    this.loadLikedPostsFromLocalStorage();
-
-    this.modalSS.$modal.subscribe((valu) => { this.isModalVisible = valu })
-
+    this.modalSS.$modal.subscribe((value) => { this.isModalVisible = value });
+    this.initializeUserLikes(); // Llama a la función para inicializar los "likes" del usuario
     this.loadData();
   }
 
-    // Función para cargar información de "likes" del almacenamiento local
-    private loadLikedPostsFromLocalStorage() {
-      const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
-      likedPosts.forEach((publicationId: string) => {
-        this.likedPublications[publicationId] = true;
-      });
+  // Función para cargar los likes del usuario actual desde el almacenamiento local
+  initializeUserLikes() {
+    this.userId = this.authService.getLoggedInUserId() || '';
+
+    if (this.userId) {
+      // Verifica si el usuario tiene "likes" almacenados en el localStorage
+      const userLikesKey = `userLikes_${this.userId}`;
+      const userLikes = JSON.parse(localStorage.getItem(userLikesKey) || '{}');
+
+      // Asigna los "likes" del usuario actual al objeto likedPublications
+      this.likedPublications[this.userId] = userLikes;
     }
+  }
+
 
   public loadData() {
     this.foroService.getTask('publictpoofo/')
@@ -91,33 +90,34 @@ export class HomeComponent {
             };
           });
 
-
           this.listpublications = data.map((publication, index) => ({
             ...publication,
             username: usernames[index],
             userimg: userimgs[index],
-            liked: this.likedPublications[publication._id] === true,
-            likes: likes.find(like => like.publicationId === publication._id)?.likedBy || []
-          })); console.log('Likes por publicaicon', likes)
+            likedByUser: this.userId ? !!this.likedPublications[this.userId]?.[publication._id] : false
+
+
+
+
+          }));
+
+          console.log('Likes por publicación', likes);
           this.isLoading = false;
         });
       });
   }
 
-  //Evento Crear publicacion
-  newPostCreating(newPublication:Home){
-    this.listpublications.unshift(newPublication)
-
+  // Evento Crear publicación
+  newPostCreating(newPublication: Home) {
+    this.listpublications.unshift(newPublication);
   }
 
-  //Modal
+  // Modal
   openModal() {
-
-    this.isModalVisible = true
+    this.isModalVisible = true;
   }
 
-  //interactions
-
+  // Función para dar "like" a una publicación
   likePublication(publicationId: string) {
     const userId = this.authService.getLoggedInUserId();
 
@@ -126,13 +126,22 @@ export class HomeComponent {
       return;
     }
 
-    if (this.likedPublications[publicationId]) {
+    if (!this.userId) {
+      console.error('El ID de usuario no está disponible');
+      return;
+    }
+
+    // Verifica si el usuario ha dado "like" previamente a esta publicación
+    const likedByUser = this.likedPublications[userId] && this.likedPublications[userId][publicationId] === true;
+
+    if (likedByUser) {
       // Ya dio "like", entonces quitar el "like"
       this.interactionService.unlikePublication(publicationId, userId).subscribe(
         (response) => {
-          this.likedPublications[publicationId] = false;
+          // Actualiza la estructura de "likes" del usuario
+          this.likedPublications[userId][publicationId] = false;
           // Elimina la información del "like" del almacenamiento local
-          this.removeFromLocalStorage(publicationId);
+          this.removeFromLocalStorage(userId, publicationId);
         },
         (error) => {
           console.error('Error al quitar like:', error);
@@ -142,9 +151,10 @@ export class HomeComponent {
       // No dio "like", dar el "like"
       this.interactionService.likePublication(publicationId, userId).subscribe(
         (response) => {
-          this.likedPublications[publicationId] = true;
+          // Actualiza la estructura de "likes" del usuario
+          this.likedPublications[userId][publicationId] = true;
           // Guarda la información del "like" en el almacenamiento local
-          this.saveToLocalStorage(publicationId);
+          this.saveToLocalStorage(userId, publicationId);
         },
         (error) => {
           console.error('Error al dar like:', error);
@@ -152,26 +162,29 @@ export class HomeComponent {
       );
     }
   }
+    // Función para guardar el like en el almacenamiento local del usuario
+    private saveToLocalStorage(userId: string, publicationId: string) {
+      if (!userId) return;
 
-  // Función para guardar el "like" en el almacenamiento local
-  private saveToLocalStorage(publicationId: string) {
-    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
-    likedPosts.push(publicationId);
-    localStorage.setItem('likedPosts', JSON.stringify(likedPosts));
-  }
+      if (!this.likedPublications[userId]) {
+        this.likedPublications[userId] = {};
+      }
 
-  // Función para quitar el "like" del almacenamiento local
-  private removeFromLocalStorage(publicationId: string) {
-    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
-    const index = likedPosts.indexOf(publicationId);
-    if (index !== -1) {
-      likedPosts.splice(index, 1);
-      localStorage.setItem('likedPosts', JSON.stringify(likedPosts));
+      this.likedPublications[userId][publicationId] = true;
+
+      // Serializar y guardar en el almacenamiento local
+      localStorage.setItem(`userLikes_${userId}`, JSON.stringify(this.likedPublications[userId]));
     }
-  }
 
+    // Función para quitar el like del almacenamiento local del usuario
+    private removeFromLocalStorage(userId: string, publicationId: string) {
+      if (!userId || !this.likedPublications[userId]) return;
 
+      delete this.likedPublications[userId][publicationId];
 
+      // Serializar y guardar en el almacenamiento local
+      localStorage.setItem(`userLikes_${userId}`, JSON.stringify(this.likedPublications[userId]));
+    }
 
 
   // comentarios
@@ -181,10 +194,9 @@ export class HomeComponent {
     this.openCommentModal();
   }
 
-
   // Comentarios
   openCommentModal() {
-    console.log(this.publicationId)
+    console.log(this.publicationId);
     this.renderer.setStyle(document.body, 'overflow', 'hidden');
     this.isCommentModalVisible = true;
     this.comments = []; // Limpiar los comentarios actuales antes de cargar nuevos
@@ -201,7 +213,6 @@ export class HomeComponent {
       });
     });
   }
-
 
   createComment() {
     const userId = this.authService.getLoggedInUserId();
@@ -239,7 +250,6 @@ export class HomeComponent {
     );
   }
 
-
   closeCommentModal() {
     this.renderer.removeStyle(document.body, 'overflow');
     this.isCommentModalVisible = false;
@@ -247,4 +257,3 @@ export class HomeComponent {
 
 
 }
-
