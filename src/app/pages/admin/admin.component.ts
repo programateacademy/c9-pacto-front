@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { User } from 'src/app/models/item';
 
 @Component({
   selector: 'app-admin',
@@ -36,25 +37,29 @@ export class AdminComponent {
     this.isModalOpen = false;
   }
 
+  public allusers: any= []
 
-  // deleteUser(userId: string): void {
-  //   if (userId) {
-  //     console.error('El userId es undefined o null. No se puede eliminar.');
-  //     return;
-  //   }
 
-  //   if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
-  //     this.authService.deleteUser(userId).subscribe(
-  //       () => {
-  //         console.log('Usuario eliminado exitosamente.');
-  //         this.loadData();
-  //       },
-  //       (error) => {
-  //         console.error('Error al eliminar el usuario:', error);
-  //       }
-  //     );
-  //   }
-  // }
+
+  deleteUser(userId: any): void {
+    this.allusers = this.allusers.filter((user:User)=>user._id !==userId._id)
+    if (userId) {
+      console.error('El userId es undefined o null. No se puede eliminar.');
+      return;
+    }
+
+    if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
+      this.authService.deleteUser(userId).subscribe(
+        () => {
+          console.log('Usuario eliminado exitosamente.');
+          this.loadData();
+        },
+        (error) => {
+          console.error('Error al eliminar el usuario:', error);
+        }
+      );
+    }
+  }
 
 
 
