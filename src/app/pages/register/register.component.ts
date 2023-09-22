@@ -74,11 +74,11 @@ export class RegisterComponent {
 
   initFrom(): FormGroup {
     return this.fb.group({
-      names: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\s]+')]],
-      surNames: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\s]+')]],
-      email: ['', Validators.required],
+      names: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\\s]+')]],
+      surNames: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\\s]+')]],
+      email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      years: ['', [Validators.required, Validators.minLength(2)]],
+      years: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(3)]],
       person: ['', Validators.required],
       typEntitySocialActor: ['',Validators.required],
       companyNameOrentity: ['', Validators.required],

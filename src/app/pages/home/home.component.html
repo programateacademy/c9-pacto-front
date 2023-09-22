@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
@@ -49,8 +49,8 @@
               </div>
             </div>
             <p class="mt-4 post-text">{{ publication.description }}</p>
-            <div class="bg-blue-200 p-2 rounded mt-2 shadow-md border border-blue-400">
-              <p class="text-blue-800 font-semibold">Texto Alternativo</p>
+            <div class="bg-blue-200 p-2 rounded mt-2 shadow-md border border-blue-400" tabindex="0">
+              <p class="text-blue-800 font-semibold" [textContent]="publication.descriptionImg"></p>
             </div>
 
 
