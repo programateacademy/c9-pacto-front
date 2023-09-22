@@ -61,7 +61,7 @@
             <div class="mt-4 post-actions space-y-2">
               <div class="flex justify-between sm:space-x-4">
                 <button class="bg-gray-300 hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded like-button"
-                  [ngClass]="{ 'liked': likedPublications[publication._id] }"
+                [ngClass]="{ 'liked': likedByUser(publication._id) }"
                   (click)="likePublication(publication._id)">
                   {{publication.likes.length}}
                   <i class="fa-regular fa-heart "></i>
