@@ -4,7 +4,11 @@ import { AuthService } from '../../core/services/auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/item';
 import { SwitchUserService } from 'src/app/core/services/modalUs/switch-user.service';
-
+import { forkJoin } from 'rxjs';
+import { ForoService } from 'src/app/core/services/home/home.service';
+import { InteractionService } from 'src/app/core/services/interactions/interaction.service';
+import { CommentsService } from 'src/app/core/services/comments/comments.service';
+import { Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-profile',
