@@ -36,7 +36,7 @@ export class ModalComponent {
     }
 
 
-    this.foroService.createPost("publictpoofo/create", newPost)
+    this.foroService.createPost("publictpacto/create", newPost)
     .subscribe((data: Home) =>{
       this.newPublication.emit(data);
       this.changeDetectorRef.detectChanges();
