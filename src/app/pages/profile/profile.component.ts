@@ -44,9 +44,8 @@ export class ProfileComponent {
   }
 
   showOptions = false;
-  toggleOptions() {
-    this.showOptions = !this.showOptions;
-
+  toggleOptions(publication: any) {
+    publication.showOptions = !publication.showOptions;
   }
 
   dataUser() {
