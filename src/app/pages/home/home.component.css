@@ -62,7 +62,7 @@
 
 /* Para el botón de "like" después de hacer clic */
 .like-button.liked {
-  background-color: #f00;
+  background-color: #5cb7db;
   /* Cambia el color cuando se le da "like" */
   /* Otros estilos */
 }
