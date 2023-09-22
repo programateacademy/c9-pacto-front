@@ -5,14 +5,14 @@ export interface User {
   person: String;
   typEntitySocialActor: String;
   companyNameOrentity: String;
-  departamentoSelect: String;
+  departamento: String;
   email: String;
   surNames: string;
   gender: String;
   ethnicity: String;
   phoneNumber: number;
   country: String;
-  municipioSelect: String;
+  municipio: String;
   userName: string;
   password: string;
   userImg: string;
