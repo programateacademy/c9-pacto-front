@@ -21,6 +21,13 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
 
+
+  // Eliminar un usuario por su ID
+  deleteUser(userId: any): Observable<any> {
+    return this.http.delete<any>(`${this.URL}poofo/delete/${userId}`);
+  }
+
+
   //Logueor, registro & cerrar sesión
   public signUp(user: any) {
     return this.http.post<any>(this.URL + 'admins/signup', user)
