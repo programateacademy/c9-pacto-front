@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class ModalTermsConditiosComponent {
 
+  showModal: boolean = true;
+
+  closeModal() {
+    this.showModal = false;
+  }
 }
