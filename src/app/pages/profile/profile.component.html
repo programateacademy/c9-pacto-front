@@ -28,8 +28,8 @@
         <hr class="my-2 border-t border-gray-300">
 
         <div class="flex justify-center items-center text-gray-600 my-4 md:my-8 space-x-4 md:space-x-9">
-          <p class="text-center">Actor Social:</p>
-          <p class="text-center">Entidad:</p>
+          <p class="text-center">Actor Social: {{ user?.companyNameOrentity}}</p>
+          <p class="text-center">Entidad: {{ user?.typEntitySocialActor}}</p>
           <p class="text-center" (click)="toggleContenido()">Aportes a la comunidad:</p>
         </div>
         <div *ngIf="showContentOne">
@@ -67,7 +67,7 @@
         </div>
         <div *ngIf="showContentTwo">
           <!-- Publicaciones -->
-          <div *ngFor="let publication of listpublications" class="bg-white p-1 rounded-lg shadow mb-4 max-w-sm">
+          <div *ngFor="let publication of listpublications" class="bg-white p-1 rounded-lg shadow mb-4 max-w-md">
             <div class="relative">
               <button (click)="toggleOptions()"
                 class="absolute top-0 right-0 p-2 rounded-full bg-gray-200 hover:bg-gray-300">
@@ -106,11 +106,9 @@
             <div class="mt-1\.5 post-image" *ngIf="publication.image">
               <img class="w-full post-image-img" [src]="publication.image" alt="Imagen de la publicación">
             </div>
-
-
-
           </div>
         </div>
+
       </div>
     </div>
 
