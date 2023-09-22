@@ -89,5 +89,34 @@ export class AuthService {
       })
     );
   }
+  private getAuthorizationHeader(): HttpHeaders {
+    const token = this.gettoken();
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  }
 
+  changePassword(newPassword: string): Observable<any> {
+    const changePasswordUrl = `${this.URL}admins/change-password`;
+
+    const requestBody = {
+      newPassword: newPassword
+    };
+
+    const headers = this.getAuthorizationHeader();
+
+    return this.http.post(changePasswordUrl, requestBody, { headers });
+  }
+
+  sendPasswordLink(email: string): Observable<any> {
+    const sendPasswordLinkUrl = `${this.URL}admins/send-password-link`;
+
+    const requestBody = {
+      email: email
+    };
+
+    const headers = this.getAuthorizationHeader();
+
+    return this.http.post(sendPasswordLinkUrl, requestBody, { headers });
+  }
 }
