@@ -33,7 +33,11 @@ export class ProfileComponent {
     private router: Router,
     private route: ActivatedRoute,
     private ProfileService: ProfileService,
-    private AuthService: AuthService) { this.publicationId = ''; }
+    private authService: AuthService,
+    private interactionService: InteractionService,
+    private commentService: CommentsService,
+    private foroService: ForoService,
+    private renderer: Renderer2) { this.publicationId = ''; }
 
   isModalVisible !: boolean;
 
@@ -46,7 +50,7 @@ export class ProfileComponent {
 
   dataUser() {
     // Obtiene el ID del usuario logueado desde el servicio de autenticación
-    const loggedInUserId = this.AuthService.getLoggedInUserId();
+    const loggedInUserId = this.authService.getLoggedInUserId();
     console.log('loggedInUserId:', loggedInUserId);
 
     if (loggedInUserId) {
