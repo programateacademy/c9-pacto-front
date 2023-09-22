@@ -36,7 +36,7 @@ export interface Home extends User {
   username: string;
   userimg: string;
   likes: Like[];
-  interactions: Interaction[]
+  likedByUser: boolean;
 }
 export interface Comment extends User {
   _id: string;
