@@ -68,7 +68,27 @@
         <div *ngIf="showContentTwo">
           <!-- Publicaciones -->
           <div *ngFor="let publication of listpublications" class="bg-white p-1 rounded-lg shadow mb-4 max-w-sm">
+            <div class="relative">
+              <button (click)="toggleOptions()"
+                class="absolute top-0 right-0 p-2 rounded-full bg-gray-200 hover:bg-gray-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" *ngIf="!showOptions">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6">
+                  </path>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" *ngIf="showOptions">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                  </path>
+                </svg>
+                <div *ngIf="showOptions"
+                  class="absolute top-2 right-8  bg-gray-200 hover:bg-gray-300 p-1 rounded-lg  z-10">
+                  <button class="block py-1 bg-none text-red-800  font-bold hover:bg-gray-300">Delete</button>
+                  <!-- <button class="block py-2 px-4 text-gray-600 hover:bg-gray-100">Editar</button> -->
+                </div>
+              </button>
 
+            </div>
             <div class="flex">
               <img class="w-8 h-8 rounded-full user-avatar" [src]="publication.userimg" alt="Avatar de usuario">
               <div class="ml-4 user-info">
@@ -76,6 +96,7 @@
                 <p class="text-gray-500 post-time text-xs">{{ publication.date_create | date }}</p>
               </div>
             </div>
+
             <p class="mt-2 post-text text-sm">{{ publication.description }}</p>
             <div class="bg-blue-200 p-1 rounded mt-1 shadow-md border border-blue-400">
               <p class="text-blue-800 font-semibold text-xs">Descripción para personas con discapacidad</p>

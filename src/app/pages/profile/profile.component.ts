@@ -53,6 +53,12 @@ export class ProfileComponent {
     this.showContentOne = !this.showContentOne;
     this.showContentTwo = !this.showContentTwo;
   }
+
+  showOptions = false;
+  toggleOptions() {
+    this.showOptions = !this.showOptions;
+
+  }
   dataUser() {
     // Obtiene el ID del usuario logueado desde el servicio de autenticación
     const loggedInUserId = this.authService.getLoggedInUserId();
