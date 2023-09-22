@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ProfileService } from '../../core/services/profile/profile.service';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { User } from 'src/app/models/item';
+import { User, Home } from 'src/app/models/item';
 import { SwitchUserService } from 'src/app/core/services/modalUs/switch-user.service';
 import { forkJoin } from 'rxjs';
 import { ForoService } from 'src/app/core/services/home/home.service';
@@ -19,12 +19,21 @@ export class ProfileComponent {
 
   user: User | null = null;
   users: User[] = [];
+  public listpublications: Home[] = [];
+  public comments: Comment[] = [];
 
+  commentContent?: string;
+  imageURL: string = '';
+  isCommentModalVisible: boolean = false;
+
+  publicationId: string;
+
+  liked: boolean = false;
   constructor(private modalUser: SwitchUserService,
     private router: Router,
     private route: ActivatedRoute,
     private ProfileService: ProfileService,
-    private AuthService: AuthService) { }
+    private AuthService: AuthService) { this.publicationId = ''; }
 
   isModalVisible !: boolean;
 
