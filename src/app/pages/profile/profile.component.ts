@@ -83,7 +83,7 @@ export class ProfileComponent {
 
 
   public loadData() {
-    this.foroService.getTask('publictpoofo/')
+    this.foroService.getTask('publictpacto/')
       .subscribe((data: Home[]) => {
         const requests = data.map(publication => this.foroService.getUsernameById(publication.user));
         const userId = this.authService.getLoggedInUserId();
