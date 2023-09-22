@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { ModalUserComponent } from './libs/modal-user/modal-user.component';
 import { SkeletonProfileComponent } from './common/skeleton-profile/skeleton-profile.component';
 import { SkeletonAsideComponent } from './common/skeleton-aside/skeleton-aside.component';
+import { ModalTermsConditiosComponent } from './layout/modal-terms-conditios/modal-terms-conditios.component';
 
 
 
@@ -25,7 +26,8 @@ import { SkeletonAsideComponent } from './common/skeleton-aside/skeleton-aside.c
     HeaderauthComponent,
     ModalUserComponent,
     SkeletonProfileComponent,
-    SkeletonAsideComponent
+    SkeletonAsideComponent,
+    ModalTermsConditiosComponent
 
   ],
   imports: [
@@ -40,7 +42,8 @@ import { SkeletonAsideComponent } from './common/skeleton-aside/skeleton-aside.c
     HeaderComponent,
     AsideComponent,
     HeaderauthComponent,
-    ModalUserComponent
+    ModalUserComponent,
+    ModalTermsConditiosComponent
 
   ]
 })
