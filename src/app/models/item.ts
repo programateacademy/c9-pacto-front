@@ -38,6 +38,7 @@ export interface Home extends User {
   userimg: string;
   likes: Like[];
   likedByUser: boolean;
+  showOptions: boolean;
 }
 export interface Comment extends User {
   _id: string;
