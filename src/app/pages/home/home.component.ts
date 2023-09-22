@@ -57,16 +57,21 @@ export class HomeComponent {
 
   ngOnInit(): void {
 
+     // Cargar información de "likes" del almacenamiento local
+    this.loadLikedPostsFromLocalStorage();
+
     this.modalSS.$modal.subscribe((valu) => { this.isModalVisible = valu })
 
-    // Recupera los likes almacenados en localStorage y asígnalos a this.likedPublications
-    // const userLikesFromLocalStorage = localStorage.getItem('userLikes');
-    // if (userLikesFromLocalStorage) {
-    //   this.likedPublications = JSON.parse(userLikesFromLocalStorage);
-    //   console.log('Likes del usuario (recuperados de localStorage):', this.likedPublications);
-    // }
     this.loadData();
   }
+
+    // Función para cargar información de "likes" del almacenamiento local
+    private loadLikedPostsFromLocalStorage() {
+      const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
+      likedPosts.forEach((publicationId: string) => {
+        this.likedPublications[publicationId] = true;
+      });
+    }
 
   public loadData() {
     this.foroService.getTask('publictpoofo/')
@@ -114,24 +119,20 @@ export class HomeComponent {
   //interactions
 
   likePublication(publicationId: string) {
-    localStorage.setItem('userLikes', JSON.stringify(this.likedPublications));
-
     const userId = this.authService.getLoggedInUserId();
-    console.log('Inicio de likePublication. publicationId:', publicationId, 'userId:', userId);
 
     if (!userId) {
-      // El usuario no está autenticado, maneja el caso en consecuencia
       console.error('El usuario no está autenticado');
       return;
     }
-    const hasLiked = this.likedPublications[publicationId];
 
-    if (hasLiked) {
+    if (this.likedPublications[publicationId]) {
       // Ya dio "like", entonces quitar el "like"
       this.interactionService.unlikePublication(publicationId, userId).subscribe(
         (response) => {
           this.likedPublications[publicationId] = false;
-          console.log('likedPublications después de quitar like:', this.likedPublications);
+          // Elimina la información del "like" del almacenamiento local
+          this.removeFromLocalStorage(publicationId);
         },
         (error) => {
           console.error('Error al quitar like:', error);
@@ -142,14 +143,34 @@ export class HomeComponent {
       this.interactionService.likePublication(publicationId, userId).subscribe(
         (response) => {
           this.likedPublications[publicationId] = true;
+          // Guarda la información del "like" en el almacenamiento local
+          this.saveToLocalStorage(publicationId);
         },
         (error) => {
           console.error('Error al dar like:', error);
-          console.log('likedPublications después de dar like:', this.likedPublications);
         }
       );
     }
   }
+
+  // Función para guardar el "like" en el almacenamiento local
+  private saveToLocalStorage(publicationId: string) {
+    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
+    likedPosts.push(publicationId);
+    localStorage.setItem('likedPosts', JSON.stringify(likedPosts));
+  }
+
+  // Función para quitar el "like" del almacenamiento local
+  private removeFromLocalStorage(publicationId: string) {
+    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
+    const index = likedPosts.indexOf(publicationId);
+    if (index !== -1) {
+      likedPosts.splice(index, 1);
+      localStorage.setItem('likedPosts', JSON.stringify(likedPosts));
+    }
+  }
+
+
 
 
 

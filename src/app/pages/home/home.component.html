@@ -50,7 +50,7 @@
             </div>
             <p class="mt-4 post-text">{{ publication.description }}</p>
             <div class="bg-blue-200 p-2 rounded mt-2 shadow-md border border-blue-400">
-              <p class="text-blue-800 font-semibold">Descripción para personas con discapacidad</p>
+              <p class="text-blue-800 font-semibold">Texto Alternativo</p>
             </div>
 
 
@@ -60,15 +60,16 @@
 
             <div class="mt-4 post-actions space-y-2">
               <div class="flex justify-between sm:space-x-4">
-                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded like-button"
+                <button class="bg-gray-300 hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded like-button"
                   [ngClass]="{ 'liked': likedPublications[publication._id] }"
                   (click)="likePublication(publication._id)">
-                  <i class="fa-regular fa-heart fa-beat"></i>
-                  Me gusta {{publication.likes.length}}
+                  {{publication.likes.length}}
+                  <i class="fa-regular fa-heart "></i>
+                  Me gusta
                 </button>
 
                 <button
-                  class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded comment-button sm:w-1/3"
+                  class="bg-gray-300 hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded comment-button sm:w-1/3"
                   (click)="setPublicationIdAndOpenModal(publication._id)">
                   <i class="fa-regular fa-comments"></i>
                   Comentarios
