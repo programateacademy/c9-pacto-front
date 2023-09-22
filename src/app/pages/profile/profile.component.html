@@ -26,42 +26,121 @@
         <h1 class="font-bold mb-2 text-center text-4xl md:text-5xl">{{ user?.userName }}</h1>
 
         <hr class="my-2 border-t border-gray-300">
+
         <div class="flex justify-center items-center text-gray-600 my-4 md:my-8 space-x-4 md:space-x-9">
           <p class="text-center">Actor Social:</p>
           <p class="text-center">Entidad:</p>
-          <p class="text-center">Aportes a la comunidad:</p>
+          <p class="text-center" (click)="toggleContenido()">Aportes a la comunidad:</p>
         </div>
-        <div class="sm:mx-2 mb-8">
-          <div class="bg-gray-300 p-2 sm:p-4 rounded-lg shadow mb-8">
-            <h2 class="text-lg sm:text-xl font-semibold mb-2">Descripción del Perfil:</h2>
-            <p class="my-2">Texto de la descripción...</p>
+        <div *ngIf="showContentOne">
+          <div class="sm:mx-2 mb-8">
+            <div class="bg-gray-300 p-2 sm:p-4 rounded-lg shadow mb-8">
+              <h2 class="text-lg sm:text-xl font-semibold mb-2">Descripción del Perfil:</h2>
+              <p class="my-2">Texto de la descripción...</p>
+            </div>
+            <div class="bg-gray-300 p-2 sm:p-4 rounded-lg shadow">
+              <h2 class="text-lg sm:text-xl font-semibold mb-2">Intereses de Conocimiento:</h2>
+              <p class="my-2">Texto de intereses...</p>
+            </div>
           </div>
-          <div class="bg-gray-300 p-2 sm:p-4 rounded-lg shadow">
-            <h2 class="text-lg sm:text-xl font-semibold mb-2">Intereses de Conocimiento:</h2>
-            <p class="my-2">Texto de intereses...</p>
-          </div>
-        </div>
-        <div class="flex flex-col items-center mt-4 sm:mt-8">
-          <button type="submit" class="text-blue-700 text-lg sm:text-xl flex flex-col items-center">
-            <i class="fas fa-location-dot fa-bounce text-2xl mb-1"></i>
-            Bogota/Colombia
-          </button>
-          
-          <button type="submit" class="text-black bg-[#006186] h-11 w-52 rounded-lg shadow text-lg sm:text-xl" (click)="openModal()">
-            
-            Actualizar perfil
-          </button>
+          <div *ngIf="showContentOne"></div>
+          <div class="flex flex-col items-center mt-4 sm:mt-8">
+            <button type="submit" class="text-blue-700 text-lg sm:text-xl flex flex-col items-center">
+              <i class="fas fa-location-dot fa-bounce text-2xl mb-1"></i>
+              Bogota/Colombia
+            </button>
 
-          <div class="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50" *ngIf="isModalVisible">
-            <div class="fixed top-0 left-0 w-full h-full bg-black opacity-50"></div>
+            <button type="submit" class="text-black bg-[#006186] h-11 w-52 rounded-lg shadow text-lg sm:text-xl"
+              (click)="openModal()">
+
+              Actualizar perfil
+            </button>
+
+            <div class="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50" *ngIf="isModalVisible">
+              <div class="fixed top-0 left-0 w-full h-full bg-black opacity-50"></div>
 
               <div class="bg-white p-4 rounded-lg shadow-lg z-10 max-h-[80vh] overflow-y-auto">
                 <app-modal-user></app-modal-user>
               </div>
-           </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="showContentTwo">
+          <!-- Publicaciones -->
+          <div *ngFor="let publication of listpublications" class="bg-white p-1 rounded-lg shadow mb-4 max-w-sm">
+
+            <div class="flex">
+              <img class="w-8 h-8 rounded-full user-avatar" [src]="publication.userimg" alt="Avatar de usuario">
+              <div class="ml-4 user-info">
+                <p class="font-semibold user-name text-sm">{{ publication.username }}</p>
+                <p class="text-gray-500 post-time text-xs">{{ publication.date_create | date }}</p>
+              </div>
+            </div>
+            <p class="mt-2 post-text text-sm">{{ publication.description }}</p>
+            <div class="bg-blue-200 p-1 rounded mt-1 shadow-md border border-blue-400">
+              <p class="text-blue-800 font-semibold text-xs">Descripción para personas con discapacidad</p>
+            </div>
+
+
+            <div class="mt-1\.5 post-image" *ngIf="publication.image">
+              <img class="w-full post-image-img" [src]="publication.image" alt="Imagen de la publicación">
+            </div>
+
+            <div class="mt-2 post-actions space-y-1">
+              <div class="flex justify-between sm:space-x-2">
+                <!-- Añadir funcion  (click)="likePublication(publication._id)" -->
+                <button
+                  class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded like-button text-xs "
+                  [ngClass]="{ 'liked': likedPublications[publication._id] }">
+                  <i class="fa-regular fa-heart fa-beat"></i>
+                  Me gusta {{publication.likes.length}}
+                </button>
+
+                <!-- Añadir funcion  (click)="setPublicationIdAndOpenModal(publication._id)"-->
+                <button (click)="setPublicationIdAndOpenModal(publication._id)"
+                  class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded comment-button sm:w-1/3 text-xs">
+                  <i class="fa-regular fa-comments"></i>
+                  Comentarios
+                </button>
+              </div>
+
+
+              <div class="comment-modal" *ngIf="isCommentModalVisible">
+                <div class="comment-modal-overlay"></div>
+                <div class="comment-modal-content p-4 border border-gray-300 rounded-lg shadow-lg">
+                  <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold">Comentar</h2>
+                    <!-- Añadir funcion  (click)="closeCommentModal()"-->
+                    <button (click)="closeCommentModal()"
+                      class="close font-bold py-2 px-4 rounded close-button">Cerrar</button>
+                  </div>
+                  <input type="text" [(ngModel)]="commentContent" placeholder="Escribe algo..."
+                    class="border border-gray-300 rounded-lg p-2 w-full mb-4">
+                  <!-- Añadir funcion   (click)="createComment()"-->
+                  <button (click)="createComment()"
+                    class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded publish-button">Publicar</button>
+
+                  <div class="comments-section mt-4 max-h-64 overflow-y-scroll">
+                    <h5 class="text-lg font-semibold mb-2">Comentarios</h5>
+                    <div *ngFor="let comment of comments" class="mb-2">
+                      <div class="flex items-center">
+                        <img [src]="comment.userAvatar" alt="Avatar" class="comment-avatar rounded-full w-8 h-8 mr-2">
+                        <div>
+                          <div class="text-blue-500 font-semibold">{{ comment.userName }}</div>
+                          <p class="text-gray-800">{{ comment.content }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
+
   </main>
 </body>
 
