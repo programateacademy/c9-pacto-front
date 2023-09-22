@@ -18,10 +18,11 @@ export class RegisterComponent {
     private authService: AuthService,
     private fb: FormBuilder,
     private router: Router
-  ) {}
+  ) { }
 
   contactForm!: FormGroup;
   capitalesdata = capitales;
+  showModal: boolean = true;
 
 
   departamentosUnicos: string[] = [];
@@ -80,12 +81,12 @@ export class RegisterComponent {
       password: ['', [Validators.required, Validators.minLength(8)]],
       years: ['', [Validators.required, Validators.minLength(2)]],
       person: ['', Validators.required],
-      typEntitySocialActor: ['',Validators.required],
+      typEntitySocialActor: ['', Validators.required],
       companyNameOrentity: ['', Validators.required],
       departamento: ['', Validators.required],
       gender: ['', Validators.required],
-      ethnicity: ['',Validators.required],
-      phoneNumber: ['',Validators.required],
+      ethnicity: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
       country: ['Colombia'],
       municipio: ['', Validators.required],
       termsAndconditions: [false, Validators.pattern('true')],
@@ -121,5 +122,9 @@ export class RegisterComponent {
 
   formRegisterAlert(): void {
     window.alert('Todos los campos con * son obligatorios')
+  }
+
+  openModal() {
+    this.showModal = true;
   }
 }

@@ -83,7 +83,8 @@
               <select
                 class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 name="person" id="person" required formControlName="person">
-                <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="Con discapacidad auditiva">Con discapacidad auditiva
+                <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="Con discapacidad auditiva">Con
+                  discapacidad auditiva
                 </option>
                 <option value="Con autismo">Con autismo</option>
                 <option value="Con discapacidad congnitiva">Con discapacidad congnitiva</option>
@@ -116,14 +117,20 @@
               <select
                 class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 name="typEntitySocialActor" id="typEntitySocialActor" required formControlName="typEntitySocialActor">
-                <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="Empresa privada">Empresa privada</option>
-                <option value="Organización de personas con discapacidad">Organización de personas con discapacidad</option>
-                <option value="Entidad publica - rerritorial">Entidad publica - rerritorial(Alcaldia, Gobernación o Ministerio)</option>
-                <option value="Entidad de intermediación laboral">Entidad de intermediación laboral (Agencia de Gestión y Colocación
+                <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="Empresa privada">Empresa privada
+                </option>
+                <option value="Organización de personas con discapacidad">Organización de personas con discapacidad
+                </option>
+                <option value="Entidad publica - rerritorial">Entidad publica - rerritorial(Alcaldia, Gobernación o
+                  Ministerio)</option>
+                <option value="Entidad de intermediación laboral">Entidad de intermediación laboral (Agencia de Gestión
+                  y Colocación
                   de Empleo, Bolsa de Empleo)</option>
-                <option value="Entidad de formación para el trabajo">Entidad de formación para el trabajo(SENA, institución de formación,
+                <option value="Entidad de formación para el trabajo">Entidad de formación para el trabajo(SENA,
+                  institución de formación,
                   etc.)</option>
-                <option value="Entidad prestadora de servicios a la inclusión">Entidad prestadora de servicios a la inclusión</option>
+                <option value="Entidad prestadora de servicios a la inclusión">Entidad prestadora de servicios a la
+                  inclusión</option>
                 <option value="Institución de educación superior">Institución de educación superior</option>
                 <option value="Otra">Otra</option>
               </select>
@@ -162,9 +169,9 @@
 
             <!--Departments-->
             <div class="sm:col-span-4 justify-center mb-2">
-              <a href=""
-                target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="departamentoSelect">Departamentos</label>
+              <a href="" target="_blank" class="flex flex-row items-center">
+                <label class="block text-black-700 text-sm font-bold mb2 mr-2"
+                  for="departamentoSelect">Departamentos</label>
                 <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
                   class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 576 512">
@@ -325,7 +332,8 @@
                 id="phoneNumber" name="phoneNumber" placeholder="Inserte su número de celular" required
                 formControlName="phoneNumber">
               <!--Validators phoneNumber-->
-              <div *ngIf="contactForm.get('phoneNumber')?.touched && contactForm.get('phoneNumber')?.errors?.['required']"
+              <div
+                *ngIf="contactForm.get('phoneNumber')?.touched && contactForm.get('phoneNumber')?.errors?.['required']"
                 class="alert alert-danger">Este campo es obligatorio.
               </div>
             </div>
@@ -341,10 +349,11 @@
 
             <!--Municipios-->
             <div class="sm:col-span-4 justify-center mb-2">
-              <a href="https://youtu.be/v9JDSXL9fZY?si=0jFhazNYtqRT7ft6"
-                target="_blank" class="flex flex-row items-center">
-              <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="municipio">En que ciudad estas ubicado </label>
-              <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
+              <a href="https://youtu.be/v9JDSXL9fZY?si=0jFhazNYtqRT7ft6" target="_blank"
+                class="flex flex-row items-center">
+                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="municipio">En que ciudad estas
+                  ubicado </label>
+                <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
                   class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 576 512">
                   <path fill="currentColor"
@@ -385,7 +394,8 @@
         <label class="flex w-full justify-center">
           <input type="checkbox" class="mr-1" id="termsAndconditions" name="termsAndconditions"
             formControlName="termsAndconditions">
-          Acepto los términos y condiciones</label>
+          <button (click)="openModal()">Acepto los términos y condiciones</button>
+        </label>
         <!--Validators password-->
         <div
           *ngIf="contactForm.get('termsAndconditions')?.touched && contactForm.get('termsAndconditions')?.errors?.['pattern']"
@@ -404,6 +414,9 @@
         </div>
       </div>
     </form>
+    <div class="modal_conditions" *ngIf="showModal">
+      <app-modal-terms-conditios></app-modal-terms-conditios>
+    </div>
   </div>
 </div>
 <div class="footer">
