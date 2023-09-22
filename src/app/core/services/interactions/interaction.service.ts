@@ -13,13 +13,13 @@ export class InteractionService {
 
   likePublication(publicationId: string, userId: string): Observable<any> {
     const requestBody = { userId: userId };
-    return this.http.post(`${this.apiUrl}publictpoofo/${publicationId}/like`, requestBody);
+    return this.http.post(`${this.apiUrl}publictpacto/${publicationId}/like`, requestBody);
   }
 
 
   unlikePublication(publicationId: string, userId: string): Observable<any> {
     const requestBody = { userId: userId };
-    return this.http.delete(`${this.apiUrl}publictpoofo/${publicationId}/unlike`, { body: requestBody });
+    return this.http.delete(`${this.apiUrl}publictpacto/${publicationId}/unlike`, { body: requestBody });
   }
 
   commentPublication(publicationId: string, comment: string): Observable<any> {
@@ -28,7 +28,7 @@ export class InteractionService {
   }
 
   getLikedPublications(userId: string): Observable<string[]> {
-    return this.http.get<string[]>(`${this.apiUrl}publictpoofo/users/${userId}/likes`);
+    return this.http.get<string[]>(`${this.apiUrl}publictpacto/users/${userId}/likes`);
   }
 
 }

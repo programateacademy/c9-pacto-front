@@ -20,7 +20,7 @@ export class ForoService {
   }
 
   getUsernameById(userId: string): Observable<string> {
-    const url = `${this.baseURL}poofo/${userId}`;
+    const url = `${this.baseURL}users/${userId}`;
     return this.http.get<string>(url);
   }
 

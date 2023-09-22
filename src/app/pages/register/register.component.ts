@@ -70,7 +70,7 @@ export class RegisterComponent {
       );
   }
 
-
+  defaultUserImgUrl = '../../../assets/img/perfil.png';
 
   initFrom(): FormGroup {
     return this.fb.group({
@@ -88,7 +88,8 @@ export class RegisterComponent {
       phoneNumber: ['',Validators.required],
       country: ['Colombia'],
       municipio: ['', Validators.required],
-      termsAndconditions: [false, Validators.pattern('true')]
+      termsAndconditions: [false, Validators.pattern('true')],
+      userImg: [this.defaultUserImgUrl]
     })
 
   }

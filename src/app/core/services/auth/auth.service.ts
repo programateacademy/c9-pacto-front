@@ -24,7 +24,7 @@ export class AuthService {
 
   // Eliminar un usuario por su ID
   deleteUser(userId: any): Observable<any> {
-    return this.http.delete<any>(`${this.URL}poofo/delete/${userId}`);
+    return this.http.delete<any>(`${this.URL}users/delete/${userId}`);
   }
 
 
@@ -79,7 +79,7 @@ export class AuthService {
     }
 
     // Realizar una solicitud al servidor para obtener los "likes" del usuario
-    return this.http.get<any>(`${this.URL}publictpoofo/users/${userId}/likes`, {
+    return this.http.get<any>(`${this.URL}publictpacto/users/${userId}/likes`, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`
       })
