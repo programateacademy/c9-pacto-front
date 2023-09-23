@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SwitchUserService } from '../../services/modalUs/switch-user.service';
+import { User } from 'src/app/models/item';
 
 @Component({
   selector: 'app-modal-user',
@@ -7,16 +8,23 @@ import { SwitchUserService } from '../../services/modalUs/switch-user.service';
   styleUrls: ['./modal-user.component.css']
 })
 export class ModalUserComponent {
+  @Input() user: User = {} as User;
 
-  constructor(private modalUser: SwitchUserService){}
+  constructor(private modalUser: SwitchUserService) { }
 
-  ngOnInit():void{
+  ngOnInit(): void {
+    // recibe datos del componente padre
+    this.modalUser.userData.subscribe((userData: User) => {
+      // Actualizar los datos del usuario en el modal
+      this.user = userData;
+      console.log('data user ModalUser: ', userData)
+    });
   }
 
-  closeModal(){
+  closeModal() {
 
     this.modalUser.$modal.emit(false)
 
-  
+
   }
 }
