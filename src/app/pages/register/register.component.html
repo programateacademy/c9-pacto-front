@@ -402,7 +402,7 @@
           class="flex w-full justify-center alert alert-danger">Este campo es obligatorio.
         </div>
 
-        
+
         <!--Button register-->
         <div class="col-span-1 w-full flex justify-center items-center mt-4 h-10">
           <button routerLink="/register" name="button_register" id="button_register"
@@ -411,7 +411,7 @@
         </div>
       </div>
     </form>
-    <div class="modal_conditions" *ngIf="showModal">
+    <div class="modal_conditions" *ngIf="showModal == true">
       <app-modal-terms-conditios></app-modal-terms-conditios>
     </div>
   </div>

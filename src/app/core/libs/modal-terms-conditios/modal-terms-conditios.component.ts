@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TermsConditionsService } from '../../services/termsConditions/terms-conditions.service';
 
 @Component({
   selector: 'app-modal-terms-conditios',
@@ -7,9 +8,11 @@ import { Component } from '@angular/core';
 })
 export class ModalTermsConditiosComponent {
 
-  showModal: boolean = true;
+  constructor( private termsConditions: TermsConditionsService){}
 
-  closeModal() {
-    this.showModal = false;
+  ngOnInit(): void{}
+
+  closeModal(){
+    this.termsConditions.$modal.emit(false)
   }
 }
