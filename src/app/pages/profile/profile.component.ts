@@ -60,7 +60,7 @@ export class ProfileComponent {
     this.ProfileService.deletePublication(publicationId, token).subscribe(
       (response) => {
         console.log('Publicación eliminada exitosamente', response);
-        // this.loadData();
+        this.loadData();
       },
       (error) => {
         console.error('Error al eliminar la publicación', error);
