@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { ProfileService } from '../../core/services/profile/profile.service';
 import { AuthService } from '../../core/services/auth/auth.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { User, Home } from 'src/app/models/item';
 import { SwitchUserService } from 'src/app/core/services/modalUs/switch-user.service';
 import { forkJoin } from 'rxjs';
 import { ForoService } from 'src/app/core/services/home/home.service';
-import { Renderer2 } from '@angular/core';
+
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +18,6 @@ export class ProfileComponent {
   user: User | null = null;
   users: User[] = [];
   public listpublications: Home[] = [];
-  imageURL: string = '';
   publicationId: string;
   isModalVisible !: boolean;
 
@@ -26,8 +25,7 @@ export class ProfileComponent {
     private route: ActivatedRoute,
     private ProfileService: ProfileService,
     private authService: AuthService,
-    private foroService: ForoService,
-    private renderer: Renderer2) { this.publicationId = ''; }
+    private foroService: ForoService) { this.publicationId = ''; }
 
 
   ngOnInit(): void {
@@ -56,20 +54,17 @@ export class ProfileComponent {
     console.log('Token from delete profileC', token);
     if (!token) {
       console.error('Token de autenticación no encontrado.');
-      return; // Detener la función si no se encuentra un token
+      return;
     }
     console.log('Token from delete profileC', token)
     this.ProfileService.deletePublication(publicationId, token).subscribe(
       (response) => {
-        // Maneja la respuesta exitosa aquí
         console.log('Publicación eliminada exitosamente', response);
-        // Puedes actualizar tu lista de publicaciones o realizar otras acciones después de la eliminación.
-
         // this.loadData();
       },
       (error) => {
-        // Maneja errores aquí
         console.error('Error al eliminar la publicación', error);
+
       }
     ); console.log('id from function delte', publicationId)
   }
@@ -88,7 +83,6 @@ export class ProfileComponent {
 
         // Comprueba si el ID de usuario de la URL coincide con el usuario logueado
         if (id === loggedInUserId) {
-          // Obtiene los datos del usuario desde el servicio de perfil
           this.ProfileService.getUser(id).subscribe(data => {
             this.user = data;
             console.log('Data User prfile', data)

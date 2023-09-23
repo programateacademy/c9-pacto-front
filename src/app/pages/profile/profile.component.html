@@ -20,7 +20,8 @@
       <div class="bg-white sm:ml-0 sm:p-8 md:p-6 lg:p-8 rounded-lg shadow mb-4">
         <div *ngIf="user"></div>
         <div class="flex mb-4 justify-center">
-          <img class="imagen" [src]="user?.userImg" alt="Mi Foto de Perfil" class="w-40 h-40 rounded-full">
+          <img class="imagen" [src]="user?.userImg || '../../../assets/img/' " alt="Mi Foto de Perfil"
+            class="w-40 h-40 rounded-full">
         </div>
 
         <h1 class="font-bold mb-2 text-center text-4xl md:text-5xl">{{ user?.userName }}</h1>
