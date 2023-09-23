@@ -46,6 +46,8 @@ export class ProfileComponent {
   showOptions = false;
   toggleOptions(publication: any) {
     publication.showOptions = !publication.showOptions;
+    this.publicationId = publication._id;
+    console.log('id from S options', this.publicationId)
   }
 
   dataUser() {
