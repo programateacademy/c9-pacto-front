@@ -28,4 +28,15 @@ export class ProfileService {
     console.log('Requesting user data from:', url);
     return this.http.get<User>(url);
   }
+
+  // Función para eliminar una publicación por su ID
+  deletePublication(publicationId: string, token: string): Observable<any> {
+    const url = `${this.URL}publictpacto/delete/${publicationId}`;
+    const headers = { 'Authorization': `Bearer ${token}` };
+
+    console.log('token desde deleteService', headers)
+    console.log('id from Service profile', publicationId)
+
+    return this.http.delete(url, { headers });
+  }
 }
