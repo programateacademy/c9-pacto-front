@@ -94,14 +94,14 @@
             <div class="flex">
               <img class="w-8 h-8 rounded-full user-avatar" [src]="publication.userimg" alt="Avatar de usuario">
               <div class="ml-4 user-info">
-                <p class="font-semibold user-name text-sm">{{ publication.username }}</p>
+                <p class="font-semibold user-name text-sm">{{ publication.user }}</p>
                 <p class="text-gray-500 post-time text-xs">{{ publication.date_create | date }}</p>
               </div>
             </div>
 
             <p class="mt-2 post-text text-sm">{{ publication.description }}</p>
             <div class="bg-blue-200 p-1 rounded mt-1 shadow-md border border-blue-400">
-              <p class="text-blue-800 font-semibold text-xs">Descripción para personas con discapacidad</p>
+              <p class="text-blue-800 font-semibold text-xs">{{ publication.descriptionImg }}</p>
             </div>
 
 
