@@ -83,7 +83,8 @@
                 </svg>
                 <div *ngIf="publication.showOptions"
                   class="absolute top-2 right-8  bg-gray-200 hover:bg-gray-300 p-1 rounded-lg  z-10">
-                  <button class="block py-1 bg-none text-red-800  font-bold hover:bg-gray-300">Delete</button>
+                  <button class="block py-1 bg-none text-red-800  font-bold hover:bg-gray-300"
+                    (click)="onDeletePublication(publication._id)">Delete</button>
                   <!-- <button class="block py-2 px-4 text-gray-600 hover:bg-gray-100">Editar</button> -->
                 </div>
               </button>
