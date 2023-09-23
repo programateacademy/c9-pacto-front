@@ -50,6 +50,30 @@ export class ProfileComponent {
     console.log('id from S options', this.publicationId)
   }
 
+  // Función para eliminar una publicación
+  onDeletePublication(publicationId: string) {
+    const token = this.authService.gettoken();
+    console.log('Token from delete profileC', token);
+    if (!token) {
+      console.error('Token de autenticación no encontrado.');
+      return; // Detener la función si no se encuentra un token
+    }
+    console.log('Token from delete profileC', token)
+    this.ProfileService.deletePublication(publicationId, token).subscribe(
+      (response) => {
+        // Maneja la respuesta exitosa aquí
+        console.log('Publicación eliminada exitosamente', response);
+        // Puedes actualizar tu lista de publicaciones o realizar otras acciones después de la eliminación.
+
+        // this.loadData();
+      },
+      (error) => {
+        // Maneja errores aquí
+        console.error('Error al eliminar la publicación', error);
+      }
+    ); console.log('id from function delte', publicationId)
+  }
+
   dataUser() {
     // Obtiene el ID del usuario logueado desde el servicio de autenticación
     const loggedInUserId = this.authService.getLoggedInUserId();
