@@ -39,6 +39,7 @@ export class ModalUserComponent {
 
     this.modalUser.updateUser(this.user._id, this.user).subscribe(
       (response) => {
+        this.closeModalAndReloadPage();
         console.log('Datos act con exito:', response);
         console.log('Datos act usuario con id:', this.user._id);
         console.log('carga de userData:', this.user);
@@ -48,6 +49,12 @@ export class ModalUserComponent {
       }
     );
   }
+
+  closeModalAndReloadPage() {
+    this.closeModal();
+    window.location.reload();
+  }
+
   private obtenerDepartamentosUnicos(): string[] {
     const departamentos: string[] = this.capitalesdata.map(capital => capital.departamento);
     return departamentos.filter((departamento, index, self) => self.indexOf(departamento) === index);
