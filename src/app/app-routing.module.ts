@@ -9,6 +9,7 @@ import { authGuard } from 'src/guard/auth.guard';
 import { AdminComponent } from './pages/admin/admin.component';
 import { PasswordComponent } from './pages/password/password.component';
 import { EmailComponent } from './pages/email/email.component';
+import { roleGuard } from 'src/guard/role/role.guard';
 
 const routes: Routes = [
 
@@ -16,7 +17,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: '', component: LoginComponent },
   { path: 'home/:id', component: HomeComponent, canActivate:[authGuard] },
-  {path: 'admin', component: AdminComponent},
+  {path: 'admin/:id', component: AdminComponent},
   {path: 'changePassword', component: PasswordComponent},
   {path: 'email', component: EmailComponent},
 
