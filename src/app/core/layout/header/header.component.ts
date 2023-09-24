@@ -10,11 +10,14 @@ export class HeaderComponent {
   userId: string | null = null;
   isDropdownOpen = false; // Variable para controlar la visibilidad del menú desplegable
 
+  isAdminUser: boolean = false;
+
   constructor(private authService: AuthService, private el: ElementRef, private renderer: Renderer2) {}
 
 
   ngOnInit(): void {
     this.userId = this.authService.getLoggedInUserId();
+    this.isAdminUser = this.authService.isAdmin();
   }
 
 
@@ -54,4 +57,5 @@ export class HeaderComponent {
     const dropdownMenu = this.el.nativeElement.querySelector('#dropdownMenu');
     this.renderer.addClass(dropdownMenu, 'hidden');
   }
+
 }
