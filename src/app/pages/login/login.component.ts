@@ -29,18 +29,13 @@ export class LoginComponent {
       .subscribe(
         (res) => {
           console.log(res);
+
           localStorage.setItem('token', res.token);
 
           const userId = this.authService.getLoggedInUserId();
+          const role = this.authService.getLoggedInUserRole();
 
-          // Realiza una solicitud para obtener los "likes" y almacénalos en localStorage
-          // if (userId !== null) {
-          //   this.authService.getLikesForUser(userId).subscribe((likes) => {
-          //     localStorage.setItem('userLikes', JSON.stringify(likes));
-          //     console.log(likes)
-          //   });
-          // }
-
+          console.log('Role', role)
           console.log('Logged In User ID:', userId);
           if (userId) {
             this.router.navigate(['/home', userId]);
