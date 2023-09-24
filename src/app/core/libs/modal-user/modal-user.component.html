@@ -195,9 +195,13 @@
               <i class="fab fa-youtube"></i>
             </a>
           </label>
-          <select id="departments" name="departamento" [(ngModel)]="user.departamento" placeholder=" Con discapacidad"
-            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-            disabled></select>
+          <select id="departments" name="departamento" [(ngModel)]="user.departamento"
+            (change)="onDepartamentoChange(user.departamento.toString())" placeholder=" Con discapacidad"
+            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            <option *ngFor="let departamento of departamentosUnicos" [value]="departamento">{{departamento}}
+
+            </option>
+          </select>
         </div>
 
         <div class="relative">
@@ -210,14 +214,8 @@
           </label>
           <select id="city" name="municipio" [(ngModel)]="user.municipio"
             class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-
-            <option value="Cundinamarca">Cundinamarca</option>
-            <option value="Antioquia">Antioquia</option>
-            <option value="Tolima">Tolima</option>
-
-            <!-- <option *ngFor="let departamento of departamentosUnicos" [value]="departamento">{{departamento}}
-
-            </option> -->
+            <option *ngFor="let municipio of filteredMunicipios" [value]="municipio">{{municipio}}
+            </option>
           </select>
         </div>
 
