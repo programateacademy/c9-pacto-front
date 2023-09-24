@@ -22,9 +22,10 @@ export class AuthService {
 
 
 
+
   // Eliminar un usuario por su ID
-  deleteUser(userId: any): Observable<any> {
-    return this.http.delete<any>(`${this.URL}users/delete/${userId}`);
+  deleteUser(_id:string): Observable<User> {
+    return this.http.delete<User>(`${this.URL}users/delete/${_id}`);
   }
 
 
@@ -34,7 +35,11 @@ export class AuthService {
   }
 
   public signIn(user: any) {
-    return this.http.post<any>(this.URL + 'admins/signin', user)
+    return this.http.post<any>(this.URL + 'admins/signin', user).pipe(
+      tap((response)=>{
+        localStorage.setItem('token', response.token)
+      })
+    )
   }
 
   loggedIn() {
@@ -58,6 +63,29 @@ export class AuthService {
     }
     return null;
   }
+
+  //Obetener rol del usuario
+  getLoggedInUserRole(): string {
+    const token = this.gettoken();
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+
+      if (payload.role) {
+        // Suponemos que solo hay un objeto en el arreglo "admin"
+        return payload.role;
+      }
+    }
+    return this.getLoggedInUserRole();
+  }
+
+  //bolean rol
+  //validar roles
+  isAdmin(): boolean {
+    const userRole = this.getLoggedInUserRole();
+    console.log('rol del usuario', userRole)
+    return userRole === 'admin';
+  }
+
 
   // Almacena el token
   gettoken() {
