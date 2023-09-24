@@ -16,6 +16,7 @@ export interface User {
   userName: string;
   password: string;
   userImg: string;
+  admin: [];
 }
 export interface Interaction {
 
