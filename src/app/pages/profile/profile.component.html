@@ -52,7 +52,7 @@
             </button>
 
             <button type="submit" class="text-black bg-[#006186] h-11 w-52 rounded-lg shadow text-lg sm:text-xl"
-              (click)="openModal()">
+              (click)="openModal(user)">
 
               Actualizar perfil
             </button>
@@ -61,7 +61,7 @@
               <div class="fixed top-0 left-0 w-full h-full bg-black opacity-50"></div>
 
               <div class="bg-white p-4 rounded-lg shadow-lg z-10 max-h-[80vh] overflow-y-auto">
-                <app-modal-user></app-modal-user>
+                <app-modal-user *ngIf="user" [user]="user"></app-modal-user>
               </div>
             </div>
           </div>

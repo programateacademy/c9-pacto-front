@@ -119,7 +119,11 @@ export class ProfileComponent {
       });
   }
 
-  openModal() {
-    this.isModalVisible = true
+  openModal(user: User | null): void {
+    if (user) {
+      this.isModalVisible = true
+      this.modalUser.sendUserData(user);
+      console.log('dataUser profileComp: ', user)
+    }
   }
 }

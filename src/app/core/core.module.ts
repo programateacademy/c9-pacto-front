@@ -12,6 +12,7 @@ import { ModalUserComponent } from './libs/modal-user/modal-user.component';
 import { SkeletonProfileComponent } from './common/skeleton-profile/skeleton-profile.component';
 import { SkeletonAsideComponent } from './common/skeleton-aside/skeleton-aside.component';
 import { ModalTermsConditiosComponent } from './libs/modal-terms-conditios/modal-terms-conditios.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -31,6 +32,8 @@ import { ModalTermsConditiosComponent } from './libs/modal-terms-conditios/modal
 
   ],
   imports: [
+    ReactiveFormsModule,
+    FormsModule,
     CommonModule,
     RouterModule
   ],
