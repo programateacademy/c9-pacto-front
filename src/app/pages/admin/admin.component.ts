@@ -41,28 +41,10 @@ export class AdminComponent {
 
 
 
-  deleteUser(userId: any): void {
-    this.allusers = this.allusers.filter((user:User)=>user._id !==userId._id)
-    if (userId) {
-      console.error('El userId es undefined o null. No se puede eliminar.');
-      return;
-    }
-
-    if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
-      this.authService.deleteUser(userId).subscribe(
-        () => {
-          console.log('Usuario eliminado exitosamente.');
-          this.loadData();
-        },
-        (error) => {
-          console.error('Error al eliminar el usuario:', error);
-        }
-      );
-    }
+  deleteUser(_id:string){
+    this.authService.deleteUser(_id).subscribe((response) =>{
+      console.log(response)
+    })
   }
-
-
-
-
 
 }
