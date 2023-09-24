@@ -23,7 +23,35 @@ export class ModalUserComponent {
       this.user = userData;
       console.log('data user ModalUser: ', userData)
     });
+    this.departamentosUnicos = this.obtenerDepartamentosUnicos();
 
+    console.log('user.municipio:', this.user.municipio);
+    console.log('filteredMunicipios:', this.filteredMunicipios);
+
+  }
+
+  private obtenerDepartamentosUnicos(): string[] {
+    const departamentos: string[] = this.capitalesdata.map(capital => capital.departamento);
+    return departamentos.filter((departamento, index, self) => self.indexOf(departamento) === index);
+
+  }
+
+  onDepartamentoChange(selectedDepartamento: string): void {
+    // Aquí coloca la lógica para filtrar los municipios según el departamento seleccionado.
+    if (selectedDepartamento) {
+      this.filteredMunicipios = this.capitalesdata
+        .filter(capital => capital.departamento === selectedDepartamento)
+        .map(capital => capital.municipio);
+
+      // Asegúrate de que user.municipio sea un valor válido en filteredMunicipios
+      if (!this.filteredMunicipios.includes(this.user.municipio.toString())) {
+        this.user.municipio = ''; // O cambia esto a otro valor predeterminado válido si es necesario
+      }
+
+    } else {
+      this.filteredMunicipios = [];
+    }
+    console.log(selectedDepartamento)
   }
 
   closeModal() {
