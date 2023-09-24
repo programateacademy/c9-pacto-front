@@ -23,7 +23,7 @@
     </div>
     <h2 class="text-lg font-semibold text-black capitalize dark:text-white">Actualizar perfil</h2>
 
-    <form class="mt-12">
+    <form class="mt-12" [formGroup]="contactForm">
       <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
 
         <div class="relative">
@@ -34,8 +34,22 @@
               <i class="fab fa-youtube"></i>
             </a>
           </label>
-          <input id="name" type="text" name="names" [(ngModel)]="user.names" placeholder="Inserte sus nombres"
-            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+          <input id="name" type="text" name="names" formControlName="names" placeholder="Inserte sus nombres"
+            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+            required>
+
+
+          <!-- Validators of names-->
+          <div
+            *ngIf="contactForm.controls['names'].invalid && (contactForm.controls['names'].dirty || contactForm.controls['names'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="contactForm.controls['names'].errors?.['required']">
+              Este campo es requerido.
+            </div>
+            <div *ngIf="contactForm.controls['names'].errors?.['pattern']">
+              Este campo no admite caracteres especiales.
+            </div>
+          </div>
         </div>
 
         <div class="relative">
@@ -46,9 +60,20 @@
               <i class="fab fa-youtube"></i>
             </a>
           </label>
-          <input id="SocialActor" name="surNames" [(ngModel)]="user.surNames" type="text"
+          <input id="SocialActor" name="surNames" formControlName="surNames" type="text"
             placeholder="Inserte sus Apellidos"
             class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+
+          <div
+            *ngIf="contactForm.controls['names'].invalid && (contactForm.controls['surNames'].dirty || contactForm.controls['surNames'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="contactForm.controls['surNames'].errors?.['required']">
+              Este campo es requerido.
+            </div>
+            <div *ngIf="contactForm.controls['surNames'].errors?.['pattern']">
+              Este campo no admite caracteres especiales.
+            </div>
+          </div>
         </div>
 
         <div class="relative">
@@ -59,7 +84,7 @@
               <i class="fab fa-youtube"></i>
             </a>
           </label>
-          <select id="person" name="person" [(ngModel)]="user.person" placeholder="Con discapacidad"
+          <select id="person" name="person" formControlName="person" placeholder="Con discapacidad"
             class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
 
             <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="Con discapacidad auditiva">Con
@@ -74,6 +99,9 @@
             <option value="Con discapacidad visual">Con discapacidad visual</option>
             <option value="Sin descapacidad">Sin descapacidad</option>
           </select>
+          <!--Validators person-->
+          <div *ngIf="contactForm.get('person')?.touched && contactForm.get('person')?.errors?.['required']"
+            class="alert alert-danger">Este campo es obligatorio.</div>
         </div>
 
         <div class="relative">
@@ -84,7 +112,7 @@
               <i class="fab fa-youtube"></i>
             </a>
           </label>
-          <select id="gender" name="gender" [(ngModel)]="user.gender"
+          <select id="gender" name="gender" formControlName="gender"
             class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
             <option value="Mujer">Mujer</option>
             <option value="Hombre">Hombre</option>
@@ -92,6 +120,11 @@
             <option value="Mujer trans">Mujer trans(transexual, transgenero, travesti)</option>
             <option value="Otras">Otras</option>
           </select>
+
+          <!--Validators gender-->
+          <div *ngIf="contactForm.get('gender')?.touched && contactForm.get('gender')?.errors?.['required']"
+            class="alert alert-danger">Este campo es obligatorio.
+          </div>
         </div>
 
         <div class="relative">
@@ -101,8 +134,15 @@
               <i class="fab fa-youtube"></i>
             </a>
           </label>
-          <input id="years" type="number" name="years" [(ngModel)]="user.years" placeholder="Ingrese su edad"
+          <input id="years" type="number" name="years" formControlName="years" placeholder="Ingrese su edad"
             class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+          <!--Validators years-->
+          <div *ngIf="contactForm.get('years')?.touched && contactForm.get('years')?.errors?.['required']"
+            class="alert alert-danger">Este campo es obligatorio.</div>
+          <div *ngIf="contactForm.get('years')?.touched && contactForm.get('years')?.errors?.['minlength']"
+            class="alert alert-danger">Este campo debe tener minimo 2
+            {{contactForm.get('years')?.errors?.['minlength'].requiredlength}} digitos.</div>
+
         </div>
 
         <div class="relative">
@@ -113,7 +153,7 @@
               <i class="fab fa-youtube"></i>
             </a>
           </label>
-          <select id="ethnicity" name="ethnicity" [(ngModel)]="user.ethnicity"
+          <select id="ethnicity" name="ethnicity" formControlName="ethnicity"
             class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
             <option value="Indigena">Indigena</option>
             <option value="Gitano">Gitano (Rom)</option>
@@ -121,6 +161,10 @@
             <option value="Raizal del archipielago">Raizal del archipielago</option>
             <option value="No aplica">No aplica</option>
           </select>
+          <!--Validators ethnicity-->
+          <div *ngIf="contactForm.get('ethnicity')?.touched && contactForm.get('ethnicity')?.errors?.['required']"
+            class="alert alert-danger">Este campo es obligatorio.
+          </div>
         </div>
 
         <div class="relative">
@@ -131,9 +175,13 @@
               <i class="fab fa-youtube"></i>
             </a>
           </label>
-          <input id="phoneNumber" name="phoneNumber" [(ngModel)]="user.phoneNumber"
+          <input id="phoneNumber" name="phoneNumber" formControlName="phoneNumber"
             placeholder="Inserte su número de celular"
             class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+          <!--Validators phoneNumber-->
+          <div *ngIf="contactForm.get('phoneNumber')?.touched && contactForm.get('phoneNumber')?.errors?.['required']"
+            class="alert alert-danger">Este campo es obligatorio.
+          </div>
         </div>
 
         <div class="relative">
@@ -144,7 +192,7 @@
               <i class="fab fa-youtube"></i>
             </a>
           </label>
-          <select id="ethnicity" name="ethnicity"
+          <select id="ethnicity" name="typEntitySocialActor" formControlName="typEntitySocialActor"
             class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
             <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="Empresa privada">Empresa privada
             </option>
@@ -163,15 +211,20 @@
             <option value="Institución de educación superior">Institución de educación superior</option>
             <option value="Otra">Otra</option>
           </select>
+
+          <!--Validators typEntitySocialActor-->
+          <div
+            *ngIf="contactForm.get('typEntitySocialActor')?.touched && contactForm.get('typEntitySocialActor')?.errors?.['required']"
+            class="alert alert-danger">Este campo es obligatorio.
+          </div>
         </div>
 
         <div class="relative">
           <label class="text-black dark:text-gray-200" for="country">
             Pais
           </label>
-          <input id="country" name="country" [(ngModel)]="user.country" placeholder="Colombia"
-            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-            disabled>
+          <input id="country" name="country" formControlName="country" placeholder="Colombia"
+            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
         </div>
 
         <div class="relative">
@@ -182,9 +235,14 @@
               <i class="fab fa-youtube"></i>
             </a>
           </label>
-          <input id="companyNameOrentity" name="companyNameOrentity" [(ngModel)]="user.companyNameOrentity"
+          <input id="companyNameOrentity" name="companyNameOrentity" formControlName="companyNameOrentity"
             placeholder="Inserte la razon social"
             class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+          <!--Validators companyNameOrentity-->
+          <div
+            *ngIf="contactForm.get('companyNameOrentity')?.touched && contactForm.get('companyNameOrentity')?.errors?.['required']"
+            class="alert alert-danger">Este campo es obligatorio.
+          </div>
         </div>
 
         <div class="relative">
@@ -195,13 +253,18 @@
               <i class="fab fa-youtube"></i>
             </a>
           </label>
-          <select id="departments" name="departamento" [(ngModel)]="user.departamento"
+          <select id="departments" name="departamento" formControlName="departamento"
             (change)="onDepartamentoChange(user.departamento.toString())" placeholder=" Con discapacidad"
             class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
             <option *ngFor="let departamento of departamentosUnicos" [value]="departamento">{{departamento}}
 
             </option>
           </select>
+          <!--Validators departamenos-->
+          <div
+            *ngIf="contactForm.get('departamentoSelect')?.touched && contactForm.get('departamentoSelect')?.errors?.['required']"
+            class="alert alert-danger">Este campo es obligatorio.
+          </div>
         </div>
 
         <div class="relative">
@@ -212,11 +275,16 @@
               <i class="fab fa-youtube"></i>
             </a>
           </label>
-          <select id="city" name="municipio" [(ngModel)]="user.municipio"
+          <select id="city" name="municipio" formControlName="municipio"
             class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
             <option *ngFor="let municipio of filteredMunicipios" [value]="municipio">{{municipio}}
             </option>
           </select>
+          <!--Validators municipioSelect-->
+          <div
+            *ngIf="contactForm.get('municipioSelect')?.touched && contactForm.get('municipioSelect')?.errors?.['required']"
+            class="alert alert-danger">Este campo es obligatorio.
+          </div>
         </div>
 
         <div class="relative">
@@ -247,7 +315,7 @@
 
       <div class="flex justify-end mt-6">
         <button (click)="updateUserData()"
-          class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-[#006186] rounded-md hover:bg-blue-600 focus:outline-none focus:bg-gray-600">Save</button>
+          class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-[#006186] rounded-md hover:bg-blue-600 focus:outline-none focus:bg-gray-600">Guardar</button>
       </div>
     </form>
   </section>
