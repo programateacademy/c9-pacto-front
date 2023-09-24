@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { SwitchUserService } from '../../services/modalUs/switch-user.service';
 import { User } from 'src/app/models/item';
+import { capitales } from '../../services/formulario/capitales';
 
 @Component({
   selector: 'app-modal-user',
@@ -9,6 +10,9 @@ import { User } from 'src/app/models/item';
 })
 export class ModalUserComponent {
   @Input() user: User = {} as User;
+  departamentosUnicos: string[] = [];
+  filteredMunicipios: string[] = [];
+  capitalesdata = capitales;
 
   constructor(private modalUser: SwitchUserService) { }
 
@@ -19,6 +23,7 @@ export class ModalUserComponent {
       this.user = userData;
       console.log('data user ModalUser: ', userData)
     });
+
   }
 
   closeModal() {
