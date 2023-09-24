@@ -21,13 +21,37 @@ export class ModalUserComponent {
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
-
+    this.contactForm = this.initFrom();
     this.departamentosUnicos = this.obtenerDepartamentosUnicos();
 
     console.log('user.municipio:', this.user.municipio);
     console.log('filteredMunicipios:', this.filteredMunicipios);
 
+    this.contactForm.patchValue(this.user);
   }
+
+  defaultUserImgUrl = '../../../assets/img/perfil.png';
+  initFrom(): FormGroup {
+    return this.fb.group({
+      names: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\\s]+')]],
+      surNames: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\\s]+')]],
+      email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      years: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(3)]],
+      person: ['', Validators.required],
+      typEntitySocialActor: ['', Validators.required],
+      companyNameOrentity: ['', Validators.required],
+      departamento: ['', Validators.required],
+      gender: ['', Validators.required],
+      ethnicity: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
+      country: ['Colombia'],
+      municipio: ['', Validators.required],
+      termsAndconditions: [false, Validators.pattern('true')],
+      // userImg: [this.defaultUserImgUrl]
+    })
+  }
+
 
   updateUserData(): void {
 
