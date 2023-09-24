@@ -60,6 +60,8 @@ export class ModalUserComponent {
       return;
     } console.log('carga de userData:', this.user);
 
+    this.user = { ...this.user, ...this.contactForm.value };
+
     this.modalUser.updateUser(this.user._id, this.user).subscribe(
       (response) => {
         this.closeModalAndReloadPage();
