@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { SwitchUserService } from '../../services/modalUs/switch-user.service';
 import { User } from 'src/app/models/item';
 import { capitales } from '../../services/formulario/capitales';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-modal-user',
@@ -13,16 +14,14 @@ export class ModalUserComponent {
   departamentosUnicos: string[] = [];
   filteredMunicipios: string[] = [];
   capitalesdata = capitales;
+  contactForm!: FormGroup;
 
-  constructor(private modalUser: SwitchUserService) { }
+
+  constructor(private modalUser: SwitchUserService,
+    private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    // recibe datos del componente padre
-    this.modalUser.userData.subscribe((userData: User) => {
-      // Actualizar los datos del usuario en el modal
-      this.user = userData;
-      console.log('data user ModalUser: ', userData)
-    });
+
     this.departamentosUnicos = this.obtenerDepartamentosUnicos();
 
     console.log('user.municipio:', this.user.municipio);
