@@ -30,6 +30,24 @@ export class ModalUserComponent {
 
   }
 
+  updateUserData(): void {
+
+    if (!this.user) {
+      console.error('Error: No se proporcionaron datos para la actualización.');
+      return;
+    } console.log('carga de userData:', this.user);
+
+    this.modalUser.updateUser(this.user._id, this.user).subscribe(
+      (response) => {
+        console.log('Datos act con exito:', response);
+        console.log('Datos act usuario con id:', this.user._id);
+        console.log('carga de userData:', this.user);
+      },
+      (error) => {
+        console.error('Error al actualizar los datos:', error);
+      }
+    );
+  }
   private obtenerDepartamentosUnicos(): string[] {
     const departamentos: string[] = this.capitalesdata.map(capital => capital.departamento);
     return departamentos.filter((departamento, index, self) => self.indexOf(departamento) === index);
