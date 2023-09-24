@@ -55,7 +55,7 @@
 
 
             <div class="mt-4 post-image" *ngIf="publication.image">
-              <img class="w-full post-image-img" [src]="publication.image" alt="Imagen de la publicación">
+              <img class="w-full post-image-img" [src]="publication.image" tabindex="0" alt={{publication.descriptionImg}}>
             </div>
 
             <div class="mt-4 post-actions space-y-2">
