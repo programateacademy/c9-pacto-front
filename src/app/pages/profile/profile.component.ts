@@ -55,6 +55,70 @@ export class ProfileComponent {
     console.log('id from S options', this.publicationId)
   }
 
+  // Función para actualizar el nombre de usuario
+  updateUserImg() {
+    if (!this.user) {
+      console.error('Error: No se proporcionaron datos para la actualización.');
+      return;
+    }
+    const updatedData = {
+      userImg: this.newUserImg
+    };
+    // Realizar la solicitud al servidor
+    this.modalUser.updateUser(this.user._id, updatedData).subscribe(
+      (response) => {
+        console.log('Nombre de usuario actualizado con éxito:', response);
+        if (this.user) {
+          this.user.userImg = this.newUserImg;
+        }
+      },
+      (error) => {
+        console.error('Error al actualizar el nombre de usuario:', error);
+      }
+    );
+    this.isEditingImg = false;
+  }
+
+  cancelEditImg() {
+    this.newUserImg = this.userImg;
+    this.isEditingImg = false;
+  }
+
+  // Función para actualizar el nombre de usuario
+  updateUserName() {
+    if (!this.user) {
+      console.error('Error: No se proporcionaron datos para la actualización.');
+      return;
+    }
+    const updatedData = {
+      userName: this.newUserName
+    };
+    // Realizar la solicitud al servidor
+    this.modalUser.updateUser(this.user._id, updatedData).subscribe(
+      (response) => {
+        console.log('Nombre de usuario actualizado con éxito:', response);
+        if (this.user) {
+          this.user.userName = this.newUserName;
+        }
+      },
+      (error) => {
+        console.error('Error al actualizar el nombre de usuario:', error);
+      }
+    );
+    this.isEditingName = false;
+  }
+
+  // Función para cancelar la edición
+  cancelEditName() {
+    this.newUserName = this.userName;
+    this.isEditingName = false;
+  }
+
+
+  // closeModalAndReloadPage() {
+
+  //   window.location.reload();
+  // }
   // Función para eliminar una publicación
   onDeletePublication(publicationId: string) {
     const token = this.authService.gettoken();
