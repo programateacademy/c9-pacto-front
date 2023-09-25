@@ -1,421 +1,435 @@
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+<!--header-->
 <div class="container ml-auto mr-auto flex items-center justify-center">
   <div class="headerAuth">
     <app-headerauth></app-headerauth>
   </div>
-  <div class="w-full">
-    <form (ngSubmit)="signUp()" [formGroup]="contactForm" class="bg-white px-8 pt-6 pb-8 mb-4">
-      <div class="mb-4 mt-12">
-        <h1 class="font-bold mb-6 mt-4 md:text-4xl">FORMULARIO DE REGISTRO</h1>
-        <div class="grid grid-flow-row sm:grid-flow-col gap-3 md:grid-cols-2">
+</div>
 
-          <!--Column left-->
-          <div class="row-auto">
-            <!--names-->
-            <div class="sm:col-span-4 justify-center mb-2">
-              <a href="https://www.youtube.com/watch?v=V9auOG6U0rY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=15"
-                target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="names">Nombres</label>
-                <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
-                  class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 576 512">
-                  <path fill="currentColor"
-                    d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
-                  </path>
-                </svg>:
-              </a>
-              <input type="text"
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                id="names" name="names" placeholder="Inserte sus nombres" formControlName="names">
+<!--Form of register-->
+<div class=" modal_conditions overflow-y-hidden scrollbar-none" *ngIf="!showModal == true">
+  <div class="container ml-auto mr-auto flex items-center justify-center">
+    <div class="w-full">
+      <form (ngSubmit)="signUp()" [formGroup]="contactForm" class="bg-white px-8 pt-6 pb-8 mb-4">
+        <div class="mb-4 mt-12">
+          <h1 class="font-bold mb-6 mt-4 md:text-4xl">FORMULARIO DE REGISTRO</h1>
+          <div class="grid grid-flow-row sm:grid-flow-col gap-3 md:grid-cols-2">
 
-              <!-- Validators of names-->
-              <div
-                *ngIf="contactForm.controls['names'].invalid && (contactForm.controls['names'].dirty || contactForm.controls['names'].touched)"
-                class="alert alert-danger">
-                <div *ngIf="contactForm.controls['names'].errors?.['required']">
-                  Este campo es requerido.
+            <!--Column left-->
+            <div class="row-auto">
+              <!--names-->
+              <div class="sm:col-span-4 justify-center mb-2">
+                <a href="https://www.youtube.com/watch?v=V9auOG6U0rY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=15"
+                  target="_blank" class="flex flex-row items-center">
+                  <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="names">Nombres</label>
+                  <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
+                    class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <path fill="currentColor"
+                      d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
+                    </path>
+                  </svg>:
+                </a>
+                <input type="text"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                  id="names" name="names" placeholder="Inserte sus nombres" formControlName="names">
+
+                <!-- Validators of names-->
+                <div
+                  *ngIf="contactForm.controls['names'].invalid && (contactForm.controls['names'].dirty || contactForm.controls['names'].touched)"
+                  class="alert alert-danger">
+                  <div *ngIf="contactForm.controls['names'].errors?.['required']">
+                    Este campo es requerido.
+                  </div>
+                  <div *ngIf="contactForm.controls['names'].errors?.['pattern']">
+                    Este campo no admite caracteres especiales.
+                  </div>
                 </div>
-                <div *ngIf="contactForm.controls['names'].errors?.['pattern']">
-                  Este campo no admite caracteres especiales.
+              </div>
+
+              <!--years-->
+              <div class="sm:col-span-4 justify-center mb-2">
+                <a href="https://www.youtube.com/watch?v=nIMLCn9S0VY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=24"
+                  target="_blank" class="flex flex-row items-center">
+                  <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="years">Edad</label>
+                  <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
+                    class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <path fill="currentColor"
+                      d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
+                    </path>
+                  </svg>:
+                </a>
+                <input type="text"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
+                  id="years" name="years" placeholder="Inserte su edad" required formControlName="years">
+
+                <!--Validators years-->
+                <div *ngIf="contactForm.get('years')?.touched && contactForm.get('years')?.errors?.['required']"
+                  class="alert alert-danger">Este campo es obligatorio.</div>
+                <div *ngIf="contactForm.get('years')?.touched && contactForm.get('years')?.errors?.['minlength']"
+                  class="alert alert-danger">Este campo debe tener minimo 2
+                  {{contactForm.get('years')?.errors?.['minlength'].requiredlength}} digitos.</div>
+              </div>
+
+              <!--"person.-->
+              <div class="sm:col-span-4 justify-center mb-2 ">
+                <a href="https://www.youtube.com/watch?v=Gd2-ldzBTZk&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=5"
+                  target="_blank" class="flex flex-row items-center">
+                  <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="person">Soy una
+                    persona</label>
+                  <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
+                    class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <path fill="currentColor"
+                      d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
+                    </path>
+                  </svg>:
+                </a>
+                <select
+                  class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                  name="person" id="person" required formControlName="person">
+                  <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="Con discapacidad auditiva">Con
+                    discapacidad auditiva
+                  </option>
+                  <option value="Con autismo">Con autismo</option>
+                  <option value="Con discapacidad congnitiva">Con discapacidad congnitiva</option>
+                  <option value="Con discapacidad física">Con discapacidad física</option>
+                  <option value="Con discapacidad múltiple">Con discapacidad múltiple</option>
+                  <option value="Con discapacidad psicosocial">Con discapacidad psicosocial</option>
+                  <option value="Sordociega">Sordociega</option>
+                  <option value="Con discapacidad visual">Con discapacidad visual</option>
+                  <option value="Sin descapacidad">Sin descapacidad</option>
+                </select>
+                <!--Validators person-->
+                <div *ngIf="contactForm.get('person')?.touched && contactForm.get('person')?.errors?.['required']"
+                  class="alert alert-danger">Este campo es obligatorio.</div>
+              </div>
+
+              <!--Type of entity or social actor-->
+              <div class="sm:col-span-4  justify-center mb-2">
+                <a href="https://www.youtube.com/watch?v=CrY7GS6KKnM&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=3"
+                  target="_blank" class="flex flex-row items-center">
+                  <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="typEntitySocialActor">Tipo de
+                    entidad o actor social</label>
+                  <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
+                    class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <path fill="currentColor"
+                      d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
+                    </path>
+                  </svg>:
+                </a>
+                <select
+                  class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                  name="typEntitySocialActor" id="typEntitySocialActor" required formControlName="typEntitySocialActor">
+                  <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="Empresa privada">Empresa privada
+                  </option>
+                  <option value="Organización de personas con discapacidad">Organización de personas con discapacidad
+                  </option>
+                  <option value="Entidad publica - rerritorial">Entidad publica - rerritorial(Alcaldia, Gobernación o
+                    Ministerio)</option>
+                  <option value="Entidad de intermediación laboral">Entidad de intermediación laboral (Agencia de
+                    Gestión
+                    y Colocación
+                    de Empleo, Bolsa de Empleo)</option>
+                  <option value="Entidad de formación para el trabajo">Entidad de formación para el trabajo(SENA,
+                    institución de formación,
+                    etc.)</option>
+                  <option value="Entidad prestadora de servicios a la inclusión">Entidad prestadora de servicios a la
+                    inclusión</option>
+                  <option value="Institución de educación superior">Institución de educación superior</option>
+                  <option value="Otra">Otra</option>
+                </select>
+                <!--Validators password-->
+                <div
+                  *ngIf="contactForm.get('typEntitySocialActor')?.touched && contactForm.get('typEntitySocialActor')?.errors?.['required']"
+                  class="alert alert-danger">Este campo es obligatorio.
+                </div>
+              </div>
+
+              <!--companyNameOrentity-->
+              <div class="sm:col-span-4 justify-center mb-2">
+                <a href="https://www.youtube.com/watch?v=ZcMy1mrsO0A&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=18"
+                  target="_blank" class="flex flex-row items-center">
+                  <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="companyNameOrentity">Razon social
+                    o
+                    nombre
+                    de la entidad</label>
+                  <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
+                    class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <path fill="currentColor"
+                      d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
+                    </path>
+                  </svg>:
+                </a>
+                <input type="text"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
+                  id="companyNameOrentity" name="companyNameOrentity" placeholder="Inserte la razón social" required
+                  formControlName="companyNameOrentity">
+                <!--Validators companyNameOrentity-->
+                <div
+                  *ngIf="contactForm.get('companyNameOrentity')?.touched && contactForm.get('companyNameOrentity')?.errors?.['required']"
+                  class="alert alert-danger">Este campo es obligatorio.
+                </div>
+              </div>
+
+              <!--Departments-->
+              <div class="sm:col-span-4 justify-center mb-2">
+                <a href="" target="_blank" class="flex flex-row items-center">
+                  <label class="block text-black-700 text-sm font-bold mb2 mr-2"
+                    for="departamentoSelect">Departamentos</label>
+                  <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
+                    class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <path fill="currentColor"
+                      d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
+                    </path>
+                  </svg>:
+                </a>
+
+                <select id="departamentoSelect"
+                  class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                  name="departamento" formControlName="departamento" (change)="onDepartamentoChange()" required>
+                  <option *ngFor="let departamento of departamentosUnicos" [value]="departamento">{{departamento}}
+
+                  </option>
+                </select>
+                <!--Validators companyNameOrentity-->
+                <div
+                  *ngIf="contactForm.get('departamentoSelect')?.touched && contactForm.get('departamentoSelect')?.errors?.['required']"
+                  class="alert alert-danger">Este campo es obligatorio.
+                </div>
+              </div>
+
+              <!--email-->
+              <div class="sm:col-span-4 justify-center mb-2 ">
+                <a href="https://www.youtube.com/watch?v=JX51GuYLHlY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=9&pp=iAQB&ab_channel=PactodeProductividad"
+                  target="_blank" class="flex flex-row items-center">
+                  <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="email">Correo</label>
+                  <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
+                    class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <path fill="currentColor"
+                      d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
+                    </path>
+                  </svg>:
+                </a>
+                <input type="email"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
+                  id="email" name="email" placeholder="correo@gmail.com" required ngModel [email]="true"
+                  formControlName="email">
+                <!--Validators companyNameOrentity-->
+                <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['required']"
+                  class="alert alert-danger">Este campo es obligatorio.
+                </div>
+                <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['email']"
+                  class="alert alert-danger">Este campo tiene que ser un correo electrónico válido.</div>
+              </div>
+
+            </div>
+
+
+            <!-- --------------------------------------------------------- -->
+            <!--Column right -->
+            <div class="row-auto">
+              <!--surNames-->
+              <div class="sm:col-span-4 justify-center mb-2">
+                <a href="https://www.youtube.com/watch?v=aNWSJpAvs1g&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=22&ab_channel=PactodeProductividad"
+                  target="_blank" class="flex flex-row items-center">
+                  <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="surNames">Apellidos</label>
+                  <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
+                    class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <path fill="currentColor"
+                      d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
+                    </path>
+                  </svg>:
+                </a>
+                <input type="text"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
+                  id="surNames" name="surNames" placeholder="Inserte sus apellidos" required formControlName="surNames">
+
+                <div
+                  *ngIf="contactForm.controls['names'].invalid && (contactForm.controls['surNames'].dirty || contactForm.controls['surNames'].touched)"
+                  class="alert alert-danger">
+                  <div *ngIf="contactForm.controls['surNames'].errors?.['required']">
+                    Este campo es requerido.
+                  </div>
+                  <div *ngIf="contactForm.controls['surNames'].errors?.['pattern']">
+                    Este campo no admite caracteres especiales.
+                  </div>
+                </div>
+              </div>
+
+              <!--Gender-->
+              <div class="sm:col-span-4 justify-center mb-2">
+                <a href="https://www.youtube.com/watch?v=__kMM2bBTgI&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=19"
+                  target="_blank" class="flex flex-row items-center">
+                  <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="gender">¿Con qué género te
+                    identificas?</label>
+                  <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
+                    class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <path fill="currentColor"
+                      d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
+                    </path>
+                  </svg>:
+                </a>
+                <select
+                  class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                  name="gender" id="gender" required formControlName="gender">
+                  <option value="Mujer">Mujer</option>
+                  <option value="Hombre">Hombre</option>
+                  <option value="Hombre trans">Hombre trans(transexual, transgenero, travesti)</option>
+                  <option value="Mujer trans">Mujer trans(transexual, transgenero, travesti)</option>
+                  <option value="Otras">Otras</option>
+                </select>
+                <!--Validators gender-->
+                <div *ngIf="contactForm.get('gender')?.touched && contactForm.get('gender')?.errors?.['required']"
+                  class="alert alert-danger">Este campo es obligatorio.
+                </div>
+              </div>
+
+              <!--ethnicity-->
+              <div class="sm:col-span-4 justify-center mb-2">
+                <a href="https://www.youtube.com/watch?v=u7YTICI2qcE&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=26"
+                  target="_blank" class="flex flex-row items-center">
+                  <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="ethnicity">¿Cúal de estas
+                    opciones te describen mejor?</label>
+                  <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
+                    class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <path fill="currentColor"
+                      d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
+                    </path>
+                  </svg>:
+                </a>
+                <select
+                  class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                  name="ethnicity" id="ethnicity" formControlName="ethnicity">
+                  <option value="Indigena">Indigena</option>
+                  <option value="Gitano">Gitano (Rom)</option>
+                  <option value="Palenquero">Palenquero</option>
+                  <option value="Raizal del archipielago">Raizal del archipielago</option>
+                  <option value="No aplica">No aplica</option>
+                </select>
+                <!--Validators ethnicity-->
+                <div *ngIf="contactForm.get('ethnicity')?.touched && contactForm.get('ethnicity')?.errors?.['required']"
+                  class="alert alert-danger">Este campo es obligatorio.
+                </div>
+              </div>
+
+              <!--phoneNumber-->
+              <div class="sm:col-span-4 justify-center mb-2">
+                <a href="https://www.youtube.com/watch?v=q7jhWAhy_Vg&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=25"
+                  target="_blank" class="flex flex-row items-center">
+                  <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="phoneNumber">Celular</label>
+
+                  <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
+                    class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <path fill="currentColor"
+                      d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
+                    </path>
+                  </svg>:
+                </a>
+                <input type="text"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
+                  id="phoneNumber" name="phoneNumber" placeholder="Inserte su número de celular" required
+                  formControlName="phoneNumber">
+                <!--Validators phoneNumber-->
+                <div
+                  *ngIf="contactForm.get('phoneNumber')?.touched && contactForm.get('phoneNumber')?.errors?.['required']"
+                  class="alert alert-danger">Este campo es obligatorio.
+                </div>
+              </div>
+
+              <!--country-->
+              <div class="sm:col-span-4 justify-center mb-2">
+                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="country">País:</label>
+                <input type="text" (click)="countryAlert()"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
+                  id="country" name="country" value="Colombia" readonly formControlName="country">
+              </div>
+
+
+              <!--Municipios-->
+              <div class="sm:col-span-4 justify-center mb-2">
+                <a href="https://youtu.be/v9JDSXL9fZY?si=0jFhazNYtqRT7ft6" target="_blank"
+                  class="flex flex-row items-center">
+                  <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="municipio">En que ciudad estas
+                    ubicado </label>
+                  <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
+                    class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <path fill="currentColor"
+                      d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
+                    </path>
+                  </svg>:
+                </a>
+
+                <select id="municipio"
+                  class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                  name="municipio" formControlName="municipio" required>
+                  <option *ngFor="let municipio of filteredMunicipios" [value]="municipio">{{municipio}}
+                  </option>
+
+                </select>
+                <!--Validators municipioSelect-->
+                <div
+                  *ngIf="contactForm.get('municipioSelect')?.touched && contactForm.get('municipioSelect')?.errors?.['required']"
+                  class="alert alert-danger">Este campo es obligatorio.
+                </div>
+              </div>
+
+              <!--password-->
+              <div class="sm:col-span-4 justify-center mb-2 ">
+                <label class="block text-black-700 text-sm font-bold mt-4 mr-2" for="password">Contraseña:</label>
+                <input type="password"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
+                  id="password" name="password" placeholder="Inserte su contraseña" required formControlName="password">
+                <!--Validators password-->
+                <div *ngIf="contactForm.get('password')?.touched && contactForm.get('password')?.errors?.['required']"
+                  class="alert alert-danger">Este campo es obligatorio.
                 </div>
               </div>
             </div>
+          </div>
 
-            <!--years-->
-            <div class="sm:col-span-4 justify-center mb-2">
-              <a href="https://www.youtube.com/watch?v=nIMLCn9S0VY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=24"
-                target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="years">Edad</label>
-                <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
-                  class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 576 512">
-                  <path fill="currentColor"
-                    d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
-                  </path>
-                </svg>:
-              </a>
-              <input type="text"
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                id="years" name="years" placeholder="Inserte su edad" required formControlName="years">
-
-              <!--Validators years-->
-              <div *ngIf="contactForm.get('years')?.touched && contactForm.get('years')?.errors?.['required']"
-                class="alert alert-danger">Este campo es obligatorio.</div>
-              <div *ngIf="contactForm.get('years')?.touched && contactForm.get('years')?.errors?.['minlength']"
-                class="alert alert-danger">Este campo debe tener minimo 2
-                {{contactForm.get('years')?.errors?.['minlength'].requiredlength}} digitos.</div>
-            </div>
-
-            <!--"person.-->
-            <div class="sm:col-span-4 justify-center mb-2 ">
-              <a href="https://www.youtube.com/watch?v=Gd2-ldzBTZk&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=5"
-                target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="person">Soy una
-                  persona</label>
-                <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
-                  class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 576 512">
-                  <path fill="currentColor"
-                    d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
-                  </path>
-                </svg>:
-              </a>
-              <select
-                class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                name="person" id="person" required formControlName="person">
-                <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="Con discapacidad auditiva">Con
-                  discapacidad auditiva
-                </option>
-                <option value="Con autismo">Con autismo</option>
-                <option value="Con discapacidad congnitiva">Con discapacidad congnitiva</option>
-                <option value="Con discapacidad física">Con discapacidad física</option>
-                <option value="Con discapacidad múltiple">Con discapacidad múltiple</option>
-                <option value="Con discapacidad psicosocial">Con discapacidad psicosocial</option>
-                <option value="Sordociega">Sordociega</option>
-                <option value="Con discapacidad visual">Con discapacidad visual</option>
-                <option value="Sin descapacidad">Sin descapacidad</option>
-              </select>
-              <!--Validators person-->
-              <div *ngIf="contactForm.get('person')?.touched && contactForm.get('person')?.errors?.['required']"
-                class="alert alert-danger">Este campo es obligatorio.</div>
-            </div>
-
-            <!--Type of entity or social actor-->
-            <div class="sm:col-span-4  justify-center mb-2">
-              <a href="https://www.youtube.com/watch?v=CrY7GS6KKnM&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=3"
-                target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="typEntitySocialActor">Tipo de
-                  entidad o actor social</label>
-                <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
-                  class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 576 512">
-                  <path fill="currentColor"
-                    d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
-                  </path>
-                </svg>:
-              </a>
-              <select
-                class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                name="typEntitySocialActor" id="typEntitySocialActor" required formControlName="typEntitySocialActor">
-                <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="Empresa privada">Empresa privada
-                </option>
-                <option value="Organización de personas con discapacidad">Organización de personas con discapacidad
-                </option>
-                <option value="Entidad publica - rerritorial">Entidad publica - rerritorial(Alcaldia, Gobernación o
-                  Ministerio)</option>
-                <option value="Entidad de intermediación laboral">Entidad de intermediación laboral (Agencia de Gestión
-                  y Colocación
-                  de Empleo, Bolsa de Empleo)</option>
-                <option value="Entidad de formación para el trabajo">Entidad de formación para el trabajo(SENA,
-                  institución de formación,
-                  etc.)</option>
-                <option value="Entidad prestadora de servicios a la inclusión">Entidad prestadora de servicios a la
-                  inclusión</option>
-                <option value="Institución de educación superior">Institución de educación superior</option>
-                <option value="Otra">Otra</option>
-              </select>
-              <!--Validators password-->
-              <div
-                *ngIf="contactForm.get('typEntitySocialActor')?.touched && contactForm.get('typEntitySocialActor')?.errors?.['required']"
-                class="alert alert-danger">Este campo es obligatorio.
-              </div>
-            </div>
-
-            <!--companyNameOrentity-->
-            <div class="sm:col-span-4 justify-center mb-2">
-              <a href="https://www.youtube.com/watch?v=ZcMy1mrsO0A&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=18"
-                target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="companyNameOrentity">Razon social o
-                  nombre
-                  de la entidad</label>
-                <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
-                  class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 576 512">
-                  <path fill="currentColor"
-                    d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
-                  </path>
-                </svg>:
-              </a>
-              <input type="text"
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                id="companyNameOrentity" name="companyNameOrentity" placeholder="Inserte la razón social" required
-                formControlName="companyNameOrentity">
-              <!--Validators companyNameOrentity-->
-              <div
-                *ngIf="contactForm.get('companyNameOrentity')?.touched && contactForm.get('companyNameOrentity')?.errors?.['required']"
-                class="alert alert-danger">Este campo es obligatorio.
-              </div>
-            </div>
-
-            <!--Departments-->
-            <div class="sm:col-span-4 justify-center mb-2">
-              <a href="" target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2"
-                  for="departamentoSelect">Departamentos</label>
-                <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
-                  class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 576 512">
-                  <path fill="currentColor"
-                    d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
-                  </path>
-                </svg>:
-              </a>
-
-              <select id="departamentoSelect"
-                class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                name="departamento" formControlName="departamento" (change)="onDepartamentoChange()" required>
-                <option *ngFor="let departamento of departamentosUnicos" [value]="departamento">{{departamento}}
-
-                </option>
-              </select>
-              <!--Validators companyNameOrentity-->
-              <div
-                *ngIf="contactForm.get('departamentoSelect')?.touched && contactForm.get('departamentoSelect')?.errors?.['required']"
-                class="alert alert-danger">Este campo es obligatorio.
-              </div>
-            </div>
-
-            <!--email-->
-            <div class="sm:col-span-4 justify-center mb-2 ">
-              <a href="https://www.youtube.com/watch?v=JX51GuYLHlY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=9&pp=iAQB&ab_channel=PactodeProductividad"
-                target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="email">Correo</label>
-                <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
-                  class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 576 512">
-                  <path fill="currentColor"
-                    d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
-                  </path>
-                </svg>:
-              </a>
-              <input type="email"
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                id="email" name="email" placeholder="correo@gmail.com" required ngModel [email]="true"
-                formControlName="email">
-              <!--Validators companyNameOrentity-->
-              <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['required']"
-                class="alert alert-danger">Este campo es obligatorio.
-              </div>
-              <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['email']"
-                class="alert alert-danger">Este campo tiene que ser un correo electrónico válido.</div>
-            </div>
-
+          <!--Checkbox -->
+          <label class="flex w-full justify-center">
+            <input type="checkbox" class="mr-1" id="termsAndconditions" name="termsAndconditions"
+              formControlName="termsAndconditions">
+            <button (click)="openModal()">Acepto los términos y condiciones</button>
+          </label>
+          <!--Validators password-->
+          <div
+            *ngIf="contactForm.get('termsAndconditions')?.touched && contactForm.get('termsAndconditions')?.errors?.['pattern']"
+            class="flex w-full justify-center alert alert-danger">Este campo es obligatorio.
           </div>
 
 
-          <!-- --------------------------------------------------------- -->
-          <!--Column right -->
-          <div class="row-auto">
-            <!--surNames-->
-            <div class="sm:col-span-4 justify-center mb-2">
-              <a href="https://www.youtube.com/watch?v=aNWSJpAvs1g&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=22&ab_channel=PactodeProductividad"
-                target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="surNames">Apellidos</label>
-                <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
-                  class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 576 512">
-                  <path fill="currentColor"
-                    d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
-                  </path>
-                </svg>:
-              </a>
-              <input type="text"
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                id="surNames" name="surNames" placeholder="Inserte sus apellidos" required formControlName="surNames">
-
-              <div
-                *ngIf="contactForm.controls['names'].invalid && (contactForm.controls['surNames'].dirty || contactForm.controls['surNames'].touched)"
-                class="alert alert-danger">
-                <div *ngIf="contactForm.controls['surNames'].errors?.['required']">
-                  Este campo es requerido.
-                </div>
-                <div *ngIf="contactForm.controls['surNames'].errors?.['pattern']">
-                  Este campo no admite caracteres especiales.
-                </div>
-              </div>
-            </div>
-
-            <!--Gender-->
-            <div class="sm:col-span-4 justify-center mb-2">
-              <a href="https://www.youtube.com/watch?v=__kMM2bBTgI&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=19"
-                target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="gender">¿Con qué género te
-                  identificas?</label>
-                <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
-                  class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 576 512">
-                  <path fill="currentColor"
-                    d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
-                  </path>
-                </svg>:
-              </a>
-              <select
-                class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                name="gender" id="gender" required formControlName="gender">
-                <option value="Mujer">Mujer</option>
-                <option value="Hombre">Hombre</option>
-                <option value="Hombre trans">Hombre trans(transexual, transgenero, travesti)</option>
-                <option value="Mujer trans">Mujer trans(transexual, transgenero, travesti)</option>
-                <option value="Otras">Otras</option>
-              </select>
-              <!--Validators gender-->
-              <div *ngIf="contactForm.get('gender')?.touched && contactForm.get('gender')?.errors?.['required']"
-                class="alert alert-danger">Este campo es obligatorio.
-              </div>
-            </div>
-
-            <!--ethnicity-->
-            <div class="sm:col-span-4 justify-center mb-2">
-              <a href="https://www.youtube.com/watch?v=u7YTICI2qcE&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=26"
-                target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="ethnicity">¿Cúal de estas
-                  opciones te describen mejor?</label>
-                <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
-                  class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 576 512">
-                  <path fill="currentColor"
-                    d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
-                  </path>
-                </svg>:
-              </a>
-              <select
-                class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                name="ethnicity" id="ethnicity" formControlName="ethnicity">
-                <option value="Indigena">Indigena</option>
-                <option value="Gitano">Gitano (Rom)</option>
-                <option value="Palenquero">Palenquero</option>
-                <option value="Raizal del archipielago">Raizal del archipielago</option>
-                <option value="No aplica">No aplica</option>
-              </select>
-              <!--Validators ethnicity-->
-              <div *ngIf="contactForm.get('ethnicity')?.touched && contactForm.get('ethnicity')?.errors?.['required']"
-                class="alert alert-danger">Este campo es obligatorio.
-              </div>
-            </div>
-
-            <!--phoneNumber-->
-            <div class="sm:col-span-4 justify-center mb-2">
-              <a href="https://www.youtube.com/watch?v=q7jhWAhy_Vg&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=25"
-                target="_blank" class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="phoneNumber">Celular</label>
-
-                <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
-                  class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 576 512">
-                  <path fill="currentColor"
-                    d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
-                  </path>
-                </svg>:
-              </a>
-              <input type="text"
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                id="phoneNumber" name="phoneNumber" placeholder="Inserte su número de celular" required
-                formControlName="phoneNumber">
-              <!--Validators phoneNumber-->
-              <div
-                *ngIf="contactForm.get('phoneNumber')?.touched && contactForm.get('phoneNumber')?.errors?.['required']"
-                class="alert alert-danger">Este campo es obligatorio.
-              </div>
-            </div>
-
-            <!--country-->
-            <div class="sm:col-span-4 justify-center mb-2">
-              <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="country">País:</label>
-              <input type="text" (click)="countryAlert()"
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                id="country" name="country" value="Colombia" readonly formControlName="country">
-            </div>
-
-
-            <!--Municipios-->
-            <div class="sm:col-span-4 justify-center mb-2">
-              <a href="https://youtu.be/v9JDSXL9fZY?si=0jFhazNYtqRT7ft6" target="_blank"
-                class="flex flex-row items-center">
-                <label class="block text-black-700 text-sm font-bold mb2 mr-2" for="municipio">En que ciudad estas
-                  ubicado </label>
-                <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
-                  class="svg-inline--fa fa-youtube icon--youtube w-5 h-5 " role="img" xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 576 512">
-                  <path fill="currentColor"
-                    d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
-                  </path>
-                </svg>:
-              </a>
-
-              <select id="municipio"
-                class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                name="municipio" formControlName="municipio" required>
-                <option *ngFor="let municipio of filteredMunicipios" [value]="municipio">{{municipio}}
-                </option>
-
-              </select>
-              <!--Validators municipioSelect-->
-              <div
-                *ngIf="contactForm.get('municipioSelect')?.touched && contactForm.get('municipioSelect')?.errors?.['required']"
-                class="alert alert-danger">Este campo es obligatorio.
-              </div>
-            </div>
-
-            <!--password-->
-            <div class="sm:col-span-4 justify-center mb-2 ">
-              <label class="block text-black-700 text-sm font-bold mt-4 mr-2" for="password">Contraseña:</label>
-              <input type="password"
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                id="password" name="password" placeholder="Inserte su contraseña" required formControlName="password">
-              <!--Validators password-->
-              <div *ngIf="contactForm.get('password')?.touched && contactForm.get('password')?.errors?.['required']"
-                class="alert alert-danger">Este campo es obligatorio.
-              </div>
-            </div>
+          <!--Button register-->
+          <div class="col-span-1 w-full flex justify-center items-center mt-4 h-10">
+            <button routerLink="/register" name="button_register" id="button_register"
+              class=" flex flex-row justify-center items-center w-44 h-12 bg-[#006186] text-white text-lg border rounded-lg border-r-2 border-b-2 border-l-0 border-t-0 border-black mt-6"
+              (click)="onSubmit()">Registrarme</button>
           </div>
         </div>
-
-        <!--Checkbox -->
-        <label class="flex w-full justify-center">
-          <input type="checkbox" class="mr-1" id="termsAndconditions" name="termsAndconditions"
-            formControlName="termsAndconditions">
-          <button (click)="openModal()">Acepto los términos y condiciones</button>
-        </label>
-        <!--Validators password-->
-        <div
-          *ngIf="contactForm.get('termsAndconditions')?.touched && contactForm.get('termsAndconditions')?.errors?.['pattern']"
-          class="flex w-full justify-center alert alert-danger">Este campo es obligatorio.
-        </div>
-
-
-        <!--Button register-->
-        <div class="col-span-1 w-full flex justify-center items-center mt-4 h-10">
-          <button routerLink="/register" name="button_register" id="button_register"
-            class=" flex flex-row justify-center items-center w-44 h-12 bg-[#006186] text-white text-lg border rounded-lg border-r-2 border-b-2 border-l-0 border-t-0 border-black mt-6"
-            (click)="onSubmit()">Registrarme</button>
-        </div>
-      </div>
-    </form>
-    <div class="modal_conditions" *ngIf="showModal == true">
-      <app-modal-terms-conditios></app-modal-terms-conditios>
+      </form>
     </div>
   </div>
+
+  <!--footer-->
+  <div class="footer">
+    <app-footer></app-footer>
+  </div>
 </div>
-<div class="footer">
-  <app-footer></app-footer>
+
+<!--Modal of terms and conditions-->
+<div class="modal_conditions" *ngIf="showModal == true">
+  <app-modal-terms-conditios></app-modal-terms-conditios>
 </div>
