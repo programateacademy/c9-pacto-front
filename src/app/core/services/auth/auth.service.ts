@@ -50,19 +50,24 @@ export class AuthService {
     localStorage.removeItem('token')
     this.router.navigate(['/'])
   }
-  /// Obtener el Id del usuario logeado desde el token almacenado
-  getLoggedInUserId(): string | null {
-    const token = this.gettoken();
-    if (token) {
-      const payload = JSON.parse(atob(token.split('.')[1]));
+    /// Obtener el Id del usuario logeado desde el token almacenado
+    getLoggedInUserId(): string | null {
+      const token = this.gettoken();
+      if (token) {
+        const payload = JSON.parse(atob(token.split('.')[1]));
 
-      if (payload.id) {
-        return payload.id;
+        if (payload.id) {
+          return payload.id;
+        }
+
       }
-
+      return null;
     }
-    return null;
-  }
+
+    getUserById(userId: string): Observable<User> {
+      // Realiza una solicitud al servidor para obtener la información del usuario por su ID
+      return this.http.get<User>(`${this.URL}users/${userId}`);
+    }
 
   //Obetener rol del usuario
   getLoggedInUserRole(): string {
