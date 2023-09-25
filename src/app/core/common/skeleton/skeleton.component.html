@@ -1,13 +1,82 @@
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-<script src="https://kit.fontawesome.com/7845268ad3.js" crossorigin="anonymous"></script>
-
-<div class="w-full max-w-md mx-auto animate-pulse p-9">
-    <h1 class="h-2 bg-gray-300 rounded-lg w-52 dark:bg-gray-600"></h1>
-
-    <p class="w-48 h-2 mt-6 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-    <p class="w-full h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-    <p class="w-64 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-    <p class="w-4/5 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-</div>
+isLoading: boolean = true;
+<div class="skeleton">
+    <!-- <div class="header">
+      <div class="bg-gray-300 h-16"></div>
+    </div>
+     <div class="aside"> 
+       <div class="bg-gray-300 h-screen"></div>
+    </div>  -->
+    <div class="min-h-screen sm:ml-0 p-4 md:p-8 lg:p-12">
+      <div class="max-w-4xl mx-auto">
+        <div class="flex flex-col md:flex-row">
+          <div class="w-full md:w-3/4 md:mr-4 sm:ml-0 my-20 md:ml-28">
+            <div class="bg-white p-4 md:p-6 lg:p-8 rounded-lg shadow mb-4">
+              <div class="flex mb-4">
+                <div class="w-10 h-10 rounded-full bg-gray-300"></div>
+                <div class="w-full ml-4 p-2 border shadow-md text-gray-800 border-gray-600 bg-transparent hover:bg-gray-100 rounded-lg focus:outline-none focus:border-blue-500 text-left"></div>
+              </div>
+  
+              <div class="mt-2 flex justify-between">
+                <div class="space-x-4">
+                  <div class="custom-modal">
+                    <div class="bg-gray-300 h-16"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Publicaciones (Utiliza *ngFor para mostrar varios elementos del skeleton) -->
+            <div class="bg-white p-4 rounded-lg shadow mb-4" *ngFor="let _ of skeletonData">
+              <div class="flex">
+                <div class="w-10 h-10 rounded-full bg-gray-300"></div>
+                <div class="ml-4 user-info">
+                  <div class="w-20 h-4 bg-gray-300"></div>
+                  <div class="w-16 h-4 mt-1 bg-gray-300"></div>
+                </div>
+              </div>
+              <div class="mt-4 post-text">
+                <div class="w-32 h-4 bg-gray-300"></div>
+                <div class="w-24 h-4 mt-2 bg-gray-300"></div>
+              </div>
+              <div class="bg-blue-200 p-2 rounded mt-2 shadow-md border border-blue-400">
+                <div class="w-36 h-4 bg-gray-300"></div>
+              </div>
+              <div class="mt-4 post-image">
+                <div class="w-full h-64 bg-gray-300"></div>
+              </div>
+              <div class="mt-4 post-actions space-y-2">
+                <div class="flex justify-between sm:space-x-4">
+                  <div class="w-20 h-8 bg-gray-300"></div>
+                  <div class="w-20 h-8 bg-gray-300"></div>
+                </div>
+                <div class="comment-modal">
+                  <div class="comment-modal-overlay"></div>
+                  <div class="comment-modal-content p-4 border border-gray-300 rounded-lg shadow-lg">
+                    <div class="flex justify-between items-center mb-4">
+                      <div class="w-16 h-4 bg-gray-300"></div>
+                      <div class="w-16 h-6 bg-gray-300"></div>
+                    </div>
+                    <input type="text" class="w-full h-10 border border-gray-300 rounded-lg p-2 mb-4">
+                    <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded publish-button"></button>
+                    <div class="comments-section mt-4 max-h-64 overflow-y-scroll">
+                      <h5 class="text-lg font-semibold mb-2">Comentarios</h5>
+                      <div class="mb-2">
+                        <div class="flex items-center">
+                          <div class="w-8 h-8 rounded-full bg-gray-300"></div>
+                          <div class="ml-2">
+                            <div class="w-20 h-4 bg-gray-300"></div>
+                            <div class="w-36 h-4 mt-1 bg-gray-300"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Fin de las publicaciones -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class SkeletonComponent {
 
+  skeletonData = new Array(5); // Cambia el número según tus necesidades
 }

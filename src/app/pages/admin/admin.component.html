@@ -4,29 +4,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Social Network</title>
-
-    <!-- Enlace a FontAwesome utilizando el script proporcionado -->
     <script src="https://kit.fontawesome.com/7845268ad3.js" crossorigin="anonymous"></script>
-
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <!-- Utiliza la clase hidden lg:block para ocultar en pantallas pequeñas -->
-  <div class="hidden sm:my-20 lg:block fixed float-left mt-10 px-4 w-1/4 max-h-screen overflow-y-auto -ml-10"> <!-- Agregamos la clase mr-4 para mover el aside hacia la derecha -->
-    <!-- Sugerencia de amistad 1 -->
-    <div class="bg-white p-3 m-10 rounded-lg shadow mb-4">
-        <div>
-            <h2 class="text-lg font-semibold mb-2">Lista de Usuarios</h2>
-            <!-- Usuario en línea 1 -->
-            <div class="flex items-center justify-between border-b pb-2 mb-4" *ngFor="let user of users">
-                <div class="flex items-center space-x-2">
-                    <img [src]="user.userImg" alt="Usuario" class="w-11 h-11 rounded-full">
-                    <span>{{user.userName}}</span>
-                </div>
-            </div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tu Aplicación</title>
+  <link href="https://unpkg.com/tailwindcss@^2.2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+  <div class="header">
+    <app-header></app-header>
+  </div>
+
+  <div
+    class="fixed top-0 left-0 flex items-center justify-center w-full h-full z-50"
+    [ngClass]="{ 'hidden': !isModalOpen }"
+  >
+    <div class="fixed top-0 left-0 w-full h-full bg-gray-800 opacity-0"></div>
+
+    <div class="bg-white p-6 rounded-lg shadow-lg z-10 max-w-md w-11/12 h-auto relative mt-24 mx-auto overflow-y-auto max-h-[80vh]">
+      <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700" (click)="closeModal()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+
+      <h2 class="text-lg font-semibold mb-4">Detalles del Usuario</h2>
+      <div *ngIf="selectedUser">
+        <img [src]="selectedUser.userImg" alt="Usuario" class="w-16 h-16 rounded-full mx-auto mb-4">
+        <p class="text-center">{{ selectedUser.userName }}</p>
+        <div class="mb-2">
+          <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
+          <p class="text-gray-800">ejemplo@email.com</p>
         </div>
+
+
+
+        <div class="mb-2">
+          <label for="pais" class="block text-sm font-medium text-gray-700">País:</label>
+          <p class="text-gray-800">Ejemplo de País</p>
+        </div>
+
+
+        <div class="mb-2">
+          <label for="departamento" class="block text-sm font-medium text-gray-700">Departamento:</label>
+          <p class="text-gray-800">Ejemplo de Departamento</p>
+        </div>
+
+
+        <div class="mb-2">
+          <label for="ciudad" class="block text-sm font-medium text-gray-700">Ciudad:</label>
+          <p class="text-gray-800">Ejemplo de Ciudad</p>
+        </div>
+
+
+        <div class="mb-2">
+          <label for="genero" class="block text-sm font-medium text-gray-700">Género:</label>
+          <p class="text-gray-800">Ejemplo de Género</p>
+        </div>
+
+
+        <div class="mb-2">
+          <label for="discapacidad" class="block text-sm font-medium text-gray-700">Tipo de Discapacidad:</label>
+          <p class="text-gray-800">Ejemplo de Discapacidad</p>
+        </div>
+
+
+        <div class="mb-2">
+          <label for="etnia" class="block text-sm font-medium text-gray-700">Ejemplo de Etnia:</label>
+          <p class="text-gray-800">Etnia</p>
+        </div>
+
+
+
+        <div class="mb-2">
+          <button
+            class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-full"
+            (click)="deleteUser(selectedUser.userId)"
+          >
+            Eliminar
+          </button>
+        </div>
+
+
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <div
+
+    class="hidden sm:my-20 lg:block fixed float-left mt-10 px-4 w-1/4 max-h-screen overflow-y-auto -ml-10"
+  >
+    <div class="bg-white p-3 m-10 rounded-lg shadow mb-4">
+      <div>
+        <h2 class="text-lg font-semibold mb-2">Lista de Usuarios</h2>
+        <div
+          class="flex items-center justify-between border-b pb-2 mb-4"
+          *ngFor="let user of users"
+        >
+          <div class="flex items-center space-x-2">
+            <img [src]="user.userImg" alt="Usuario" class="w-11 h-11 rounded-full">
+            <button class="hover:underline" (click)="openModal(user)">
+              {{ user.userName }}
+            </button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </body>
+
+</html>
+
 
 </html>

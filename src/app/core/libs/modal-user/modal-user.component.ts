@@ -16,5 +16,7 @@ export class ModalUserComponent {
   closeModal(){
 
     this.modalUser.$modal.emit(false)
+
+  
   }
 }

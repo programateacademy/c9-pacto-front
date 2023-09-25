@@ -4,7 +4,7 @@
     <app-headerauth></app-headerauth>
   </div>
   <div class="w-full">
-    <form (ngSubmit)="onSubmit()" [formGroup]="contactForm" class="bg-white px-8 pt-6 pb-8 mb-4">
+    <form (ngSubmit)="signUp()" [formGroup]="contactForm" class="bg-white px-8 pt-6 pb-8 mb-4">
       <div class="mb-4 mt-12">
         <h1 class="font-bold mb-6 mt-4 md:text-4xl">FORMULARIO DE REGISTRO</h1>
         <div class="grid grid-flow-row sm:grid-flow-col gap-3 md:grid-cols-2">
@@ -83,16 +83,16 @@
               <select
                 class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 name="person" id="person" required formControlName="person">
-                <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="auditory">Con discapacidad auditiva
+                <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="Con discapacidad auditiva">Con discapacidad auditiva
                 </option>
-                <option value="autism">Con autismo</option>
-                <option value="cognitive">Con discapacidad congnitiva</option>
-                <option value="physics">Con discapacidad física</option>
-                <option value="Training entity">Con discapacidad múltiple</option>
-                <option value="psychosocial">Con discapacidad psicosocial</option>
-                <option value="Deafblind">Sordociega</option>
-                <option value="visual">Con discapacidad visual</option>
-                <option value="Non-disabled">Sin descapacidad</option>
+                <option value="Con autismo">Con autismo</option>
+                <option value="Con discapacidad congnitiva">Con discapacidad congnitiva</option>
+                <option value="Con discapacidad física">Con discapacidad física</option>
+                <option value="Con discapacidad múltiple">Con discapacidad múltiple</option>
+                <option value="Con discapacidad psicosocial">Con discapacidad psicosocial</option>
+                <option value="Sordociega">Sordociega</option>
+                <option value="Con discapacidad visual">Con discapacidad visual</option>
+                <option value="Sin descapacidad">Sin descapacidad</option>
               </select>
               <!--Validators person-->
               <div *ngIf="contactForm.get('person')?.touched && contactForm.get('person')?.errors?.['required']"
@@ -116,16 +116,16 @@
               <select
                 class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 name="typEntitySocialActor" id="typEntitySocialActor" required formControlName="typEntitySocialActor">
-                <option class="grid grid-flow-row sm:grid-flow-col gap-3">Empresa privada</option>
-                <option value="organization">Organización de personas con discapacidad</option>
-                <option value="public entity">Entidad publica - rerritorial(Alcaldia, Gobernación o Ministerio)</option>
-                <option value="Intermediary entity">Entidad de intermediación laboral (yearsncia de gestión y colocación
-                  de empleo, bolsa de empleo)</option>
-                <option value="Training entity">Entidad de formación para el trabajo(SENA, institución de formación,
+                <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="Empresa privada">Empresa privada</option>
+                <option value="Organización de personas con discapacidad">Organización de personas con discapacidad</option>
+                <option value="Entidad publica - rerritorial">Entidad publica - rerritorial(Alcaldia, Gobernación o Ministerio)</option>
+                <option value="Entidad de intermediación laboral">Entidad de intermediación laboral (Agencia de Gestión y Colocación
+                  de Empleo, Bolsa de Empleo)</option>
+                <option value="Entidad de formación para el trabajo">Entidad de formación para el trabajo(SENA, institución de formación,
                   etc.)</option>
-                <option value="provider entity">Entidad prestadora de servicios a la inclusión</option>
-                <option value="Educational institution">Institución de educación superior</option>
-                <option value="other">Otra</option>
+                <option value="Entidad prestadora de servicios a la inclusión">Entidad prestadora de servicios a la inclusión</option>
+                <option value="Institución de educación superior">Institución de educación superior</option>
+                <option value="Otra">Otra</option>
               </select>
               <!--Validators password-->
               <div
@@ -173,7 +173,7 @@
                   </path>
                 </svg>:
               </a>
-              
+
               <select id="departamentoSelect"
                 class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 name="departamento" formControlName="departamento" (change)="onDepartamentoChange()" required>
@@ -265,11 +265,11 @@
               <select
                 class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 name="gender" id="gender" required formControlName="gender">
-                <option value="womam">Mujer</option>
-                <option value="man">Hombre</option>
-                <option value="trans-man">Hombre trans(transexual, transgenero, travesti)</option>
-                <option value="trans-woman">Mujer trans(transexual, transgenero, travesti)</option>
-                <option value="others">Otras</option>
+                <option value="Mujer">Mujer</option>
+                <option value="Hombre">Hombre</option>
+                <option value="Hombre trans">Hombre trans(transexual, transgenero, travesti)</option>
+                <option value="Mujer trans">Mujer trans(transexual, transgenero, travesti)</option>
+                <option value="Otras">Otras</option>
               </select>
               <!--Validators gender-->
               <div *ngIf="contactForm.get('gender')?.touched && contactForm.get('gender')?.errors?.['required']"
@@ -294,11 +294,11 @@
               <select
                 class="shadow form-select block w-full p-2 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 name="ethnicity" id="ethnicity" formControlName="ethnicity">
-                <option value="womam">Indigena</option>
-                <option value="man">Gitano (Rom)</option>
-                <option value="transMan">Palenqueto</option>
-                <option value="transWoman">Raizal del archipielago</option>
-                <option value="">No aplica</option>
+                <option value="Indigena">Indigena</option>
+                <option value="Gitano">Gitano (Rom)</option>
+                <option value="Palenqueto">Palenqueto</option>
+                <option value="Raizal del archipielago">Raizal del archipielago</option>
+                <option value="No aplica">No aplica</option>
               </select>
               <!--Validators ethnicity-->
               <div *ngIf="contactForm.get('ethnicity')?.touched && contactForm.get('ethnicity')?.errors?.['required']"
@@ -392,11 +392,15 @@
           class="flex w-full justify-center alert alert-danger">Este campo es obligatorio.
         </div>
 
+        <!-- Mostrar la imagen del usuario -->
+        <!-- <img [src]="contactForm!.get('userImg')!.value || '/src/assets/img/perfil.png'" alt="Imagen de usuario" /> -->
+
+
         <!--Button register-->
         <div class="col-span-1 w-full flex justify-center items-center mt-4 h-10">
           <button routerLink="/register" name="button_register" id="button_register"
             class=" flex flex-row justify-center items-center w-44 h-12 bg-[#006186] text-white text-lg border rounded-lg border-r-2 border-b-2 border-l-0 border-t-0 border-black mt-6"
-            type="submit" [disabled]="!contactForm.valid">Registrarme</button>
+            (click)="onSubmit()">Registrarme</button>
         </div>
       </div>
     </form>
