@@ -25,13 +25,14 @@ export class ModalComponent {
 
   @Output() newPublication = new EventEmitter<Home>();
 
-  createPost(description: string, image: string){
+  createPost(description: string, image: string ,descriptionImg: string){
     const userId = this.authService.getLoggedInUserId();
     const newPost = {
 
       userId: userId,
       description: description,
       image: image,
+      descriptionImg,
       likes: []
     }
 

@@ -2,5 +2,5 @@
 
 export const enviroment = {
   production: true,
-  apiUrl: 'https://prod.pooforoapi.onrender.com/'
+  apiUrl: 'https://api-pacto-backend-c9.onrender.com/'
 };

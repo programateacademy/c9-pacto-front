@@ -1,169 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>Actualizar perfil</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>Actualizar perfil</title>
 </head>
+
 <body>
-    <section class="relative max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 ">
-        <div class="absolute top-2 right-2">
-          <div class="icon-background">
-            <button class="close-button text-gray-500 transition-colors duration-300 hover:text-red-500 absolute top-0 right-0 p-2" aria-label="Cerrar" (click)="closeModal()">
-              <i class="fas fa-times"></i>
-            </button>
-        </div>
+  <section class="relative max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 ">
+    <div class="absolute top-2 right-2">
+      <div class="icon-background">
+        <button
+          class="close-button text-gray-500 transition-colors duration-300 hover:text-red-500 absolute top-0 right-0 p-2"
+          aria-label="Cerrar" (click)="closeModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
 
-        </div>
-        <h2 class="text-lg font-semibold text-black capitalize dark:text-white">Actualizar perfil</h2>
+    </div>
+    <h2 class="text-lg font-semibold text-black capitalize dark:text-white">Actualizar perfil</h2>
 
-        <form class="mt-12">
-            <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+    <form class="mt-12" [formGroup]="contactForm">
+      <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
 
-                <div class="relative">
-                    <label class="text-black dark:text-gray-200" for="name">
-                        Nombres
-                        <a href="https://www.youtube.com/watch?v=V9auOG6U0rY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=16" target="_blank" class="ml-2 p-2 text-red-600">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </label>
-                    <input id="name" type="text" placeholder="Inserte sus nombres" class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-                </div>
+        <div class="relative">
+          <label class="text-black dark:text-gray-200" for="name">
+            Nombres
+            <a href="https://www.youtube.com/watch?v=V9auOG6U0rY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=16"
+              target="_blank" class="ml-2 p-2 text-red-600">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </label>
+          <input id="name" type="text" name="names" formControlName="names" placeholder="Inserte sus nombres"
+            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+            required>
 
-                <div class="relative">
-                    <label class="text-black dark:text-gray-200" for="SocialActor">
-                        Apellidos
-                        <a href="https://www.youtube.com/watch?v=aNWSJpAvs1g&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=23" target="_blank" class="ml-2 p-2 text-red-600">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </label>
-                    <input id="SocialActor" type="text"  placeholder="Inserte sus Apellidos" class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-                </div>
 
-                <div class="relative">
-                  <label class="text-black dark:text-gray-200" for="person">Soy una
-                    persona
-                        <a href="https://www.youtube.com/watch?v=Gd2-ldzBTZk&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=5" target="_blank" class="ml-2 p-2 text-red-600">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </label>
-                    <select id="person" name="person" placeholder="Con discapacidad" class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" disabled></select>
-                </div>
-
-                <div class="relative">
-                  <label class="text-black dark:text-gray-200" for="gender">
-                      ¿Con qué género te identificas?
-                      <a href="https://www.youtube.com/watch?v=__kMM2bBTgI&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=19" target="_blank" class="ml-2 p-2 text-red-600">
-                          <i class="fab fa-youtube"></i>
-                      </a>
-                  </label>
-                  <select id="gender" name="gender" class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" disabled></select>
-              </div>
-
-              <div class="relative">
-                <label class="text-black dark:text-gray-200" for="years">Edad
-                      <a href="https://www.youtube.com/watch?v=nIMLCn9S0VY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=24" target="_blank" class="ml-2 p-2 text-red-600">
-                          <i class="fab fa-youtube"></i>
-                      </a>
-                  </label>
-                  <input id="years" type="number"  placeholder="Ingrese su edad" class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-              </div>
-
-              <div class="relative">
-                <label class="text-black dark:text-gray-200" for="ethnicity">
-                  ¿Cúal de estas opciones te describen mejor?
-                    <a href="https://www.youtube.com/watch?v=u7YTICI2qcE&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=26" target="_blank" class="ml-2 p-2 text-red-600">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </label>
-                <select id="ethnicity" name="ethnicity"  class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" disabled></select>
+          <!-- Validators of names-->
+          <div
+            *ngIf="contactForm.controls['names'].invalid && (contactForm.controls['names'].dirty || contactForm.controls['names'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="contactForm.controls['names'].errors?.['required']">
+              Este campo es requerido.
             </div>
-
-            <div class="relative">
-              <label class="text-black dark:text-gray-200" for="phoneNumber">
-                  Celular
-                  <a href="https://www.youtube.com/watch?v=q7jhWAhy_Vg&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=25" target="_blank" class="ml-2 p-2 text-red-600">
-                      <i class="fab fa-youtube"></i>
-                  </a>
-              </label>
-              <input id="phoneNumber" name="phoneNumber" placeholder="Inserte su número de celular" class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            <div *ngIf="contactForm.controls['names'].errors?.['pattern']">
+              Este campo no admite caracteres especiales.
+            </div>
           </div>
+        </div>
 
-          <div class="relative">
-            <label class="text-black dark:text-gray-200" for="ethnicity">
-              Tipo de entidad o actor social
-                <a href="https://www.youtube.com/watch?v=CrY7GS6KKnM&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=3" class="ml-2 p-2 text-red-600">
-                    <i class="fab fa-youtube"></i>
-                </a>
-            </label>
-            <select id="ethnicity" name="ethnicity"  class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" disabled></select>
+        <div class="relative">
+          <label class="text-black dark:text-gray-200" for="SocialActor">
+            Apellidos
+            <a href="https://www.youtube.com/watch?v=aNWSJpAvs1g&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=23"
+              target="_blank" class="ml-2 p-2 text-red-600">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </label>
+          <input id="SocialActor" name="surNames" formControlName="surNames" type="text"
+            placeholder="Inserte sus Apellidos"
+            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+
+          <div
+            *ngIf="contactForm.controls['names'].invalid && (contactForm.controls['surNames'].dirty || contactForm.controls['surNames'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="contactForm.controls['surNames'].errors?.['required']">
+              Este campo es requerido.
+            </div>
+            <div *ngIf="contactForm.controls['surNames'].errors?.['pattern']">
+              Este campo no admite caracteres especiales.
+            </div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <label class="text-black dark:text-gray-200" for="person">Soy una
+            persona
+            <a href="https://www.youtube.com/watch?v=Gd2-ldzBTZk&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=5"
+              target="_blank" class="ml-2 p-2 text-red-600">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </label>
+          <select id="person" name="person" formControlName="person" placeholder="Con discapacidad"
+            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+
+            <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="Con discapacidad auditiva">Con
+              discapacidad auditiva
+            </option>
+            <option value="Con autismo">Con autismo</option>
+            <option value="Con discapacidad congnitiva">Con discapacidad congnitiva</option>
+            <option value="Con discapacidad física">Con discapacidad física</option>
+            <option value="Con discapacidad múltiple">Con discapacidad múltiple</option>
+            <option value="Con discapacidad psicosocial">Con discapacidad psicosocial</option>
+            <option value="Sordociega">Sordociega</option>
+            <option value="Con discapacidad visual">Con discapacidad visual</option>
+            <option value="Sin descapacidad">Sin descapacidad</option>
+          </select>
+          <!--Validators person-->
+          <div *ngIf="contactForm.get('person')?.touched && contactForm.get('person')?.errors?.['required']"
+            class="alert alert-danger">Este campo es obligatorio.</div>
+        </div>
+
+        <div class="relative">
+          <label class="text-black dark:text-gray-200" for="gender">
+            ¿Con qué género te identificas?
+            <a href="https://www.youtube.com/watch?v=__kMM2bBTgI&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=19"
+              target="_blank" class="ml-2 p-2 text-red-600">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </label>
+          <select id="gender" name="gender" formControlName="gender"
+            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            <option value="Mujer">Mujer</option>
+            <option value="Hombre">Hombre</option>
+            <option value="Hombre trans">Hombre trans(transexual, transgenero, travesti)</option>
+            <option value="Mujer trans">Mujer trans(transexual, transgenero, travesti)</option>
+            <option value="Otras">Otras</option>
+          </select>
+
+          <!--Validators gender-->
+          <div *ngIf="contactForm.get('gender')?.touched && contactForm.get('gender')?.errors?.['required']"
+            class="alert alert-danger">Este campo es obligatorio.
+          </div>
+        </div>
+
+        <div class="relative">
+          <label class="text-black dark:text-gray-200" for="years">Edad
+            <a href="https://www.youtube.com/watch?v=nIMLCn9S0VY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=24"
+              target="_blank" class="ml-2 p-2 text-red-600">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </label>
+          <input id="years" type="number" name="years" formControlName="years" placeholder="Ingrese su edad"
+            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+          <!--Validators years-->
+          <div *ngIf="contactForm.get('years')?.touched && contactForm.get('years')?.errors?.['required']"
+            class="alert alert-danger">Este campo es obligatorio.</div>
+          <div *ngIf="contactForm.get('years')?.touched && contactForm.get('years')?.errors?.['minlength']"
+            class="alert alert-danger">Este campo debe tener minimo 2
+            {{contactForm.get('years')?.errors?.['minlength'].requiredlength}} digitos.</div>
+
+        </div>
+
+        <div class="relative">
+          <label class="text-black dark:text-gray-200" for="ethnicity">
+            ¿Cúal de estas opciones te describen mejor?
+            <a href="https://www.youtube.com/watch?v=u7YTICI2qcE&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=26"
+              target="_blank" class="ml-2 p-2 text-red-600">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </label>
+          <select id="ethnicity" name="ethnicity" formControlName="ethnicity"
+            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            <option value="Indigena">Indigena</option>
+            <option value="Gitano">Gitano (Rom)</option>
+            <option value="Palenquero">Palenquero</option>
+            <option value="Raizal del archipielago">Raizal del archipielago</option>
+            <option value="No aplica">No aplica</option>
+          </select>
+          <!--Validators ethnicity-->
+          <div *ngIf="contactForm.get('ethnicity')?.touched && contactForm.get('ethnicity')?.errors?.['required']"
+            class="alert alert-danger">Este campo es obligatorio.
+          </div>
+        </div>
+
+        <div class="relative">
+          <label class="text-black dark:text-gray-200" for="phoneNumber">
+            Celular
+            <a href="https://www.youtube.com/watch?v=q7jhWAhy_Vg&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=25"
+              target="_blank" class="ml-2 p-2 text-red-600">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </label>
+          <input id="phoneNumber" name="phoneNumber" formControlName="phoneNumber"
+            placeholder="Inserte su número de celular"
+            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+          <!--Validators phoneNumber-->
+          <div *ngIf="contactForm.get('phoneNumber')?.touched && contactForm.get('phoneNumber')?.errors?.['required']"
+            class="alert alert-danger">Este campo es obligatorio.
+          </div>
+        </div>
+
+        <div class="relative">
+          <label class="text-black dark:text-gray-200" for="ethnicity">
+            Tipo de entidad o actor social
+            <a href="https://www.youtube.com/watch?v=CrY7GS6KKnM&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=3"
+              class="ml-2 p-2 text-red-600">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </label>
+          <select id="ethnicity" name="typEntitySocialActor" formControlName="typEntitySocialActor"
+            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="Empresa privada">Empresa privada
+            </option>
+            <option value="Organización de personas con discapacidad">Organización de personas con discapacidad
+            </option>
+            <option value="Entidad publica - rerritorial">Entidad publica - rerritorial(Alcaldia, Gobernación o
+              Ministerio)</option>
+            <option value="Entidad de intermediación laboral">Entidad de intermediación laboral (Agencia de Gestión
+              y Colocación
+              de Empleo, Bolsa de Empleo)</option>
+            <option value="Entidad de formación para el trabajo">Entidad de formación para el trabajo(SENA,
+              institución de formación,
+              etc.)</option>
+            <option value="Entidad prestadora de servicios a la inclusión">Entidad prestadora de servicios a la
+              inclusión</option>
+            <option value="Institución de educación superior">Institución de educación superior</option>
+            <option value="Otra">Otra</option>
+          </select>
+
+          <!--Validators typEntitySocialActor-->
+          <div
+            *ngIf="contactForm.get('typEntitySocialActor')?.touched && contactForm.get('typEntitySocialActor')?.errors?.['required']"
+            class="alert alert-danger">Este campo es obligatorio.
+          </div>
         </div>
 
         <div class="relative">
           <label class="text-black dark:text-gray-200" for="country">
-              Pais
+            Pais
           </label>
-          <input id="country" name="country" placeholder="Colombia" class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" disabled>
+          <input id="country" name="country" formControlName="country" placeholder="Colombia"
+            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+        </div>
+
+        <div class="relative">
+          <label class="text-black dark:text-gray-200" for="companyNameOrentity">
+            Razon social o nombre de la entidad
+            <a href="https://www.youtube.com/watch?v=ZcMy1mrsO0A&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=18"
+              target="_blank" class="ml-2 p-2 text-red-600">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </label>
+          <input id="companyNameOrentity" name="companyNameOrentity" formControlName="companyNameOrentity"
+            placeholder="Inserte la razon social"
+            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+          <!--Validators companyNameOrentity-->
+          <div
+            *ngIf="contactForm.get('companyNameOrentity')?.touched && contactForm.get('companyNameOrentity')?.errors?.['required']"
+            class="alert alert-danger">Este campo es obligatorio.
+          </div>
+        </div>
+
+        <div class="relative">
+          <label class="text-black dark:text-gray-200" for="departments">Departamentos
+
+            <a href="https://www.youtube.com/watch?v=Gd2-ldzBTZk&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=5"
+              target="_blank" class="ml-2 p-2 text-red-600">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </label>
+          <select id="departments" name="departamento" formControlName="departamento"
+            (change)="onDepartamentoChange(user.departamento.toString())" placeholder=" Con discapacidad"
+            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            <option *ngFor="let departamento of departamentosUnicos" [value]="departamento">{{departamento}}
+
+            </option>
+          </select>
+          <!--Validators departamenos-->
+          <div
+            *ngIf="contactForm.get('departamentoSelect')?.touched && contactForm.get('departamentoSelect')?.errors?.['required']"
+            class="alert alert-danger">Este campo es obligatorio.
+          </div>
+        </div>
+
+        <div class="relative">
+          <label class="text-black dark:text-gray-200" for="city">
+            En que ciudad esta ubicado
+            <a href="https://www.youtube.com/watch?v=v9JDSXL9fZY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=29"
+              target="_blank" class="ml-2 p-2 text-red-600">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </label>
+          <select id="city" name="municipio" formControlName="municipio"
+            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            <option *ngFor="let municipio of filteredMunicipios" [value]="municipio">{{municipio}}
+            </option>
+          </select>
+          <!--Validators municipioSelect-->
+          <div
+            *ngIf="contactForm.get('municipioSelect')?.touched && contactForm.get('municipioSelect')?.errors?.['required']"
+            class="alert alert-danger">Este campo es obligatorio.
+          </div>
+        </div>
+
+        <div class="relative">
+          <label class="text-black dark:text-gray-200" for="description">
+            Descripcion del perfil
+            <a href="https://www.youtube.com/watch?v=V9auOG6U0rY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=16"
+              target="_blank" class="ml-2 p-2 text-red-600">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </label>
+          <input id="description" type="text" placeholder="Ingrese la descripción de su perfil"
+            class="block w-full px-4 py-6 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+        </div>
+
+        <div class="relative">
+          <label class="text-black dark:text-gray-200" for="interests">
+            Intereses de Conocimiento
+            <a href="https://www.youtube.com/watch?v=V9auOG6U0rY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=16"
+              target="_blank" class="ml-2 p-2 text-red-600">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </label>
+          <input id="interests" type="text" placeholder="Ingrese los interses de Conocimiento"
+            class="block w-full px-4 py-6 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+        </div>
+
       </div>
 
-      <div class="relative">
-        <label class="text-black dark:text-gray-200" for="companyNameOrentity">
-          Razon social o nombre de la entidad
-            <a href="https://www.youtube.com/watch?v=ZcMy1mrsO0A&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=18" target="_blank" class="ml-2 p-2 text-red-600">
-                <i class="fab fa-youtube"></i>
-            </a>
-        </label>
-        <input id="companyNameOrentity" name="companyNameOrentity" placeholder="Inserte la razon social" class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-    </div>
-
-    <div class="relative">
-      <label class="text-black dark:text-gray-200" for="departments">Departamentos
-
-            <a href="https://www.youtube.com/watch?v=Gd2-ldzBTZk&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=5" target="_blank" class="ml-2 p-2 text-red-600">
-                <i class="fab fa-youtube"></i>
-            </a>
-        </label>
-        <select id="departments" name="departments" placeholder="Con discapacidad" class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" disabled></select>
-    </div>
-
-    <div class="relative">
-      <label class="text-black dark:text-gray-200" for="city">
-        En que ciudad esta ubicado
-          <a href="https://www.youtube.com/watch?v=v9JDSXL9fZY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=29" target="_blank" class="ml-2 p-2 text-red-600">
-              <i class="fab fa-youtube"></i>
-          </a>
-      </label>
-      <select id="city" name="city" class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" disabled></select>
-  </div>
-
-  <div class="relative">
-    <label class="text-black dark:text-gray-200" for="description">
-        Descripcion del perfil
-        <a href="https://www.youtube.com/watch?v=V9auOG6U0rY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=16" target="_blank" class="ml-2 p-2 text-red-600">
-            <i class="fab fa-youtube"></i>
-        </a>
-    </label>
-    <input id="description" type="text" placeholder="Ingrese la descripción de su perfil" class="block w-full px-4 py-6 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-</div>
-
-<div class="relative">
-  <label class="text-black dark:text-gray-200" for="interests">
-    Intereses de Conocimiento
-      <a href="https://www.youtube.com/watch?v=V9auOG6U0rY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=16" target="_blank" class="ml-2 p-2 text-red-600">
-          <i class="fab fa-youtube"></i>
-      </a>
-  </label>
-  <input id="interests" type="text" placeholder="Ingrese los interses de Conocimiento" class="block w-full px-4 py-6 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-</div>
-
-            </div>
-
-            <div class="flex justify-end mt-6">
-                <button class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-[#006186] rounded-md hover:bg-blue-600 focus:outline-none focus:bg-gray-600">Save</button>
-            </div>
-        </form>
-    </section>
+      <div class="flex justify-end mt-6">
+        <button (click)="updateUserData()"
+          class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-[#006186] rounded-md hover:bg-blue-600 focus:outline-none focus:bg-gray-600">Guardar</button>
+      </div>
+    </form>
+  </section>
 </body>
+
 </html>

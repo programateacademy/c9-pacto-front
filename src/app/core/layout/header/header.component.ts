@@ -1,5 +1,6 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,16 +11,31 @@ export class HeaderComponent {
   userId: string | null = null;
   isDropdownOpen = false; // Variable para controlar la visibilidad del menú desplegable
 
-  constructor(private authService: AuthService, private el: ElementRef, private renderer: Renderer2) {}
+  isAdminUser: boolean = false;
+
+  constructor(private authService: AuthService,
+    private el: ElementRef,
+    private renderer: Renderer2,
+    private router: Router
+  ) { }
 
 
   ngOnInit(): void {
     this.userId = this.authService.getLoggedInUserId();
+    this.isAdminUser = this.authService.getLoggedInUserRole().includes('admin');
+    console.log('Valor de isAdminUser:', this.isAdminUser);
   }
 
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  redirectAdmin() {
+    this.router.navigate(['/admin', this.userId]);
+  }
 
   //Cerrar sesión
-  logout(){
+  logout() {
     this.authService.logout()
   }
 
@@ -54,4 +70,5 @@ export class HeaderComponent {
     const dropdownMenu = this.el.nativeElement.querySelector('#dropdownMenu');
     this.renderer.addClass(dropdownMenu, 'hidden');
   }
+
 }

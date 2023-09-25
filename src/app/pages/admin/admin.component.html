@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
@@ -52,44 +52,44 @@
         <p class="text-center">{{ selectedUser.userName }}</p>
         <div class="mb-2">
           <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
-          <p class="text-gray-800">ejemplo@email.com</p>
+          <p class="text-gray-800">{{ selectedUser.email }}</p>
         </div>
 
 
 
         <div class="mb-2">
           <label for="pais" class="block text-sm font-medium text-gray-700">País:</label>
-          <p class="text-gray-800">Ejemplo de País</p>
+          <p class="text-gray-800">{{ selectedUser.country }}</p>
         </div>
 
 
         <div class="mb-2">
           <label for="departamento" class="block text-sm font-medium text-gray-700">Departamento:</label>
-          <p class="text-gray-800">Ejemplo de Departamento</p>
+          <p class="text-gray-800">{{ selectedUser.departamento }}</p>
         </div>
 
 
         <div class="mb-2">
           <label for="ciudad" class="block text-sm font-medium text-gray-700">Ciudad:</label>
-          <p class="text-gray-800">Ejemplo de Ciudad</p>
+          <p class="text-gray-800">{{ selectedUser.municipio }}</p>
         </div>
 
 
         <div class="mb-2">
           <label for="genero" class="block text-sm font-medium text-gray-700">Género:</label>
-          <p class="text-gray-800">Ejemplo de Género</p>
+          <p class="text-gray-800">{{ selectedUser.gender }}</p>
         </div>
 
 
         <div class="mb-2">
           <label for="discapacidad" class="block text-sm font-medium text-gray-700">Tipo de Discapacidad:</label>
-          <p class="text-gray-800">Ejemplo de Discapacidad</p>
+          <p class="text-gray-800">{{ selectedUser.person }}</p>
         </div>
 
 
         <div class="mb-2">
           <label for="etnia" class="block text-sm font-medium text-gray-700">Ejemplo de Etnia:</label>
-          <p class="text-gray-800">Etnia</p>
+          <p class="text-gray-800">{{ selectedUser.ethnicity }}</p>
         </div>
 
 
@@ -97,7 +97,7 @@
         <div class="mb-2">
           <button
             class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-full"
-            (click)="deleteUser(selectedUser.userId)"
+            (click)="deleteUser(selectedUser._id)"
           >
             Eliminar
           </button>

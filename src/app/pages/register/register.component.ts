@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from '../../core/services/formulario/api.service';
 import { capitales } from '../../core/services/formulario/capitales';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { TermsConditionsService } from 'src/app/core/services/termsConditions/terms-conditions.service';
 
 
 @Component({
@@ -17,22 +17,31 @@ export class RegisterComponent {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    private router: Router
-  ) {}
+    private router: Router,
+    private modalTers: TermsConditionsService
+  ) { }
 
   contactForm!: FormGroup;
   capitalesdata = capitales;
+  showModal !: boolean;
 
 
   departamentosUnicos: string[] = [];
   filteredMunicipios: string[] = [];
 
+
   ngOnInit(): void {
     this.contactForm = this.initFrom();
+    this.modalTers.$modal.subscribe((value) => {this.showModal = value})
 
     // Lógica para obtener listas de departamentos y municipios únicos
     this.departamentosUnicos = this.obtenerDepartamentosUnicos();
   }
+
+  openModal(){
+    this.showModal = true
+  }
+
 
   onSubmit(): void {
     console.log('form ->', this.contactForm.value);
@@ -74,18 +83,18 @@ export class RegisterComponent {
 
   initFrom(): FormGroup {
     return this.fb.group({
-      names: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\s]+')]],
-      surNames: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\s]+')]],
-      email: ['', Validators.required],
+      names: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\\s]+')]],
+      surNames: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\\s]+')]],
+      email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      years: ['', [Validators.required, Validators.minLength(2)]],
+      years: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(3)]],
       person: ['', Validators.required],
-      typEntitySocialActor: ['',Validators.required],
+      typEntitySocialActor: ['', Validators.required],
       companyNameOrentity: ['', Validators.required],
       departamento: ['', Validators.required],
       gender: ['', Validators.required],
-      ethnicity: ['',Validators.required],
-      phoneNumber: ['',Validators.required],
+      ethnicity: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
       country: ['Colombia'],
       municipio: ['', Validators.required],
       termsAndconditions: [false, Validators.pattern('true')],
@@ -122,4 +131,5 @@ export class RegisterComponent {
   formRegisterAlert(): void {
     window.alert('Todos los campos con * son obligatorios')
   }
+
 }

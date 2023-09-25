@@ -8,12 +8,12 @@
 </head>
 
 
-<div class="container ml-auto mr-auto flex items-center justify-center">
+<div class="container ml-auto mr-auto flex items-center justify-center ">
   <div class="headerAuth">
     <app-headerauth></app-headerauth>
   </div>
   <div class="w-full mt-6">
-    <div class="grid grid-flow-row sm:grid-flow-col md:grid-cols-2 gap-3">
+    <div class="grid grid-flow-row sm:grid-flow-col sm:item-center md:grid-cols-2 gap-3">
 
       <!-- Logo -->
       <div class="flex justify-center items-center ">
@@ -21,7 +21,7 @@
       </div>
 
       <!-- Section of login -->
-      <form (ngSubmit)="signIn()" [formGroup]="contactForm" class="bg-white px-8 pt-6 pb-8  ml-10 mb-4">
+      <form (ngSubmit)="signIn()" [formGroup]="contactForm" class="bg-white px-8 pt-6 pb-8  md:ml-10 mb-4">
         <div class="col-span-1 mb-6 mt-8">
           <h1 class="w-full flex justify-center font-bold text-3xl mb-8">Inicio de sesión</h1>
 
@@ -90,7 +90,7 @@
           </div>
 
           <!-- To forget your password -->
-          <a class="w-full flex justify-center mt-6" href="">¿Olvidó su contraseña?</a>
+          <a class="w-full flex justify-center mt-6" href="email">¿Olvidó su contraseña?</a>
 
           <label class="w-full flex justify-center mt-6 font-bold">¿No tiene una cuenta?</label>
 

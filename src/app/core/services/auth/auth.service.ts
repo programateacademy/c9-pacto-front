@@ -9,6 +9,7 @@ import { tap } from 'rxjs';
 import { enviroment } from 'src/environments/environment.dev';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,9 +23,10 @@ export class AuthService {
 
 
 
+
   // Eliminar un usuario por su ID
-  deleteUser(userId: any): Observable<any> {
-    return this.http.delete<any>(`${this.URL}users/delete/${userId}`);
+  deleteUser(_id:string): Observable<User> {
+    return this.http.delete<User>(`${this.URL}users/delete/${_id}`);
   }
 
 
@@ -34,7 +36,11 @@ export class AuthService {
   }
 
   public signIn(user: any) {
-    return this.http.post<any>(this.URL + 'admins/signin', user)
+    return this.http.post<any>(this.URL + 'admins/signin', user).pipe(
+      tap((response)=>{
+        localStorage.setItem('token', response.token)
+      })
+    )
   }
 
   loggedIn() {
@@ -45,19 +51,47 @@ export class AuthService {
     localStorage.removeItem('token')
     this.router.navigate(['/'])
   }
-  /// Obtener el Id del usuario logeado desde el token almacenado
-  getLoggedInUserId(): string | null {
+    /// Obtener el Id del usuario logeado desde el token almacenado
+    getLoggedInUserId(): string | null {
+      const token = this.gettoken();
+      if (token) {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+
+        if (payload.id) {
+          return payload.id;
+        }
+
+      }
+      return null;
+    }
+
+    getUserById(userId: string): Observable<User> {
+      // Realiza una solicitud al servidor para obtener la información del usuario por su ID
+      return this.http.get<User>(`${this.URL}users/${userId}`);
+    }
+
+  //Obetener rol del usuario
+  getLoggedInUserRole(): string {
     const token = this.gettoken();
     if (token) {
       const payload = JSON.parse(atob(token.split('.')[1]));
 
-      if (payload.id) {
-        return payload.id;
+      if (payload.role) {
+        // Suponemos que solo hay un objeto en el arreglo "admin"
+        return payload.role;
       }
-
     }
-    return null;
+    return this.getLoggedInUserRole();
   }
+
+  //bolean rol
+  //validar roles
+  isAdmin(): boolean {
+    const userRole = this.getLoggedInUserRole();
+    console.log('rol del usuario', userRole)
+    return userRole === 'admin';
+  }
+
 
   // Almacena el token
   gettoken() {
@@ -90,4 +124,39 @@ export class AuthService {
     );
   }
 
+
+  sendPasswordLink(email: string,): Observable<any> {
+    const sendPasswordLinkUrl = `${this.URL}admins/send-password-link`;
+
+    const requestBody = {
+      email: email
+    };
+
+
+    return this.http.post(sendPasswordLinkUrl, requestBody,);
+  }
+
+
+  private getHttpOptions(token:string): { headers: HttpHeaders } {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'x-access-token': token, // Agrega el token al encabezado
+      }),
+    };
+
+    return httpOptions;
+  }
+  changePassword(password: string, token: string): Observable<any> {
+    const url = `${this.URL}admins/change-password`;
+
+    const httpOptions = this.getHttpOptions(token);
+
+    const requestBody = {
+      password: password,
+    };
+
+    return this.http.post(url, requestBody, httpOptions);
+  }
 }

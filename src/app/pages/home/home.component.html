@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
@@ -25,7 +25,7 @@
           <div class="bg-white p-4 md:p-6 lg:p-8 rounded-lg shadow mb-4">
             <!-- Información del usuario y entrada de publicación -->
             <div class="flex mb-4">
-              <img src="https://www.softzone.es/app/uploads/2018/04/guest.png?x=480&quality=40" alt="Imagen de usuario"
+              <img *ngIf="user && user.userImg" [src]="user.userImg" alt="Imagen de usuario"
                 class="w-10 h-10 rounded-full user-image">
               <button
                 class="w-full ml-4 p-2 border shadow-md text-gray-800 border-gray-600 bg-transparent hover:bg-gray-100 rounded-lg focus:outline-none focus:border-blue-500 text-left"
@@ -52,13 +52,13 @@
               </div>
             </div>
             <p class="mt-4 post-text">{{ publication.description }}</p>
-            <div class="bg-blue-200 p-2 rounded mt-2 shadow-md border border-blue-400">
-              <p class="text-blue-800 font-semibold">Texto Alternativo</p>
+            <div class="bg-blue-200 p-2 rounded mt-2 shadow-md border border-blue-400" tabindex="0" *ngIf="publication.descriptionImg">
+              <p class="text-blue-800 font-semibold" [textContent]="publication.descriptionImg"></p>
             </div>
 
 
             <div class="mt-4 post-image" *ngIf="publication.image">
-              <img class="w-full post-image-img" [src]="publication.image" alt="Imagen de la publicación">
+              <img class="w-full post-image-img" [src]="publication.image" tabindex="0" alt={{publication.descriptionImg}}>
             </div>
 
             <div class="mt-4 post-actions space-y-2">

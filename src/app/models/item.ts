@@ -5,17 +5,18 @@ export interface User {
   person: String;
   typEntitySocialActor: String;
   companyNameOrentity: String;
-  departamentoSelect: String;
+  departamento: String;
   email: String;
   surNames: string;
   gender: String;
   ethnicity: String;
   phoneNumber: number;
   country: String;
-  municipioSelect: String;
+  municipio: String;
   userName: string;
   password: string;
   userImg: string;
+  admin: [];
 }
 export interface Interaction {
 
@@ -32,11 +33,13 @@ export interface Home extends User {
   date_create: Date;
   description: string;
   image: string | null;
+  descriptionImg: string
   _id: string;
   username: string;
   userimg: string;
   likes: Like[];
   likedByUser: boolean;
+  showOptions: boolean;
 }
 export interface Comment extends User {
   _id: string;
