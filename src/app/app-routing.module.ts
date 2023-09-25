@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'home/:id', component: HomeComponent, canActivate:[authGuard] },
   {path: 'admin/:id', component: AdminComponent},
-  {path: 'changePassword', component: PasswordComponent},
+  {path: 'change-password/:token', component: PasswordComponent},
   {path: 'email', component: EmailComponent},
 
   // Ruta wildcard para manejar errores 404
