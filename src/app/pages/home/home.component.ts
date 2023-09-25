@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ForoService } from 'src/app/core/services/home/home.service';
 import { InteractionService } from 'src/app/core/services/interactions/interaction.service';
-import { Home, Comment } from 'src/app/models/item';
+import { Home, Comment, User } from 'src/app/models/item';
 import { CommentsService } from 'src/app/core/services/comments/comments.service';
 import { SwitchService } from 'src/app/core/services/modal/switch.service';
 import { forkJoin } from 'rxjs';
@@ -54,7 +54,23 @@ export class HomeComponent {
   ngOnInit(): void {
     this.modalSS.$modal.subscribe((value) => { this.isModalVisible = value });
     this.initializeUserLikes(); // Llama a la función para inicializar los "likes" del usuario
+    this.loadUserData();
     this.loadData();
+
+  }
+
+  loadUserData() {
+    const userId = this.authService.getLoggedInUserId();
+    if (userId) {
+      this.authService.getUserById(userId).subscribe(
+        (user: User) => {
+          this.user = user;
+        },
+        (error) => {
+          console.error('Error al obtener la información del usuario:', error);
+        }
+      );
+    }
   }
 
   // Función para cargar los likes del usuario actual desde el almacenamiento local
