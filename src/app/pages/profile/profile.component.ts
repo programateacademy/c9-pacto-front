@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ProfileService } from '../../core/services/profile/profile.service';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
@@ -14,12 +14,19 @@ import { ForoService } from 'src/app/core/services/home/home.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-
-  user: User | null = null;
+  @Input() user: User | null = null;
+  userName = ''; // Propiedad para almacenar el userName original
+  newUserName = '';
+  userImg = '';
+  newUserImg = '';
+  // user: User | null = null;
   users: User[] = [];
   public listpublications: Home[] = [];
   publicationId: string;
   isModalVisible !: boolean;
+
+  isEditingName = false;
+  isEditingImg = false;
 
   constructor(private modalUser: SwitchUserService,
     private route: ActivatedRoute,
