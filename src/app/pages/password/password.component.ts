@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 })
 export class PasswordComponent {
   passwordForm: FormGroup;
+  passwordMismatch: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,21 +24,28 @@ export class PasswordComponent {
   updatePassword() {
     if (this.passwordForm.valid) {
       const newPassword = this.passwordForm.value.newPassword;
+      const confirmPassword = this.passwordForm.value.confirmPassword;
 
-      this.authService.changePassword(newPassword)
-        .subscribe(
-          (response) => {
-            // Manejar la respuesta exitosa aquí si es necesario
-            console.log('Contraseña actualizada con éxito', response);
+      if (newPassword === confirmPassword) {
+        this.authService.changePassword(newPassword)
+          .subscribe(
+            (response) => {
+              // Manejar la respuesta exitosa aquí si es necesario
+              console.log('Contraseña actualizada con éxito', response);
 
-            // Luego, puedes borrar los campos de contraseña
-            this.passwordForm.reset();
-          },
-          (error) => {
-            // Manejar el error aquí si es necesario
-            console.error('Error al actualizar la contraseña', error);
-          }
-        );
+              // Luego, puedes borrar los campos de contraseña
+              this.passwordForm.reset();
+              this.passwordMismatch = false; // Restablecer la bandera de contraseña no coincidente
+            },
+            (error) => {
+              // Manejar el error aquí si es necesario
+              console.error('Error al actualizar la contraseña', error);
+            }
+          );
+      } else {
+        // Las contraseñas no coinciden, mostrar advertencia
+        this.passwordMismatch = true;
+      }
     }
   }
 }
