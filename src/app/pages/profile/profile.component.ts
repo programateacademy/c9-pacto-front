@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ProfileService } from '../../core/services/profile/profile.service';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
@@ -14,12 +14,19 @@ import { ForoService } from 'src/app/core/services/home/home.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-
-  user: User | null = null;
+  @Input() user: User | null = null;
+  userName = ''; // Propiedad para almacenar el userName original
+  newUserName = '';
+  userImg = '';
+  newUserImg = '';
+  // user: User | null = null;
   users: User[] = [];
   public listpublications: Home[] = [];
   publicationId: string;
   isModalVisible !: boolean;
+
+  isEditingName = false;
+  isEditingImg = false;
 
   constructor(private modalUser: SwitchUserService,
     private route: ActivatedRoute,
@@ -48,6 +55,70 @@ export class ProfileComponent {
     console.log('id from S options', this.publicationId)
   }
 
+  // Función para actualizar el nombre de usuario
+  updateUserImg() {
+    if (!this.user) {
+      console.error('Error: No se proporcionaron datos para la actualización.');
+      return;
+    }
+    const updatedData = {
+      userImg: this.newUserImg
+    };
+    // Realizar la solicitud al servidor
+    this.modalUser.updateUser(this.user._id, updatedData).subscribe(
+      (response) => {
+        console.log('Nombre de usuario actualizado con éxito:', response);
+        if (this.user) {
+          this.user.userImg = this.newUserImg;
+        }
+      },
+      (error) => {
+        console.error('Error al actualizar el nombre de usuario:', error);
+      }
+    );
+    this.isEditingImg = false;
+  }
+
+  cancelEditImg() {
+    this.newUserImg = this.userImg;
+    this.isEditingImg = false;
+  }
+
+  // Función para actualizar el nombre de usuario
+  updateUserName() {
+    if (!this.user) {
+      console.error('Error: No se proporcionaron datos para la actualización.');
+      return;
+    }
+    const updatedData = {
+      userName: this.newUserName
+    };
+    // Realizar la solicitud al servidor
+    this.modalUser.updateUser(this.user._id, updatedData).subscribe(
+      (response) => {
+        console.log('Nombre de usuario actualizado con éxito:', response);
+        if (this.user) {
+          this.user.userName = this.newUserName;
+        }
+      },
+      (error) => {
+        console.error('Error al actualizar el nombre de usuario:', error);
+      }
+    );
+    this.isEditingName = false;
+  }
+
+  // Función para cancelar la edición
+  cancelEditName() {
+    this.newUserName = this.userName;
+    this.isEditingName = false;
+  }
+
+
+  // closeModalAndReloadPage() {
+
+  //   window.location.reload();
+  // }
   // Función para eliminar una publicación
   onDeletePublication(publicationId: string) {
     const token = this.authService.gettoken();
