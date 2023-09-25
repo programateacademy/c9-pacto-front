@@ -22,7 +22,8 @@
       <img src="../../../../assets/img/cropped-logo_positivo.png" [routerLink]="['/home', userId]"
         alt="Logo Pacto de Productividad" class="w-20 h-10 hidden md:block" />
       <!-- Comentar o eliminar esta casita para accesibilidad -->
-      <a [routerLink]="['/home', userId]" (click)="scrollToTop()" alt="Ir a la página de inicio" class="text-blue-600 text-2xl ml-5">
+      <a [routerLink]="['/home', userId]" (click)="scrollToTop()" alt="Ir a la página de inicio"
+        class="text-blue-600 text-2xl ml-5">
         <i class="fas fa-home"></i>
       </a>
 
@@ -51,8 +52,8 @@
           </button>
           <a [routerLink]="['/profile', userId]"
             class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600 cursor-pointer">Perfil</a>
-          <a [routerLink]="['/admin', userId]" *ngIf="isAdminUser"
-            class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600 cursor-pointer">admin</a>
+          <a (click)="redirectAdmin()" v-if="isAdminUser" [routerLink]="['/admin', userId]"
+            class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600 cursor-pointer">Admin</a>
           <a (click)="logout()"
             class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600 cursor-pointer">Cerrar sesión</a>
         </div>
