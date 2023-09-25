@@ -13,13 +13,11 @@ export class ProfileService {
 
   private URL = enviroment.apiUrl
 
-  constructor(private http: HttpClient,
-    private router: Router) { }
+  constructor(private http: HttpClient) { }
 
   // Metodo para obtener todos los usuarios del backend
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.URL);
-
   }
 
   // Metodo par aobtener los datos del usuario logeado por su ID
