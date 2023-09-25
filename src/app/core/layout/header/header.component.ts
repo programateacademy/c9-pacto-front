@@ -20,6 +20,9 @@ export class HeaderComponent {
     this.isAdminUser = this.authService.isAdmin();
   }
 
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   //Cerrar sesión
   logout(){
