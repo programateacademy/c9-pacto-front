@@ -9,6 +9,7 @@ import { tap } from 'rxjs';
 import { enviroment } from 'src/environments/environment.dev';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -122,34 +123,40 @@ export class AuthService {
       })
     );
   }
-  private getAuthorizationHeader(): HttpHeaders {
-    const token = this.gettoken();
-    return new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-  }
 
-  changePassword(newPassword: string): Observable<any> {
-    const changePasswordUrl = `${this.URL}admins/change-password`;
 
-    const requestBody = {
-      newPassword: newPassword
-    };
-
-    const headers = this.getAuthorizationHeader();
-
-    return this.http.post(changePasswordUrl, requestBody, { headers });
-  }
-
-  sendPasswordLink(email: string): Observable<any> {
+  sendPasswordLink(email: string,): Observable<any> {
     const sendPasswordLinkUrl = `${this.URL}admins/send-password-link`;
 
     const requestBody = {
       email: email
     };
 
-    const headers = this.getAuthorizationHeader();
 
-    return this.http.post(sendPasswordLinkUrl, requestBody, { headers });
+    return this.http.post(sendPasswordLinkUrl, requestBody,);
+  }
+
+
+  private getHttpOptions(token:string): { headers: HttpHeaders } {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'x-access-token': token, // Agrega el token al encabezado
+      }),
+    };
+
+    return httpOptions;
+  }
+  changePassword(password: string, token: string): Observable<any> {
+    const url = `${this.URL}admins/change-password`;
+
+    const httpOptions = this.getHttpOptions(token);
+
+    const requestBody = {
+      password: password,
+    };
+
+    return this.http.post(url, requestBody, httpOptions);
   }
 }
