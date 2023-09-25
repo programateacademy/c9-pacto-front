@@ -7,7 +7,6 @@ import { SwitchUserService } from 'src/app/core/services/modalUs/switch-user.ser
 import { forkJoin } from 'rxjs';
 import { ForoService } from 'src/app/core/services/home/home.service';
 
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -23,16 +22,25 @@ export class ProfileComponent {
   users: User[] = [];
   public listpublications: Home[] = [];
   publicationId: string;
-  isModalVisible !: boolean;
+  isModalVisible!: boolean;
 
   isEditingName = false;
   isEditingImg = false;
+
+  // Nueva propiedad para determinar si el nombre supera los 10 caracteres
+  get isLongName(): boolean {
+    const isLong = !!this.user && !!this.user.userName && this.user.userName.length > 10;
+    console.log('isLongName:', isLong);
+    return isLong;
+  }
+
 
   constructor(private modalUser: SwitchUserService,
     private route: ActivatedRoute,
     private ProfileService: ProfileService,
     private authService: AuthService,
     private foroService: ForoService) { this.publicationId = ''; }
+
 
 
   ngOnInit(): void {
@@ -197,4 +205,6 @@ export class ProfileComponent {
       console.log('dataUser profileComp: ', user)
     }
   }
+
 }
+
