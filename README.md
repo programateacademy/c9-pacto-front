@@ -106,7 +106,7 @@ Si deseas contribuir a este proyecto, ¡estamos abiertos a pull requests! Asegú
 
 Si tienes preguntas o sugerencias, no dudes en ponerte en contacto con el equipo de desarrollo enviando un correo electrónico a alguno de los siguientes miembros:
 
-- [Elhuxley277@gmail.com](mailto:elhuxley277@gmail.com)
+- [jmcardenas1807@gmail.com](mailto:jmcardenas1807@gmail.com )
 - [Maribelaristizabal079@gmail.com](mailto:maribelaristizabal079@gmail.com)
 - [Sebastiantincon834@gmail.com](mailto:sebastiantincon834@gmail.com)
 - [Jaljordan77@gmail.com](mailto:jaljordan77@gmail.com)
@@ -117,7 +117,7 @@ Si tienes preguntas o sugerencias, no dudes en ponerte en contacto con el equipo
 ## Autors
 
 - [@nicolas paez](https://github.com/nikolaspaez06)
-- [@huxley diaz](https://github.com/heisemberghuxley)
+- [@JMCardenass](https://github.com/heisemberghuxley)
 - [@john palacios ](https://github.com/John9135)
 - [@juan andres  Ruiz](https://github.com/juan0941)
 - [@brayan Triana](https://github.com/Vincent10-o)
