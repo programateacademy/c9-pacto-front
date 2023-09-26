@@ -17,13 +17,15 @@
 
       <!-- Logo -->
       <div class="flex justify-center items-center ">
-        <img class="object-contain w-10/12 h-96 " src="../../../assets/img/logo-pacto-login.png" alt="Logo">
+        <img class="object-contain w-10/12 h-96 " src="../../../assets/img/logo-pacto-login.png"
+          alt="Imagen relacionada con Pacto de Productividad">
       </div>
 
       <!-- Section of login -->
       <form (ngSubmit)="signIn()" [formGroup]="contactForm" class="bg-white px-8 pt-6 pb-8  md:ml-10 mb-4">
         <div class="col-span-1 mb-6 mt-8">
-          <h1 class="w-full flex justify-center font-bold text-3xl mb-8">Inicio de sesión</h1>
+          <h1 class="w-full flex justify-center font-bold text-3xl mb-8" tabindex="0"
+            aria-label="Sección para Iniciar sesión">Inicio de sesión</h1>
 
           <div class="flex flex-col">
             <!-- Email -->
@@ -64,7 +66,7 @@
                   </path>
                 </svg>
 
-                <span class="ml-2" *ngIf="!isLoading">Iniciar sesión</span>
+                <span class="ml-2" *ngIf="!isLoading" aria-label="Botón de Iniciar sesión">Iniciar sesión</span>
               </div>
 
               <div class="text-left" *ngIf="isLoading">
@@ -90,13 +92,14 @@
           </div>
 
           <!-- To forget your password -->
-          <a class="w-full flex justify-center mt-6" href="email">¿Olvidó su contraseña?</a>
-
-          <label class="w-full flex justify-center mt-6 font-bold">¿No tiene una cuenta?</label>
+          <a class="w-full flex justify-center mt-6" href="email" aria-label="Opción ¿Olvidó su contraseña?">
+            ¿Olvidó su contraseña?</a>
+          <label class="w-full flex justify-center mt-6 font-bold" tabindex="0"
+            aria-label="Opción ¿No tiene una cuenta?">¿No tiene una cuenta?</label>
 
           <!-- Button register -->
           <div class="col-span-1 w-full flex justify-center items-center mt-4 h-10 ">
-            <button routerLink="/register" type="button"
+            <button routerLink="/register" type="button" aria-label="Botón para registrarse"
               class="click-button flex flex-row items-center justify-center w-44 h-12 text-white text-lg border rounded-lg border-r-2 border-b-2 border-l-0 border-t-0 border-black ">
               <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user-plus"
                 class="svg-inline--fa fa-user-plus w-26 h-8 border-collapse ml-4 mr-1" role="img"
