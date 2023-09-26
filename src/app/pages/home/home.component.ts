@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 import { ForoService } from 'src/app/core/services/home/home.service';
 import { InteractionService } from 'src/app/core/services/interactions/interaction.service';
 import { Home, Comment, User } from 'src/app/models/item';
@@ -20,7 +20,8 @@ export class HomeComponent {
     private commentService: CommentsService,
     private modalSS: SwitchService,
     private authService: AuthService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private el: ElementRef
   ) {
     const userId = this.authService.getLoggedInUserId();
     if (userId !== null) {
@@ -187,6 +188,7 @@ export class HomeComponent {
   }
 
   openCommentModal() {
+
     console.log(this.publicationId);
     this.renderer.setStyle(document.body, 'overflow', 'hidden');
     this.isCommentModalVisible = true;
@@ -203,6 +205,7 @@ export class HomeComponent {
         this.comments = data;
       });
     });
+    this.el.nativeElement.querySelector('.comment-modal').focus();
   }
 
   createComment() {
@@ -247,5 +250,6 @@ export class HomeComponent {
   closeCommentModal() {
     this.renderer.removeStyle(document.body, 'overflow');
     this.isCommentModalVisible = false;
+
   }
 }

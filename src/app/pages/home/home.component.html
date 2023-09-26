@@ -22,9 +22,9 @@
           <div class="bg-white p-4 md:p-6 lg:p-8 rounded-lg shadow mb-4">
             <!-- Información del usuario y entrada de publicación -->
             <div class="flex mb-4">
-              <img *ngIf="user && user.userImg" [src]="user.userImg" alt="Imagen de usuario"
-                class="w-10 h-10 rounded-full user-image">
-              <button
+              <img tabindex="0" *ngIf="user && user.userImg" [src]="user.userImg" alt="Imagen de usuario"
+                aria-label="Mi imagen de usuario" class="w-10 h-10 rounded-full user-image">
+              <button aria-label="Opción para crear tu publicación"
                 class="w-full ml-4 p-2 border shadow-md text-gray-800 border-gray-600 bg-transparent hover:bg-gray-100 rounded-lg focus:outline-none focus:border-blue-500 text-left"
                 (click)="openModal()">Crea tu publicación...</button>
             </div>
@@ -42,29 +42,34 @@
           <div *ngFor="let publication of listpublications" class="bg-white p-4 rounded-lg shadow mb-4">
 
             <div class="flex">
-              <img class="w-10 h-10 rounded-full user-avatar" [src]="publication.userimg" alt="Avatar de usuario">
-              <div class="ml-4 user-info">
+              <img tabindex="0" aria-label="Avatar del usuario" class="w-10 h-10 rounded-full user-avatar"
+                [src]="publication.userimg" alt="Avatar de usuario">
+              <div tabindex="0" class="ml-4 user-info">
                 <p class="font-semibold user-name">{{ publication.username }}</p>
-                <p class="text-gray-500 post-time">{{ publication.date_create | date }}</p>
+                <p class="text-gray-500 post-time">{{ publication.date_create
+                  | date }}</p>
               </div>
             </div>
-            <p class="mt-4 post-text">{{ publication.description }}</p>
-            <div class="bg-blue-200 p-2 rounded mt-2 shadow-md border border-blue-400" tabindex="0" *ngIf="publication.descriptionImg">
+            <p tabindex="0" class="mt-4 post-text">{{ publication.description }}</p>
+            <div tabindex="0" class="bg-blue-200 p-2 rounded mt-2 shadow-md border border-blue-400" tabindex="0"
+              *ngIf="publication.descriptionImg">
               <p class="text-blue-800 font-semibold" [textContent]="publication.descriptionImg"></p>
             </div>
 
 
             <div class="mt-4 post-image" *ngIf="publication.image">
-              <img class="w-full post-image-img" [src]="publication.image" tabindex="0" alt={{publication.descriptionImg}}>
+              <img class="w-full post-image-img" [src]="publication.image" tabindex="0"
+                alt={{publication.descriptionImg}}>
             </div>
-            <div class="mt-4 post-text font-semibold">
+            <div tabindex="0" class="mt-4 post-text font-semibold">
               {{publication.likes.length}} Me gusta
             </div>
             <div class="mt-4 post-actions space-y-2">
               <div class="flex justify-between sm:space-x-4">
                 <div class="flex flex-col items-center text-center">
-                  <button class="like-button.liked bg-transparent hover:bg-blue-500 text-gray-800 font-bold py-2 px-4 border-b-2 rounded like-button hover-bg-blue-500" [ngClass]="{ 'liked': likedByUser(publication._id) }"
-                    (click)="likePublication(publication._id)">
+                  <button aria-label="Botón para dar like"
+                    class="like-button.liked bg-transparent hover:bg-blue-500 text-gray-800 font-bold py-2 px-4 border-b-2 rounded like-button hover-bg-blue-500"
+                    [ngClass]="{ 'liked': likedByUser(publication._id) }" (click)="likePublication(publication._id)">
                     <i class="fa-regular fa-heart "></i>
                   </button>
                 </div>
@@ -75,7 +80,7 @@
 
                 <ng-template #content>
                   <div class="flex flex-col items-center text-center">
-                    <button
+                    <button aria-label="Botón para abrir comentarios"
                       class="bg-transparent hover:bg-blue-500 text-gray-800 font-bold py-2 px-4 border-b-2 rounded comment-button w-auto"
                       (click)="setPublicationIdAndOpenModal(publication._id)">
                       <i class="fa-regular fa-comments"></i>
@@ -92,19 +97,22 @@
 
               <div class="comment-modal" *ngIf="isCommentModalVisible">
                 <div class="comment-modal-overlay"></div>
-                <div class="comment-modal-content p-4 border border-gray- rounded-lg shadow-lg">
+                <div class="comment-modal-content p-4 border border-gray- rounded-lg shadow-lg" tabindex="-1">
                   <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-semibold">Comentar</h2>
-                    <button class="bg-red-500 hover:bg-red-700 close font-bold py-2 border-b-2 px-4 rounded  close-button"
+                    <h2 tabindex="-1" class="text-xl font-semibold" tabindex="0" aria-label="Seccion para comentarios">
+                      Comentar</h2>
+                    <button tabindex="0 "
+                      class="bg-red-500 hover:bg-red-700 close font-bold py-2 border-b-2 px-4 rounded  close-button"
                       (click)="closeCommentModal()">Cerrar</button>
                   </div>
-                  <input type="text" [(ngModel)]="commentContent" placeholder="Escribe algo..."
+                  <input tabindex="0" type="text" [(ngModel)]="commentContent" placeholder="Escribe algo..."
                     class="border border-gray-300 rounded-lg p-2 w-full mb-4">
-                  <button class="bg-transparent hover:bg-blue-500 text-gray-800 font-bold py-2 border-b-2 px-4 rounded publish-button"
+                  <button
+                    class="bg-transparent hover:bg-blue-500 text-gray-800 font-bold py-2 border-b-2 px-4 rounded publish-button"
                     (click)="createComment()">Publicar</button>
-                    <div *ngIf="isCommentPosted" class="text-green-500 font-semibold">comentario exitoso</div>
+                  <div *ngIf="isCommentPosted" class="text-green-500 font-semibold">comentario exitoso</div>
                   <div class="comments-section mt-4 max-h-64 overflow-y-scroll">
-                    <h5 class="text-lg font-semibold mb-2">Comentarios</h5>
+                    <h5 class="text-lg font-semibold mb-2" tabindex="0">Comentarios</h5>
                     <div *ngFor="let comment of comments" class="mb-2">
                       <div class="flex items-center">
                         <img [src]="comment.userAvatar" alt="Avatar" class="comment-avatar rounded-full w-8 h-8 mr-2">
