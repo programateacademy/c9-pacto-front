@@ -25,7 +25,7 @@ export class AuthService {
 
 
   // Eliminar un usuario por su ID
-  deleteUser(_id:string): Observable<User> {
+  deleteUser(_id: string): Observable<User> {
     return this.http.delete<User>(`${this.URL}users/delete/${_id}`);
   }
 
@@ -37,7 +37,7 @@ export class AuthService {
 
   public signIn(user: any) {
     return this.http.post<any>(this.URL + 'admins/signin', user).pipe(
-      tap((response)=>{
+      tap((response) => {
         localStorage.setItem('token', response.token)
       })
     )
@@ -51,24 +51,24 @@ export class AuthService {
     localStorage.removeItem('token')
     this.router.navigate(['/'])
   }
-    /// Obtener el Id del usuario logeado desde el token almacenado
-    getLoggedInUserId(): string | null {
-      const token = this.gettoken();
-      if (token) {
-        const payload = JSON.parse(atob(token.split('.')[1]));
+  /// Obtener el Id del usuario logeado desde el token almacenado
+  getLoggedInUserId(): string | null {
+    const token = this.gettoken();
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1]));
 
-        if (payload.id) {
-          return payload.id;
-        }
-
+      if (payload.id) {
+        return payload.id;
       }
-      return null;
-    }
 
-    getUserById(userId: string): Observable<User> {
-      // Realiza una solicitud al servidor para obtener la información del usuario por su ID
-      return this.http.get<User>(`${this.URL}users/${userId}`);
     }
+    return null;
+  }
+
+  getUserById(userId: string): Observable<User> {
+    // Realiza una solicitud al servidor para obtener la información del usuario por su ID
+    return this.http.get<User>(`${this.URL}users/${userId}`);
+  }
 
   //Obetener rol del usuario
   getLoggedInUserRole(): string {
@@ -87,9 +87,11 @@ export class AuthService {
   //bolean rol
   //validar roles
   isAdmin(): boolean {
-    const userRole = this.getLoggedInUserRole();
-    console.log('rol del usuario', userRole)
-    return userRole === 'admin';
+    const userRoleArray = this.getLoggedInUserRole();
+    console.log('rol del usuario', userRoleArray)
+    return Array.isArray(userRoleArray) && userRoleArray.length > 0 &&
+      userRoleArray[0].name.toLowerCase() === 'admin';
+    // return userRoleArray === 'admin';
   }
 
 
@@ -137,7 +139,7 @@ export class AuthService {
   }
 
 
-  private getHttpOptions(token:string): { headers: HttpHeaders } {
+  private getHttpOptions(token: string): { headers: HttpHeaders } {
 
     const httpOptions = {
       headers: new HttpHeaders({

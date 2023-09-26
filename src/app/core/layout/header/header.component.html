@@ -52,7 +52,7 @@
           </button>
           <a [routerLink]="['/profile', userId]"
             class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600 cursor-pointer">Perfil</a>
-          <a (click)="redirectAdmin()" v-if="isAdminUser" [routerLink]="['/admin', userId]"
+          <a (click)="redirectAdmin()" *ngIf="isAdminUser" [routerLink]="['/admin', userId]"
             class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600 cursor-pointer">Admin</a>
           <a (click)="logout()"
             class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600 cursor-pointer">Cerrar sesión</a>

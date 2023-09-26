@@ -22,8 +22,17 @@ export class HeaderComponent {
 
   ngOnInit(): void {
     this.userId = this.authService.getLoggedInUserId();
-    this.isAdminUser = this.authService.getLoggedInUserRole().includes('admin');
-    console.log('Valor de isAdminUser:', this.isAdminUser);
+    // Obtiene el valor de userRole de AuthService
+    const userRoleArray = this.authService.getLoggedInUserRole();
+    console.log('Valor de userRole:', userRoleArray);
+
+    // Verifica si userRoleArray contiene un objeto con la propiedad 'name'
+    if (Array.isArray(userRoleArray) && userRoleArray.length > 0 && userRoleArray[0].name) {
+      this.isAdminUser = userRoleArray[0].name.toLowerCase() === 'admin';
+    } else {
+      this.isAdminUser = false;
+    }
+    console.log('Valor de isAdminUser Header:', this.isAdminUser);
   }
 
   scrollToTop() {
