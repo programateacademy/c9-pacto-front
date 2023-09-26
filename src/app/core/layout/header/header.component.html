@@ -24,6 +24,7 @@
 
       <a [routerLink]="['/home', userId]" (click)="scrollToTop()" alt="Ir a la página de inicio" class="text-blue-600 text-2xl ml-5 text-center">
         <i class="fas fa-home block"></i>
+
       </a>
 
       <div class="flex items-center relative">
@@ -40,8 +41,8 @@
           </button>
           <a [routerLink]="['/profile', userId]"
             class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600 cursor-pointer">Perfil</a>
-          <a [routerLink]="['/admin', userId]" *ngIf="isAdminUser"
-            class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600 cursor-pointer">admin</a>
+          <a (click)="redirectAdmin()" *ngIf="isAdminUser" [routerLink]="['/admin', userId]"
+            class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600 cursor-pointer">Admin</a>
           <a (click)="logout()"
             class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600 cursor-pointer">Cerrar sesión</a>
         </div>

@@ -13,16 +13,16 @@ import { roleGuard } from 'src/guard/role/role.guard';
 
 const routes: Routes = [
 
-  { path: 'profile/:id', component: ProfileComponent, canActivate:[authGuard] },
+  { path: 'profile/:id', component: ProfileComponent, canActivate: [authGuard] },
   { path: 'register', component: RegisterComponent },
   { path: '', component: LoginComponent },
-  { path: 'home/:id', component: HomeComponent, canActivate:[authGuard] },
-  {path: 'admin/:id', component: AdminComponent},
-  {path: 'changePassword', component: PasswordComponent},
-  {path: 'email', component: EmailComponent},
+  { path: 'home/:id', component: HomeComponent, canActivate: [authGuard] },
+  { path: 'admin/:id', component: AdminComponent, canActivate: [roleGuard] },
+  { path: 'change-password/:token', component: PasswordComponent },
+  { path: 'email', component: EmailComponent },
 
   // Ruta wildcard para manejar errores 404
-  {path:'**', component:PageNotFoundComponent}
+  { path: '**', component: PageNotFoundComponent }
 
 ];
 

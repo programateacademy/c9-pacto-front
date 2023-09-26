@@ -1,5 +1,6 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,20 +13,38 @@ export class HeaderComponent {
 
   isAdminUser: boolean = false;
 
-  constructor(private authService: AuthService, private el: ElementRef, private renderer: Renderer2) {}
+  constructor(private authService: AuthService,
+    private el: ElementRef,
+    private renderer: Renderer2,
+    private router: Router
+  ) { }
 
 
   ngOnInit(): void {
     this.userId = this.authService.getLoggedInUserId();
-    this.isAdminUser = this.authService.isAdmin();
+    // Obtiene el valor de userRole de AuthService
+    const userRoleArray = this.authService.getLoggedInUserRole();
+    console.log('Valor de userRole:', userRoleArray);
+
+    // Verifica si userRoleArray contiene un objeto con la propiedad 'name'
+    if (Array.isArray(userRoleArray) && userRoleArray.length > 0 && userRoleArray[0].name) {
+      this.isAdminUser = userRoleArray[0].name.toLowerCase() === 'admin';
+    } else {
+      this.isAdminUser = false;
+    }
+    console.log('Valor de isAdminUser Header:', this.isAdminUser);
   }
 
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  redirectAdmin() {
+    this.router.navigate(['/admin', this.userId]);
+  }
+
   //Cerrar sesión
-  logout(){
+  logout() {
     this.authService.logout()
   }
 

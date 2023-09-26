@@ -9,6 +9,7 @@ import { tap } from 'rxjs';
 import { enviroment } from 'src/environments/environment.dev';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,7 +25,7 @@ export class AuthService {
 
 
   // Eliminar un usuario por su ID
-  deleteUser(_id:string): Observable<User> {
+  deleteUser(_id: string): Observable<User> {
     return this.http.delete<User>(`${this.URL}users/delete/${_id}`);
   }
 
@@ -36,7 +37,7 @@ export class AuthService {
 
   public signIn(user: any) {
     return this.http.post<any>(this.URL + 'admins/signin', user).pipe(
-      tap((response)=>{
+      tap((response) => {
         localStorage.setItem('token', response.token)
       })
     )
@@ -50,24 +51,24 @@ export class AuthService {
     localStorage.removeItem('token')
     this.router.navigate(['/'])
   }
-    /// Obtener el Id del usuario logeado desde el token almacenado
-    getLoggedInUserId(): string | null {
-      const token = this.gettoken();
-      if (token) {
-        const payload = JSON.parse(atob(token.split('.')[1]));
+  /// Obtener el Id del usuario logeado desde el token almacenado
+  getLoggedInUserId(): string | null {
+    const token = this.gettoken();
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1]));
 
-        if (payload.id) {
-          return payload.id;
-        }
-
+      if (payload.id) {
+        return payload.id;
       }
-      return null;
-    }
 
-    getUserById(userId: string): Observable<User> {
-      // Realiza una solicitud al servidor para obtener la información del usuario por su ID
-      return this.http.get<User>(`${this.URL}users/${userId}`);
     }
+    return null;
+  }
+
+  getUserById(userId: string): Observable<User> {
+    // Realiza una solicitud al servidor para obtener la información del usuario por su ID
+    return this.http.get<User>(`${this.URL}users/${userId}`);
+  }
 
   //Obetener rol del usuario
   getLoggedInUserRole(): string {
@@ -86,9 +87,11 @@ export class AuthService {
   //bolean rol
   //validar roles
   isAdmin(): boolean {
-    const userRole = this.getLoggedInUserRole();
-    console.log('rol del usuario', userRole)
-    return userRole === 'admin';
+    const userRoleArray = this.getLoggedInUserRole();
+    console.log('rol del usuario', userRoleArray)
+    return Array.isArray(userRoleArray) && userRoleArray.length > 0 &&
+      userRoleArray[0].name.toLowerCase() === 'admin';
+    // return userRoleArray === 'admin';
   }
 
 
@@ -122,34 +125,40 @@ export class AuthService {
       })
     );
   }
-  private getAuthorizationHeader(): HttpHeaders {
-    const token = this.gettoken();
-    return new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-  }
 
-  changePassword(newPassword: string): Observable<any> {
-    const changePasswordUrl = `${this.URL}admins/change-password`;
 
-    const requestBody = {
-      newPassword: newPassword
-    };
-
-    const headers = this.getAuthorizationHeader();
-
-    return this.http.post(changePasswordUrl, requestBody, { headers });
-  }
-
-  sendPasswordLink(email: string): Observable<any> {
+  sendPasswordLink(email: string,): Observable<any> {
     const sendPasswordLinkUrl = `${this.URL}admins/send-password-link`;
 
     const requestBody = {
       email: email
     };
 
-    const headers = this.getAuthorizationHeader();
 
-    return this.http.post(sendPasswordLinkUrl, requestBody, { headers });
+    return this.http.post(sendPasswordLinkUrl, requestBody,);
+  }
+
+
+  private getHttpOptions(token: string): { headers: HttpHeaders } {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'x-access-token': token, // Agrega el token al encabezado
+      }),
+    };
+
+    return httpOptions;
+  }
+  changePassword(password: string, token: string): Observable<any> {
+    const url = `${this.URL}admins/change-password`;
+
+    const httpOptions = this.getHttpOptions(token);
+
+    const requestBody = {
+      password: password,
+    };
+
+    return this.http.post(url, requestBody, httpOptions);
   }
 }

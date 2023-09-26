@@ -7,7 +7,6 @@ import { SwitchUserService } from 'src/app/core/services/modalUs/switch-user.ser
 import { forkJoin } from 'rxjs';
 import { ForoService } from 'src/app/core/services/home/home.service';
 
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -15,7 +14,7 @@ import { ForoService } from 'src/app/core/services/home/home.service';
 })
 export class ProfileComponent {
   @Input() user: User | null = null;
-  userName = ''; // Propiedad para almacenar el userName original
+  userName = '';
   newUserName = '';
   userImg = '';
   newUserImg = '';
@@ -23,16 +22,25 @@ export class ProfileComponent {
   users: User[] = [];
   public listpublications: Home[] = [];
   publicationId: string;
-  isModalVisible !: boolean;
+  isModalVisible!: boolean;
 
   isEditingName = false;
   isEditingImg = false;
+
+  // Nueva propiedad para determinar si el nombre supera los 10 caracteres
+  get isLongName(): boolean {
+    const isLong = !!this.user && !!this.user.userName && this.user.userName.length > 10;
+    console.log('isLongName:', isLong);
+    return isLong;
+  }
+
 
   constructor(private modalUser: SwitchUserService,
     private route: ActivatedRoute,
     private ProfileService: ProfileService,
     private authService: AuthService,
     private foroService: ForoService) { this.publicationId = ''; }
+
 
 
   ngOnInit(): void {
@@ -53,6 +61,32 @@ export class ProfileComponent {
     publication.showOptions = !publication.showOptions;
     this.publicationId = publication._id;
     console.log('id from S options', this.publicationId)
+  }
+
+  dataUser() {
+    // Obtiene el ID del usuario logueado desde el servicio de autenticación
+    const loggedInUserId = this.authService.getLoggedInUserId();
+    console.log('loggedInUserId:', loggedInUserId);
+
+    if (loggedInUserId) {
+      this.route.paramMap.subscribe(paramMap => {
+
+        // Obtiene el ID de usuario de la URL
+        const id = paramMap.get('id');
+        console.log('Id Login: ', id)
+
+        // Comprueba si el ID de usuario de la URL coincide con el usuario logueado
+        if (id === loggedInUserId) {
+          this.ProfileService.getUser(id).subscribe(data => {
+            this.user = data;
+            console.log('Data User prfile', data)
+          });
+        } else {
+          console.error('Error ids diferentes no coinciden')
+          // this.router.navigate(['/error']);
+        }
+      });
+    }
   }
 
   // Función para actualizar el nombre de usuario
@@ -114,57 +148,9 @@ export class ProfileComponent {
     this.isEditingName = false;
   }
 
-
   // closeModalAndReloadPage() {
-
   //   window.location.reload();
   // }
-  // Función para eliminar una publicación
-  onDeletePublication(publicationId: string) {
-    const token = this.authService.gettoken();
-    console.log('Token from delete profileC', token);
-    if (!token) {
-      console.error('Token de autenticación no encontrado.');
-      return;
-    }
-    console.log('Token from delete profileC', token)
-    this.ProfileService.deletePublication(publicationId, token).subscribe(
-      (response) => {
-        console.log('Publicación eliminada exitosamente', response);
-        this.loadData();
-      },
-      (error) => {
-        console.error('Error al eliminar la publicación', error);
-
-      }
-    ); console.log('id from function delte', publicationId)
-  }
-
-  dataUser() {
-    // Obtiene el ID del usuario logueado desde el servicio de autenticación
-    const loggedInUserId = this.authService.getLoggedInUserId();
-    console.log('loggedInUserId:', loggedInUserId);
-
-    if (loggedInUserId) {
-      this.route.paramMap.subscribe(paramMap => {
-
-        // Obtiene el ID de usuario de la URL
-        const id = paramMap.get('id');
-        console.log('Id Login: ', id)
-
-        // Comprueba si el ID de usuario de la URL coincide con el usuario logueado
-        if (id === loggedInUserId) {
-          this.ProfileService.getUser(id).subscribe(data => {
-            this.user = data;
-            console.log('Data User prfile', data)
-          });
-        } else {
-          console.error('Error ids diferentes no coinciden')
-          // this.router.navigate(['/error']);
-        }
-      });
-    }
-  }
 
   public loadData() {
     this.foroService.getTask('publictpacto/')
@@ -190,6 +176,26 @@ export class ProfileComponent {
       });
   }
 
+  // Función para eliminar una publicación
+  onDeletePublication(publicationId: string) {
+    const token = this.authService.gettoken();
+    console.log('Token from delete profileC', token);
+    if (!token) {
+      console.error('Token de autenticación no encontrado.');
+      return;
+    }
+    console.log('Token from delete profileC', token)
+    this.ProfileService.deletePublication(publicationId, token).subscribe(
+      (response) => {
+        console.log('Publicación eliminada exitosamente', response);
+        this.loadData();
+      },
+      (error) => {
+        console.error('Error al eliminar la publicación', error);
+      }
+    ); console.log('id from function delte', publicationId)
+  }
+
   openModal(user: User | null): void {
     if (user) {
       this.isModalVisible = true
@@ -197,4 +203,6 @@ export class ProfileComponent {
       console.log('dataUser profileComp: ', user)
     }
   }
+
 }
+
