@@ -84,7 +84,7 @@
             </div>
           </div>
 
-          <div class="flex flex-col items-center mt-4 sm:mt-8">
+          <div class="flex flex-col items-center mt-4 sm:mx-auto">
             <button type="submit" class="text-blue-700 text-lg sm:text-xl flex flex-col items-center"(click)="openModal(user)">
               <i class="fas fa-location-dot fa-bounce text-2xl mb-1"></i>
               <!-- Bogota/Colombia -->
@@ -93,29 +93,26 @@
 
           </div>
         </div>
-        <div class="container flex flex-col sm:flex-row justify-center space-x-4 mt-4 sm:mt-8">
-          <div class="mx-4 mb-4 sm:mb-0 sm:mx-auto"> <!-- Centramos horizontalmente en pantallas pequeñas con sm:mx-auto -->
+        <div class="flex flex-col sm:flex-row justify-center items-center space-x-4 mt-4 sm:mt-8">
+          <div class="mx-4 mb-4">
             <button type="submit"
               class="text-white bg-[#006186] transition-colors h-11 w-52 rounded-lg shadow text-lg sm:text-xl hover:bg-[#008999]"
               (click)="openModal(user)">
+              <i class="fa-solid fa-pen-to-square"></i>
               Actualizar perfil
             </button>
-
             <div class="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50" *ngIf="isModalVisible">
               <div class="fixed top-0 left-0 w-full h-full bg-black opacity-50"></div>
-
               <div class="bg-white p-4 rounded-lg shadow-lg z-10 max-h-[80vh] overflow-y-auto">
                 <app-modal-user *ngIf="user" [user]="user"></app-modal-user>
               </div>
             </div>
           </div>
-
-          <div class="mx-4 sm:mx-auto"> <!-- Centramos horizontalmente en pantallas pequeñas con sm:mx-auto -->
-            <button class="text-white bg-[#006186] transition-colors h-11 w-52 rounded-lg shadow text-lg sm:text-xl hover:bg-[#008999]"
+          <div class="mx-4 mb-4">
+            <button class="text-white bg-[#006186] transition-colors h-11 w-52 sm:w-52 rounded-lg shadow text-lg sm:text-xl hover:bg-[#008999] ml-6 mr-10"
               (click)="toggleContenido()">Publicaciones</button>
           </div>
         </div>
-
 
 
         <div *ngIf="showContentTwo">
@@ -123,20 +120,13 @@
             <div class="relative">
               <button (click)="toggleOptions(publication)"
                 class="absolute top-0 right-0 p-2 rounded-full bg-gray-200 hover:bg-gray-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor" *ngIf="!publication.showOptions">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6">
-                  </path>
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor" *ngIf="publication.showOptions">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                  </path>
-                </svg>
+                <i class="fa-solid fa-trash fa-shake" style="color: #aa2727;"></i>
+
                 <div *ngIf="publication.showOptions"
                   class="absolute top-2 right-8  bg-gray-200 hover-bg-gray-300 p-1 rounded-lg  z-10">
                   <button class="block py-1 bg-none text-red-800  font-bold hover:bg-gray-300"
-                    (click)="onDeletePublication(publication._id)">Delete</button>
+                    (click)="onDeletePublication(publication._id)">Eliminar</button>
+
                 </div>
               </button>
             </div>

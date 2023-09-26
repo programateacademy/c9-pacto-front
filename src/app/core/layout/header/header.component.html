@@ -18,7 +18,7 @@
 <body>
   <header class="h-18 fixed top-0 left-0 w-full bg-white z-50 shadow-md p-5">
     <nav class="mt-[-11px] container mx-auto flex justify-between items-center md:space-x-20">
-      <!-- Mostrar el logo solo en pantallas medianas y grandes -->
+
       <img src="../../../../assets/img/cropped-logo_positivo.png" [routerLink]="['/home', userId]"
         alt="Logo Pacto de Productividad" class="w-20 h-10 hidden md:block" />
       <!-- Comentar o eliminar esta casita para accesibilidad -->
@@ -46,7 +46,6 @@
         </a>
         <div id="dropdownMenu" [class.hidden]="!isDropdownOpen"
           class="absolute right-0 top-0 mt-12 bg-white border border-solid rounded-md shadow-md p-2 w-48 text-left">
-          <!-- Botón para cerrar el modal -->
           <button
             class="close-button text-gray-500 transition-colors duration-300 hover:text-red-500 absolute top-0 right-0 p-2"
             aria-label="Botón para cerrar opciones de usuario" (keydown.space)="closeDropdownWithButton()"
