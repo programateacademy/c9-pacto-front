@@ -22,8 +22,8 @@
       <img src="../../../../assets/img/cropped-logo_positivo.png" [routerLink]="['/home', userId]"
         alt="Logo Pacto de Productividad" class="w-20 h-10 hidden md:block" />
       <!-- Comentar o eliminar esta casita para accesibilidad -->
-      <a [routerLink]="['/home', userId]" (click)="scrollToTop()" alt="Ir a la página de inicio"
-        class="text-blue-600 text-2xl ml-5">
+      <a [routerLink]="['/home', userId]" (click)="scrollToTop()" aria-label="Ir a página de inicio"
+        alt="Ir a la página de inicio" class="text-blue-600 text-2xl ml-5">
         <i class="fas fa-home"></i>
       </a>
 
@@ -37,9 +37,11 @@
           </form>
         </div> -->
       <!-- Menú de usuario -->
-      <div class="flex items-center relative">
-        <a class="text-2xl relative transition-colors duration-300 text-blue-600 hover:text-blue-800"
-          (click)="toggleDropdown()">
+      <div class="flex items-center relative" aria-label="Menú de Usuario" role="button">
+        <a tabindex="0" (keydown.enter)="toggleDropdown()" (keydown.space)="toggleDropdown()" (click)="toggleDropdown()"
+          aria-label="Logo Opciones de perfil" [attr.aria-haspopup]="true"
+          [attr.aria-expanded]="isDropdownOpen ? 'true' : 'false'"
+          class="text-2xl relative transition-colors duration-300 text-blue-600 hover:text-blue-800">
           <i class="fas fa-user"></i>
         </a>
         <div id="dropdownMenu" [class.hidden]="!isDropdownOpen"
@@ -47,14 +49,18 @@
           <!-- Botón para cerrar el modal -->
           <button
             class="close-button text-gray-500 transition-colors duration-300 hover:text-red-500 absolute top-0 right-0 p-2"
-            aria-label="Cerrar" (click)="closeDropdownWithButton()">
+            aria-label="Botón para cerrar opciones de usuario" (keydown.space)="closeDropdownWithButton()"
+            (keydown.enter)="closeDropdownWithButton()" (click)="closeDropdownWithButton()">
             <i class="fas fa-times"></i>
           </button>
-          <a [routerLink]="['/profile', userId]"
+          <a [routerLink]="['/profile', userId]" aria-label="Opción para redireccinar a perfil"
             class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600 cursor-pointer">Perfil</a>
-          <a (click)="redirectAdmin()" *ngIf="isAdminUser" [routerLink]="['/admin', userId]"
+          <a (click)="redirectAdmin()" *ngIf="isAdminUser" [routerLink]="['/admin', userId]" tabindex="0"
+            aria-label="Opción para redireccinar a vista administrador" (keydown.enter)="redirectAdmin()"
+            (keydown.space)="redirectAdmin()"
             class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600 cursor-pointer">Admin</a>
-          <a (click)="logout()"
+          <a (click)="logout()" tabindex="0" aria-label="Opción para cerrar sesión" (keydown.enter)="logout()"
+            (keydown.space)="logout()"
             class="block px-4 py-2 transition-colors duration-300 hover:text-blue-600 cursor-pointer">Cerrar sesión</a>
         </div>
       </div>
