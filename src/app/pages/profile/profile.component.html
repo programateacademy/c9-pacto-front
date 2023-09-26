@@ -120,16 +120,12 @@
             <div class="relative">
               <button (click)="toggleOptions(publication)"
                 class="absolute top-0 right-0 p-2 rounded-full bg-gray-200 hover:bg-gray-300">
-                <i class="fa-solid fa-trash"></i>
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor" *ngIf="publication.showOptions">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                  </path>
-                </svg>
+                <i class="fa-solid fa-trash fa-shake" style="color: #aa2727;"></i>
+
                 <div *ngIf="publication.showOptions"
                   class="absolute top-2 right-8  bg-gray-200 hover-bg-gray-300 p-1 rounded-lg  z-10">
                   <button class="block py-1 bg-none text-red-800  font-bold hover:bg-gray-300"
-                    (click)="onDeletePublication(publication._id)">Delete</button>
+                    (click)="onDeletePublication(publication._id)">Eliminar</button>
 
                 </div>
               </button>
