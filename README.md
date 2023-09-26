@@ -6,6 +6,20 @@ Este es el frontend de un foro construido utilizando Angular . El frontend inter
 Este proyecto esta generado con[Angular CLI](https://github.com/angular/angular-cli) version 16.1.6.
 
 # Versión 1.0
+![image](![login](https://github.com/programateacademy/c9-pacto-front/assets/88947344/542efd44-ed20-408c-b15b-bcb8a4b53bbe)
+
+![image](![registro](https://github.com/programateacademy/c9-pacto-front/assets/88947344/db3830da-a01f-48f0-92b2-7e0d7d42ca30)
+
+![image](![home](https://github.com/programateacademy/c9-pacto-front/assets/88947344/117e2c30-047a-4600-a550-bce70478911b)
+
+![image](![perfil](https://github.com/programateacademy/c9-pacto-front/assets/88947344/1f38b173-7cbb-4cfd-88c6-80aa60a751c9)
+
+![image](![accesibilidad](https://github.com/programateacademy/c9-pacto-front/assets/88947344/e11baaff-1ec2-4dc5-a5b4-c24de78e42a2)
+
+![image](![Estructura1](https://github.com/programateacademy/c9-pacto-front/assets/88947344/7d1c0021-1e52-4ce4-a2bf-700586ff9deb)
+
+![image](![Estructura2](https://github.com/programateacademy/c9-pacto-front/assets/88947344/f4e78ed2-afae-48e6-a40d-ad2d38c2fd5e)
+
 
 ## Funcionalidades
 - Inicio de sesión de usuario, distinguiendo entre usuarios y administradores.
