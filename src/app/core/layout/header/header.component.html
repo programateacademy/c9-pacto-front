@@ -18,24 +18,14 @@
 <body>
   <header class="h-18 fixed top-0 left-0 w-full bg-white z-50 shadow-md p-5">
     <nav class="mt-[-11px] container mx-auto flex justify-between items-center md:space-x-20">
-      <!-- Mostrar el logo solo en pantallas medianas y grandes -->
+
       <img src="../../../../assets/img/cropped-logo_positivo.png" [routerLink]="['/home', userId]"
         alt="Logo Pacto de Productividad" class="w-20 h-10 hidden md:block" />
-      <!-- Comentar o eliminar esta casita para accesibilidad -->
-      <a [routerLink]="['/home', userId]" (click)="scrollToTop()" alt="Ir a la página de inicio" class="text-blue-600 text-2xl ml-5">
-        <i class="fas fa-home"></i>
+
+      <a [routerLink]="['/home', userId]" (click)="scrollToTop()" alt="Ir a la página de inicio" class="text-blue-600 text-2xl ml-5 text-center">
+        <i class="fas fa-home block"></i>
       </a>
 
-      <!-- Barra de busqueda, se deja comentarado ya que para esta etapa no es necesario-->
-      <!-- <div class="lg:w-fullv md:w-full">
-          <form action="/buscar" method="GET" class="flex items-center">
-            <input type="text" name="q" placeholder="Buscar..." class="mx-2 border rounded-l-lg py-2 px-2 w-full lg:w-full">
-            <button type="submit" class="text-blue-600 px-4 py-2 rounded-r-lg bg-white">
-              <i class="fas fa-search fa-lg"></i>
-            </button>
-          </form>
-        </div> -->
-      <!-- Menú de usuario -->
       <div class="flex items-center relative">
         <a class="text-2xl relative transition-colors duration-300 text-blue-600 hover:text-blue-800"
           (click)="toggleDropdown()">
@@ -43,7 +33,6 @@
         </a>
         <div id="dropdownMenu" [class.hidden]="!isDropdownOpen"
           class="absolute right-0 top-0 mt-12 bg-white border border-solid rounded-md shadow-md p-2 w-48 text-left">
-          <!-- Botón para cerrar el modal -->
           <button
             class="close-button text-gray-500 transition-colors duration-300 hover:text-red-500 absolute top-0 right-0 p-2"
             aria-label="Cerrar" (click)="closeDropdownWithButton()">
