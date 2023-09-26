@@ -13,7 +13,8 @@
     <div class="w-full">
       <form (ngSubmit)="signUp()" [formGroup]="contactForm" class="bg-white px-8 pt-6 pb-8 mb-4">
         <div class="mb-4 mt-12">
-          <h1 class="font-bold mb-6 mt-4 md:text-4xl">FORMULARIO DE REGISTRO</h1>
+          <h1 class="font-bold mb-6 mt-4 md:text-4xl" tabindex="0" aria-label="Formulario de registro">FORMULARIO DE
+            REGISTRO</h1>
           <div class="grid grid-flow-row sm:grid-flow-col gap-3 md:grid-cols-2">
 
             <!--Column left-->
@@ -399,11 +400,14 @@
             </div>
           </div>
 
-          <!--Checkbox -->
+          <!-- Checkbox -->
           <label class="flex w-full justify-center">
             <input type="checkbox" class="mr-1" id="termsAndconditions" name="termsAndconditions"
-              formControlName="termsAndconditions">
-            <button (click)="openModal()">Acepto los términos y condiciones</button>
+              formControlName="termsAndconditions"
+              [attr.aria-checked]="contactForm.get('termsAndconditions')?.value ? 'true' : 'false'">
+            <button (click)="openModal()">
+              Acepto los términos y condiciones
+            </button>
           </label>
           <!--Validators password-->
           <div
@@ -414,7 +418,8 @@
 
           <!--Button register-->
           <div class="col-span-1 w-full flex justify-center items-center mt-4 h-10">
-            <button routerLink="/register" name="button_register" id="button_register"
+            <button aria-label="Botón para registrarse" routerLink="/register" name="button_register"
+              id="button_register"
               class=" flex flex-row justify-center items-center w-44 h-12 bg-[#006186] text-white text-lg border rounded-lg border-r-2 border-b-2 border-l-0 border-t-0 border-black mt-6"
               (click)="onSubmit()">Registrarme</button>
           </div>
