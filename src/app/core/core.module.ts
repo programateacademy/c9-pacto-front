@@ -13,6 +13,7 @@ import { SkeletonProfileComponent } from './common/skeleton-profile/skeleton-pro
 import { SkeletonAsideComponent } from './common/skeleton-aside/skeleton-aside.component';
 import { ModalTermsConditiosComponent } from './libs/modal-terms-conditios/modal-terms-conditios.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SkeletonComentsComponent } from './common/skeleton-coments/skeleton-coments.component';
 
 
 
@@ -28,7 +29,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ModalUserComponent,
     SkeletonProfileComponent,
     SkeletonAsideComponent,
-    ModalTermsConditiosComponent
+    ModalTermsConditiosComponent,
+    SkeletonComentsComponent
 
   ],
   imports: [
