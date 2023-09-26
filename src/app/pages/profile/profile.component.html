@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perfil de Usuario</title>
   <link href="https://unpkg.com/tailwindcss@^2.2.16/dist/tailwind.min.css" rel="stylesheet">
 </head>
-
 <body class="bg-gray-100">
   <header class="bg-blue-500 p-4">
     <app-header></app-header>
@@ -15,30 +13,22 @@
   <aside class="bg-gray-200 p-4">
     <app-aside></app-aside>
   </aside>
-  <main class="flex justify-center items-center min-h-screen">
+  <main class="flex justify-center items-center min-h-screen sm:px-4 md:px-6 lg:px-8 xl:px-10">
     <div class="max-w-6xl">
       <div class="bg-white sm:ml-0 sm:p-8 md:p-6 lg:p-8 rounded-lg shadow mb-4">
         <div *ngIf="user"></div>
         <div class="flex mb-4 justify-center">
-          <!-- *ngIf="!isEditingImg" -->
-          <button (click)="isEditingImg = true" *ngIf="!isEditingImg"
-            class="p-2 text-gray-500 hover:text-blue-500 focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-              class="w-6 h-6 feather feather-edit">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9"></path>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M16.901 4.34a2 2 0 010 2.83L7.83 18.901a2 2 0 01-2.83 0L3 17l7.071-7.071a2 2 0 012.83 0z">
-              </path>
-            </svg>
-          </button>
-          <img class="imagen" [src]="user?.userImg || 'https://www.clipartmax.com/png/full/269-2691507_circle.png' "
-            alt="Mi Foto de Perfil" class="w-40 h-40 rounded-full">
+          <div class="flex flex-col items-center"> <!-- Cambia flex a flex-col para que los elementos se apilen verticalmente -->
+            <img class="imagen w-40 h-40 rounded-full" [src]="user?.userImg || 'https://www.clipartmax.com/png/full/269-2691507_circle.png'" alt="Mi Foto de Perfil">
+            <button (click)="isEditingImg = true" *ngIf="!isEditingImg" class="p-2 ml-2 text-gray-500 hover:text-blue-500 focus:outline-none">
+              <i class="fa-solid fa-user-pen"></i>
+            </button>
+        </div>
 
-
-          <div *ngIf="isEditingImg">
+          <div *ngIf="isEditingImg" class="flex flex-col items-center sm:flex-row sm:space-x-4">
             <input [(ngModel)]="newUserImg" placeholder="Ingrese una URL Valida"
-              class="flex-grow px-4 py-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-            <div class="flex space-x-4">
+              class="flex-grow px-4 py-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring sm:w-auto">
+            <div class="flex space-x-4 mt-2 sm:mt-0">
               <button (click)="updateUserImg()"
                 class="px-4 py-2 text-white bg-[#006186] transition-colors rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
                 Guardar
@@ -49,24 +39,16 @@
               </button>
             </div>
           </div>
-
-
         </div>
-        <!-- *ngIf="!isEditingName" -->
-        <h1 class="font-bold mb-2 text-center text-4xl md:text-5xl"> {{ user?.userName }}
-          <button (click)="isEditingName = true" *ngIf="!isEditingName"
-            class="p-2 text-gray-500 hover:text-blue-500 focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-              class="w-6 h-6 feather feather-edit">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9"></path>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M16.901 4.34a2 2 0 010 2.83L7.83 18.901a2 2 0 01-2.83 0L3 17l7.071-7.071a2 2 0 012.83 0z">
-              </path>
-            </svg>
+
+        <div class="text-center">
+          <h1 [ngClass]="{'font-bold mb-2 text-4xl md:text-5xl': !isLongName, 'font-bold mb-2 text-sm md:text-base': isLongName}">
+            {{ user?.userName }}
+          </h1>
+          <button (click)="isEditingName = true" *ngIf="!isEditingName" class="p-2 text-gray-500 hover:text-blue-500 focus:outline-none">
+            <i class="fa-solid fa-pen-to-square"></i>
           </button>
-
-
-        </h1>
+        </div>
 
         <div *ngIf="isEditingName" class="w-full text-center">
           <input [(ngModel)]="newUserName" placeholder="Nuevo nombre"
@@ -83,15 +65,13 @@
           </div>
         </div>
 
-
-
         <hr class="my-2 border-t border-gray-300">
 
         <div class="flex justify-center items-center text-gray-600 my-4 md:my-8 space-x-4 md:space-x-9">
           <p class="text-center">Actor Social: {{ user?.companyNameOrentity}}</p>
           <p class="text-center">Entidad: {{ user?.typEntitySocialActor}}</p>
-          <p class="text-center" (click)="toggleContenido()">Aportes a la comunidad:</p>
         </div>
+
         <div *ngIf="showContentOne">
           <div class="sm:mx-2 mb-8">
             <div class="bg-gray-300 p-2 sm:p-4 rounded-lg shadow mb-8">
@@ -103,18 +83,21 @@
               <p class="my-2">Texto de intereses...</p>
             </div>
           </div>
-          <div *ngIf="showContentOne"></div>
+
           <div class="flex flex-col items-center mt-4 sm:mt-8">
-            <button type="submit" class="text-blue-700 text-lg sm:text-xl flex flex-col items-center">
+            <button type="submit" class="text-blue-700 text-lg sm:text-xl flex flex-col items-center"(click)="openModal(user)">
               <i class="fas fa-location-dot fa-bounce text-2xl mb-1"></i>
               <!-- Bogota/Colombia -->
               {{ user?.departamento}} / {{ user?.country}}
             </button>
 
+          </div>
+        </div>
+        <div class="container flex flex-col sm:flex-row justify-center space-x-4 mt-4 sm:mt-8">
+          <div class="mx-4 mb-4 sm:mb-0 sm:mx-auto"> <!-- Centramos horizontalmente en pantallas pequeñas con sm:mx-auto -->
             <button type="submit"
-              class="text-white bg-[#006186]  transition-colors h-11 w-52 rounded-lg shadow text-lg sm:text-xl hover:bg-[#008999]"
+              class="text-white bg-[#006186] transition-colors h-11 w-52 rounded-lg shadow text-lg sm:text-xl hover:bg-[#008999]"
               (click)="openModal(user)">
-
               Actualizar perfil
             </button>
 
@@ -126,9 +109,16 @@
               </div>
             </div>
           </div>
+
+          <div class="mx-4 sm:mx-auto"> <!-- Centramos horizontalmente en pantallas pequeñas con sm:mx-auto -->
+            <button class="text-white bg-[#006186] transition-colors h-11 w-52 rounded-lg shadow text-lg sm:text-xl hover:bg-[#008999]"
+              (click)="toggleContenido()">Publicaciones</button>
+          </div>
         </div>
+
+
+
         <div *ngIf="showContentTwo">
-          <!-- Publicaciones -->
           <div *ngFor="let publication of listpublications" class="bg-white p-1 rounded-lg shadow mb-4 max-w-lg">
             <div class="relative">
               <button (click)="toggleOptions(publication)"
@@ -144,13 +134,11 @@
                   </path>
                 </svg>
                 <div *ngIf="publication.showOptions"
-                  class="absolute top-2 right-8  bg-gray-200 hover:bg-gray-300 p-1 rounded-lg  z-10">
+                  class="absolute top-2 right-8  bg-gray-200 hover-bg-gray-300 p-1 rounded-lg  z-10">
                   <button class="block py-1 bg-none text-red-800  font-bold hover:bg-gray-300"
                     (click)="onDeletePublication(publication._id)">Delete</button>
-                  <!-- <button class="block py-2 px-4 text-gray-600 hover:bg-gray-100">Editar</button> -->
                 </div>
               </button>
-
             </div>
             <div class="flex">
               <img class="w-8 h-8 rounded-full user-avatar" [src]="publication.userimg" alt="Avatar de usuario">
@@ -159,23 +147,17 @@
                 <p class="text-gray-500 post-time text-xs">{{ publication.date_create | date }}</p>
               </div>
             </div>
-
             <p class="mt-2 post-text text-sm">{{ publication.description }}</p>
             <div class="bg-blue-200 p-1 rounded mt-1 shadow-md border border-blue-400">
               <p class="text-blue-800 font-semibold text-xs">{{ publication.descriptionImg }}</p>
             </div>
-
-
             <div class="mt-1\.5 post-image" *ngIf="publication.image">
               <img class="w-full post-image-img" [src]="publication.image" alt="Imagen de la publicación">
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
   </main>
 </body>
-
 </html>
