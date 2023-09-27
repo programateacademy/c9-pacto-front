@@ -26,12 +26,12 @@ export class ProfileComponent {
 
   isEditingName = false;
   isEditingImg = false;
-
+  isUserNameLong: boolean = false;
   // Nueva propiedad para determinar si el nombre supera los 10 caracteres
-  get isLongName(): boolean {
-    const isLong = !!this.user && !!this.user.userName && this.user.userName.length > 10;
-    console.log('isLongName:', isLong);
-    return isLong;
+  checkUserNameLength() {
+    if (this.user && this.user.userName) {
+      this.isUserNameLong = this.user.userName.length > 10;
+    }
   }
 
 
@@ -47,6 +47,7 @@ export class ProfileComponent {
     this.modalUser.$modal.subscribe((valu) => { this.isModalVisible = valu })
     this.loadData();
     this.dataUser();
+    this.checkUserNameLength();
   }
 
   showContentOne = true;

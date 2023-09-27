@@ -48,7 +48,9 @@ export class ModalUserComponent {
       country: ['Colombia'],
       municipio: ['', Validators.required],
       termsAndconditions: [false, Validators.pattern('true')],
-      // userImg: [this.defaultUserImgUrl]
+      userImg: [this.defaultUserImgUrl],
+      descriptionUser: ['Sin Descripcion...'],
+      interests: ['Sin Intereses...']
     })
   }
 
