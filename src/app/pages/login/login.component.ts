@@ -22,6 +22,11 @@ export class LoginComponent {
     this.contactForm = this.initFrom();
   }
 
+  capsLockOn = false;
+
+  checkCapsLock(event: KeyboardEvent) {
+    this.capsLockOn = event.getModifierState('CapsLock')
+  }
 
   signIn() {
     this.isLoading = true; // Agregar isLoading para mostrar el loader
