@@ -12,6 +12,7 @@ export class AsideComponent {
   constructor(private authService:AuthService){}
 
   users: User[] = []
+  public isLoading: boolean = true;
 
   ngOnInit(): void {
     this.loadData()
@@ -21,5 +22,6 @@ export class AsideComponent {
     this.authService.getUsersByRole().subscribe((data)=>{
       this.users = data
     })
+    this.isLoading = false;
   }
 }
