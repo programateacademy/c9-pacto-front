@@ -21,10 +21,13 @@
       <div tabindex="0" aria-label="Lista de Usuarios">
         <h2 class="text-lg font-semibold mb-2" tabindex="0">Lista de Usuarios</h2>
         <!-- Usuario en línea 1 -->
-        <div class="flex items-center justify-between border-b pb-2 mb-4" *ngFor="let user of users">
+        <div class="flex items-center justify-between border-b pb-2 mb-4" *ngFor="let user of users" >
           <div class="flex items-center space-x-2">
             <img tabindex="0" [src]="user.userImg" alt="Imagen del Usuario" class="w-11 h-11 rounded-full">
             <span tabindex="0">{{user.userName}}</span>
+          </div>
+            <div *ngIf="isLoading">
+            <app-skeleton-aside></app-skeleton-aside>
           </div>
         </div>
       </div>
