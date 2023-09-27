@@ -19,6 +19,11 @@ export class ForoService {
     return this.http.get<Home[]>(url);
   }
 
+  getPubUserId(userId: string): Observable<Home[]>{
+    const url = `${this.baseURL}publictpacto/publications/user/${userId}`
+    return this.http.get<Home[]>(url);
+  }
+
   getUsernameById(userId: string): Observable<string> {
     const url = `${this.baseURL}users/${userId}`;
     return this.http.get<string>(url);

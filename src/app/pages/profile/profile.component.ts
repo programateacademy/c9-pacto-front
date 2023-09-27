@@ -23,6 +23,7 @@ export class ProfileComponent {
   public listpublications: Home[] = [];
   publicationId: string;
   isModalVisible!: boolean;
+  public isLoadingUs: boolean = true;
 
   isEditingName = false;
   isEditingImg = false;
@@ -88,6 +89,7 @@ export class ProfileComponent {
         }
       });
     }
+    this.isLoadingUs = false
   }
 
   // Función para actualizar el nombre de usuario
@@ -149,18 +151,16 @@ export class ProfileComponent {
     this.isEditingName = false;
   }
 
-  // closeModalAndReloadPage() {
-  //   window.location.reload();
-  // }
 
   public loadData() {
-    this.foroService.getTask('publictpacto/')
+    const userId = this.authService.getLoggedInUserId(); // Obtiene el ID del usuario logeado
+
+    if(userId){
+    this.foroService.getPubUserId(userId) // Pasa el userId como argumento
       .subscribe((data: Home[]) => {
         const requests = data.map(publication => this.foroService.getUsernameById(publication.user));
-        const userId = this.authService.getLoggedInUserId();
 
         forkJoin(requests).subscribe((responses: any[]) => {
-
           const usernames = responses.map(response => response?.userName);
           const userimgs = responses.map(response => response?.userImg);
 
@@ -172,10 +172,14 @@ export class ProfileComponent {
             username: usernames[index],
             userimg: userimgs[index],
           }));
-          console.log('Data Publi prfile', data)
+          console.log('Data Publi prfile', data);
         });
       });
+    }else {
+      console.error("El ID de usuario es nulo."); // Maneja el caso en que userId es nulo
+    }
   }
+
 
   // Función para eliminar una publicación
   onDeletePublication(publicationId: string) {

@@ -48,8 +48,10 @@ import { SkeletonComentsComponent } from './common/skeleton-coments/skeleton-com
     AsideComponent,
     HeaderauthComponent,
     ModalUserComponent,
-    ModalTermsConditiosComponent
-
+    ModalTermsConditiosComponent,
+    SkeletonComentsComponent,
+    SkeletonAsideComponent,
+    SkeletonProfileComponent
   ]
 })
 
