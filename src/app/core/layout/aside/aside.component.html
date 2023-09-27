@@ -14,22 +14,23 @@
 
 <body>
   <!-- Utiliza la clase hidden lg:block para ocultar en pantallas pequeñas -->
-  <div class="hidden sm:my-20 lg:block fixed float-left mt-10 px-4 w-1/4 max-h-screen overflow-y-auto -ml-10">
-    <!-- Agregamos la clase mr-4 para mover el aside hacia la derecha -->
-    <!-- Sugerencia de amistad 1 -->
+
+  <div class="hidden sm:my-20 lg:block fixed float-left mt-10 px-4 w-1/4 max-h-[80vh] overflow-y-auto -ml-10 mb-4 lg:mb-4">
     <div class="bg-white p-3 m-10 rounded-lg shadow mb-4">
-      <div tabindex="0" aria-label="Lista de Usuarios">
-        <h2 class="text-lg font-semibold mb-2" tabindex="0">Lista de Usuarios</h2>
+      <div>
+        <h2 class="text-lg font-semibold mb-2">Lista de Usuarios</h2>
         <!-- Usuario en línea 1 -->
-        <div class="flex items-center justify-between border-b pb-2 mb-4" *ngFor="let user of users">
+        <div class="flex flex-col space-y-2 border-b pb-2 mb-4" *ngFor="let user of users">
           <div class="flex items-center space-x-2">
-            <img tabindex="0" [src]="user.userImg" alt="Imagen del Usuario" class="w-11 h-11 rounded-full">
-            <span tabindex="0">{{user.userName}}</span>
+            <img [src]="user.userImg" alt="Usuario" class="w-11 h-11 rounded-full">
+            <span>{{user.userName}}</span>
+
           </div>
         </div>
       </div>
     </div>
   </div>
+
 </body>
 
 </html>
