@@ -111,7 +111,6 @@ export class HomeComponent {
         }));
 
         console.log('Likes por publicación', likes);
-        this.isLoading = false;
       });
     });
   }
@@ -205,7 +204,7 @@ export class HomeComponent {
         this.comments = data;
       });
     });
-    this.el.nativeElement.querySelector('.comment-modal').focus();
+    this.isLoading = false
   }
 
   createComment() {
