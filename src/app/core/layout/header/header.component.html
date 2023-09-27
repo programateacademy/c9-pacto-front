@@ -37,10 +37,9 @@
           </form>
         </div> -->
       <!-- Menú de usuario -->
-      <div class="flex items-center relative" aria-label="Menú de Usuario" role="button">
+      <div tabindex="0" aria-label="Logo Opciones de perfil" class="flex items-center relative"
+        [attr.aria-haspopup]="true" [attr.aria-expanded]="isDropdownOpen ? 'true' : 'false'" role="button">
         <a tabindex="0" (keydown.enter)="toggleDropdown()" (keydown.space)="toggleDropdown()" (click)="toggleDropdown()"
-          aria-label="Logo Opciones de perfil" [attr.aria-haspopup]="true"
-          [attr.aria-expanded]="isDropdownOpen ? 'true' : 'false'"
           class="text-2xl relative transition-colors duration-300 text-blue-600 hover:text-blue-800">
           <i class="fas fa-user"></i>
         </a>
