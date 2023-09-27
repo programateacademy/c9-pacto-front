@@ -76,11 +76,11 @@
           <div class="sm:mx-2 mb-8">
             <div class="bg-gray-300 p-2 sm:p-4 rounded-lg shadow mb-8">
               <h2 class="text-lg sm:text-xl font-semibold mb-2">Descripción del Perfil:</h2>
-              <p class="my-2">Texto de la descripción...</p>
+              <p class="my-2">{{user?.descriptionUser}}</p>
             </div>
             <div class="bg-gray-300 p-2 sm:p-4 rounded-lg shadow">
               <h2 class="text-lg sm:text-xl font-semibold mb-2">Intereses de Conocimiento:</h2>
-              <p class="my-2">Texto de intereses...</p>
+              <p class="my-2">{{user?.interests}}</p>
             </div>
           </div>
 
@@ -138,7 +138,7 @@
               </div>
             </div>
             <p class="mt-2 post-text text-sm">{{ publication.description }}</p>
-            <div class="bg-blue-200 p-1 rounded mt-1 shadow-md border border-blue-400">
+            <div class="bg-blue-200 p-1 rounded mt-1 shadow-md border border-blue-400" *ngIf="publication.descriptionImg">
               <p class="text-blue-800 font-semibold text-xs">{{ publication.descriptionImg }}</p>
             </div>
             <div class="mt-1\.5 post-image" *ngIf="publication.image">
