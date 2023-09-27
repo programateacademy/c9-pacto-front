@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Network</title>
-    <script src="https://kit.fontawesome.com/7845268ad3.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Network</title>
+  <script src="https://kit.fontawesome.com/7845268ad3.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <!DOCTYPE html>
 <html lang="es">
@@ -22,72 +23,76 @@
     <app-header></app-header>
   </div>
 
-  <div
-    class="fixed top-0 left-0 flex items-center justify-center w-full h-full z-50"
-    [ngClass]="{ 'hidden': !isModalOpen }"
-  >
+  <div class="hidden sm:my-20 lg:block fixed float-left mt-10 px-4 w-1/4 max-h-screen overflow-y-auto -ml-10">
+    <div class="bg-white p-3 m-10 rounded-lg shadow mb-4">
+      <div aria-label="Lista de Usuarios">
+        <h2 class="text-lg font-semibold mb-2" tabindex="0">Lista de Usuarios</h2>
+        <div class="flex items-center justify-between border-b pb-2 mb-4" *ngFor="let user of users">
+          <div class="flex items-center space-x-2">
+            <img tabindex="0" [src]="user.userImg" alt="Usuario" class="w-11 h-11 rounded-full">
+            <button tabindex="0" class="hover:underline" (click)="openModal(user)">
+              {{ user.userName }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fixed top-0 left-0 flex items-center justify-center w-full h-full z-50"
+    [ngClass]="{ 'hidden': !isModalOpen }">
     <div class="fixed top-0 left-0 w-full h-full bg-gray-800 opacity-0"></div>
 
-    <div class="bg-white p-6 rounded-lg shadow-lg z-10 max-w-md w-11/12 h-auto relative mt-24 mx-auto overflow-y-auto max-h-[80vh]">
+    <div
+      class="bg-white p-6 rounded-lg shadow-lg z-10 max-w-md w-11/12 h-auto relative mt-24 mx-auto overflow-y-auto max-h-[80vh]">
       <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700" (click)="closeModal()">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"
-          />
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
 
-      <h2 class="text-lg font-semibold mb-4">Detalles del Usuario</h2>
+      <h2 class="text-lg font-semibold mb-4" tabindex="0">Detalles del Usuario</h2>
       <div *ngIf="selectedUser">
-        <img [src]="selectedUser.userImg" alt="Usuario" class="w-16 h-16 rounded-full mx-auto mb-4">
-        <p class="text-center">{{ selectedUser.userName }}</p>
-        <div class="mb-2">
+        <img tabindex="0" [src]="selectedUser.userImg" alt="Usuario" class="w-16 h-16 rounded-full mx-auto mb-4">
+        <p tabindex="0" class="text-center">{{ selectedUser.userName }}</p>
+        <div tabindex="0" class="mb-2">
           <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
           <p class="text-gray-800">{{ selectedUser.email }}</p>
         </div>
 
 
 
-        <div class="mb-2">
+        <div tabindex="0" class="mb-2">
           <label for="pais" class="block text-sm font-medium text-gray-700">País:</label>
           <p class="text-gray-800">{{ selectedUser.country }}</p>
         </div>
 
 
-        <div class="mb-2">
+        <div tabindex="0" class="mb-2">
           <label for="departamento" class="block text-sm font-medium text-gray-700">Departamento:</label>
           <p class="text-gray-800">{{ selectedUser.departamento }}</p>
         </div>
 
 
-        <div class="mb-2">
+        <div tabindex="0" class="mb-2">
           <label for="ciudad" class="block text-sm font-medium text-gray-700">Ciudad:</label>
           <p class="text-gray-800">{{ selectedUser.municipio }}</p>
         </div>
 
 
-        <div class="mb-2">
+        <div tabindex="0" class="mb-2">
           <label for="genero" class="block text-sm font-medium text-gray-700">Género:</label>
           <p class="text-gray-800">{{ selectedUser.gender }}</p>
         </div>
 
 
-        <div class="mb-2">
+        <div tabindex="0" class="mb-2">
           <label for="discapacidad" class="block text-sm font-medium text-gray-700">Tipo de Discapacidad:</label>
           <p class="text-gray-800">{{ selectedUser.person }}</p>
         </div>
 
 
-        <div class="mb-2">
+        <div tabindex="0" class="mb-2">
           <label for="etnia" class="block text-sm font-medium text-gray-700">Ejemplo de Etnia:</label>
           <p class="text-gray-800">{{ selectedUser.ethnicity }}</p>
         </div>
@@ -95,10 +100,9 @@
 
 
         <div class="mb-2">
-          <button
+          <button aria-label="Botón para eliminar usuario"
             class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-full"
-            (click)="deleteUser(selectedUser._id)"
-          >
+            (click)="deleteUser(selectedUser._id)">
             Eliminar
           </button>
         </div>
@@ -111,28 +115,8 @@
   </div>
 
 
-  <div
 
-    class="hidden sm:my-20 lg:block fixed float-left mt-10 px-4 w-1/4 max-h-screen overflow-y-auto -ml-10"
-  >
-    <div class="bg-white p-3 m-10 rounded-lg shadow mb-4">
-      <div>
-        <h2 class="text-lg font-semibold mb-2">Lista de Usuarios</h2>
-        <div
-          class="flex items-center justify-between border-b pb-2 mb-4"
-          *ngFor="let user of users"
-        >
-          <div class="flex items-center space-x-2">
-            <img [src]="user.userImg" alt="Usuario" class="w-11 h-11 rounded-full">
-            <button class="hover:underline" (click)="openModal(user)">
-              {{ user.userName }}
-            </button>
-          </div>
-        </div>
-      </div>
 
-    </div>
-  </div>
 </body>
 
 </html>
