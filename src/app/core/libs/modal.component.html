@@ -2,10 +2,19 @@
   <div class="insert-modal-content p-4 bg-white rounded-lg shadow-lg">
     <h1 class="text-2xl font-semibold mb-4">Tú Publicación</h1>
     <textarea  #description placeholder="Añade una publicación" rows="4" class="border border-gray-300 rounded-lg p-2 w-full mb-4 resize-none focus:outline-none focus:ring focus:border-blue-300"></textarea>
-    <input #image type="text" placeholder="Insertar URL de imagen..." class="border border-gray-300 rounded-lg p-2 w-full mb-4 focus:outline-none focus:ring focus:border-blue-300">
-    <textarea #descriptionImg placeholder="Descripción de la imagen para personas con discapacidad..." rows="4" class="border border-gray-300 rounded-lg p-2 w-full mb-4 resize-none focus:outline-none focus:ring focus:border-blue-300"></textarea>
+    <input #imageInput type="text" placeholder="Insertar URL de imagen..." class="border border-gray-300 rounded-lg p-2 w-full mb-4 focus:outline-none focus:ring focus:border-blue-300">
+    <textarea #descriptionImgInput placeholder="Descripción de la imagen..." rows="4" class="border border-gray-300 rounded-lg p-2 w-full mb-4 resize-none focus:outline-none focus:ring focus:border-blue-300"></textarea>
+
+    <div class="alert-message bg-red-500 text-white p-2 rounded m-2" *ngIf="showAlert">
+      <p>Por favor, agrega una descripción de imagen.</p>
+    </div>
+
+    <div class="alert-message bg-red-500 text-white p-2 rounded m-2" *ngIf="showAlertdes">
+      <p>Por favor, agrega una URL de imagen</p>
+    </div>
+
     <div class="flex justify-between">
-      <button class="click text-gray-950 bg-transparent hover:bg-blue-500 border-b-2 font-bold py-2 px-4 rounded" (click)="createPost(description.value, image.value, descriptionImg.value)">Publicar</button>
+      <button #publishButton class="click text-gray-950 bg-transparent hover:bg-blue-500 border-b-2 font-bold py-2 px-4 rounded" (click)="createPost(description.value, imageInput.value, descriptionImgInput.value)">Publicar</button>
       <button class="close text-gray-950 bg-transparent hover:bg-red-500 border-b-2 font-bold py-2 px-4 rounded" (click)="closeModal()">Cancelar</button>
     </div>
   </div>
