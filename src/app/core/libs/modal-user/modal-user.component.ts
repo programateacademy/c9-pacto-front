@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Renderer2 } from '@angular/core';
 import { SwitchUserService } from '../../services/modalUs/switch-user.service';
 import { User } from 'src/app/models/item';
 import { capitales } from '../../services/formulario/capitales';
@@ -18,7 +18,7 @@ export class ModalUserComponent {
 
 
   constructor(private modalUser: SwitchUserService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder, private renderer: Renderer2) { }
 
   ngOnInit(): void {
     this.contactForm = this.initFrom();
@@ -107,7 +107,7 @@ export class ModalUserComponent {
   }
 
   closeModal() {
-
+    this.renderer.removeStyle(document.body, 'overflow');
     this.modalUser.$modal.emit(false)
 
 

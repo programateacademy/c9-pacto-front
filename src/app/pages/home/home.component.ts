@@ -61,7 +61,9 @@ export class HomeComponent {
     this.initializeUserLikes();
     this.loadUserData();
     this.loadData();
+    this.extractYouTubeLinks();
   }
+
 
   loadUserData() {
     const userId = this.authService.getLoggedInUserId();
@@ -111,9 +113,11 @@ export class HomeComponent {
         }));
 
         console.log('Likes por publicación', likes);
+        this.extractYouTubeLinks();
       });
     });
   }
+
 
   newPostCreating(newPublication: Home) {
     this.listpublications.unshift(newPublication);
@@ -121,6 +125,48 @@ export class HomeComponent {
 
   openModal() {
     this.isModalVisible = true;
+    this.renderer.setStyle(document.body, 'overflow', 'hidden');
+  }
+
+
+  extractYouTubeLinks() {
+    console.log('Iniciando extractYouTubeLinks()');
+
+    this.listpublications.forEach((publication) => {
+      console.log('Procesando publicación:', publication);
+
+      const youtubeRegex = /https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/;
+      const match = publication.description.match(youtubeRegex);
+
+      if (match) {
+        // Se encontró una URL de YouTube en la descripción
+        publication.youtubeLink = match[0];
+        const videoID = match[1];
+        publication.youtubeThumbnail = `https://img.youtube.com/vi/${videoID}/0.jpg`;
+      }
+    });
+  }
+
+
+  formatText(text: string): { textParts: string[], youtubeLinks: string[] } {
+    const textParts: string[] = [];
+    const youtubeLinks: string[] = [];
+    const youtubeRegex = /https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)(?:&[a-zA-Z0-9_-]+=[^&]*)*/g;
+    let match;
+
+    while ((match = youtubeRegex.exec(text)) !== null) {
+      // Agregar el texto antes de la URL de YouTube
+      textParts.push(text.substring(0, match.index));
+      // Agregar la URL de YouTube
+      youtubeLinks.push(match[0]);
+      // Actualizar el texto restante
+      text = text.substring(match.index + match[0].length);
+    }
+
+    // Agregar el texto restante después de la última URL de YouTube
+    textParts.push(text);
+
+    return { textParts, youtubeLinks };
   }
 
   likePublication(publicationId: string) {

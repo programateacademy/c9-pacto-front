@@ -50,7 +50,24 @@
                   | date }}</p>
               </div>
             </div>
-            <p tabindex="0" class="mt-4 post-text">{{ publication.description }}</p>
+
+            <div class="mt-4">
+              <ng-container *ngFor="let textPart of formatText(publication.description).textParts; let i = index">
+                <ng-container *ngIf="i < formatText(publication.description).textParts.length - 1">
+                  <span [innerHTML]="textPart"></span>
+                  <a *ngIf="formatText(publication.description).youtubeLinks[i]" [href]="formatText(publication.description).youtubeLinks[i]" target="_blank" class="youtube-link-youtube">
+                    Ver video en YouTube
+                  </a>
+                </ng-container>
+                <ng-container *ngIf="i === formatText(publication.description).textParts.length - 1">
+                  <span [innerHTML]="textPart"></span>
+                </ng-container>
+              </ng-container>
+              <a *ngIf="publication.youtubeLink" [href]="publication.youtubeLink" target="_blank" rel="noopener noreferrer">
+                <img [src]="publication.youtubeThumbnail" alt="Video Thumbnail" class="mt-4 cursor-pointer w-full">
+              </a>
+            </div>
+
             <div tabindex="0" class="bg-blue-200 p-2 rounded mt-2 shadow-md border border-blue-400" tabindex="0"
               *ngIf="publication.descriptionImg">
               <p class="text-blue-800 font-semibold" [textContent]="publication.descriptionImg"></p>
