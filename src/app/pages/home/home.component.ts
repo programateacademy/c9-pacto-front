@@ -1,4 +1,5 @@
-import { Component, ElementRef, Input } from '@angular/core';
+import { Component, LOCALE_ID, ElementRef, Input, Inject } from '@angular/core';
+import { formatDate } from '@angular/common';
 import { ForoService } from 'src/app/core/services/home/home.service';
 import { InteractionService } from 'src/app/core/services/interactions/interaction.service';
 import { Home, Comment, User } from 'src/app/models/item';
@@ -15,6 +16,7 @@ import { Renderer2 } from '@angular/core';
 })
 export class HomeComponent {
   constructor(
+    @Inject(LOCALE_ID) private locale: string,
     private foroService: ForoService,
     private interactionService: InteractionService,
     private commentService: CommentsService,
@@ -30,6 +32,10 @@ export class HomeComponent {
       console.error('El ID de usuario no está disponible.');
     }
     this.publicationId = '';
+  }
+
+  formatDateToSpanish(date: Date): string {
+    return formatDate(date, 'dd/MM/yyyy HH:mm', this.locale);
   }
 
   @Input() publication: any;
@@ -112,7 +118,7 @@ export class HomeComponent {
           likedByUser: this.userId ? !!this.likedPublications[this.userId]?.[publication._id] : false
         }));
 
-        console.log('Likes por publicación', likes);
+        // console.log('Likes por publicación', likes);
         this.extractYouTubeLinks();
       });
     });
@@ -130,10 +136,10 @@ export class HomeComponent {
 
 
   extractYouTubeLinks() {
-    console.log('Iniciando extractYouTubeLinks()');
+    // console.log('Iniciando extractYouTubeLinks()');
 
     this.listpublications.forEach((publication) => {
-      console.log('Procesando publicación:', publication);
+      // console.log('Procesando publicación:', publication);
 
       const youtubeRegex = /https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/;
       const match = publication.description.match(youtubeRegex);
@@ -234,7 +240,7 @@ export class HomeComponent {
 
   openCommentModal() {
 
-    console.log(this.publicationId);
+    // console.log(this.publicationId);
     this.renderer.setStyle(document.body, 'overflow', 'hidden');
     this.isCommentModalVisible = true;
     this.comments = [];
@@ -261,13 +267,13 @@ export class HomeComponent {
       publicationId: this.publicationId
     };
 
-    console.log(this.commentContent);
-    console.log(userId);
-    console.log(this.publicationId);
+    // console.log(this.commentContent);
+    // console.log(userId);
+    // console.log(this.publicationId);
 
     this.commentService.createComment(data).subscribe(
       (response) => {
-        console.log('Comentario creado', response);
+        // console.log('Comentario creado', response);
 
         this.isCommentPosted = true; // Mostrar el mensaje
         setTimeout(() => {

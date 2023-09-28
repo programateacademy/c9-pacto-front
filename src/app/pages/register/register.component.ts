@@ -32,19 +32,19 @@ export class RegisterComponent {
 
   ngOnInit(): void {
     this.contactForm = this.initFrom();
-    this.modalTers.$modal.subscribe((value) => {this.showModal = value})
+    this.modalTers.$modal.subscribe((value) => { this.showModal = value })
 
     // Lógica para obtener listas de departamentos y municipios únicos
     this.departamentosUnicos = this.obtenerDepartamentosUnicos();
   }
 
-  openModal(){
+  openModal() {
     this.showModal = true
   }
 
 
   onSubmit(): void {
-    console.log('form ->', this.contactForm.value);
+    // console.log('form ->', this.contactForm.value);
     if (this.contactForm.valid) {
       this.signUp();
     }
@@ -58,7 +58,7 @@ export class RegisterComponent {
   signUp() {
     this.authService.signUp(this.contactForm.value)
       .subscribe(res => {
-        console.log(res)
+        // console.log(res)
         localStorage.setItem('token', res.token)
 
         // Obtiene el ID del usuario logueado.
@@ -71,7 +71,7 @@ export class RegisterComponent {
         }
       },
         err => {
-          console.log(err);
+          // console.log(err);
           if (err instanceof HttpErrorResponse) {
             this.errorResponseMessage = err.error.message;
           }
@@ -100,7 +100,7 @@ export class RegisterComponent {
       termsAndconditions: [false, Validators.pattern('true')],
       userImg: [this.defaultUserImgUrl],
       descriptionUser: ['Sin Descripcion...'],
-      interests:['Sin Intereses...']
+      interests: ['Sin Intereses...']
     })
 
   }

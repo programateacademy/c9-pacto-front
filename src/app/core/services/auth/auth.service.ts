@@ -88,7 +88,7 @@ export class AuthService {
   //validar roles
   isAdmin(): boolean {
     const userRoleArray = this.getLoggedInUserRole();
-    console.log('rol del usuario', userRoleArray)
+    // console.log('rol del usuario', userRoleArray)
     return Array.isArray(userRoleArray) && userRoleArray.length > 0 &&
       userRoleArray[0].name.toLowerCase() === 'admin';
     // return userRoleArray === 'admin';
@@ -121,7 +121,7 @@ export class AuthService {
       })
     }).pipe(
       tap((likes) => {
-        console.log('Likes del usuario (recuperados del servidor) authservices:', likes);
+        // console.log('Likes del usuario (recuperados del servidor) authservices:', likes);
       })
     );
   }

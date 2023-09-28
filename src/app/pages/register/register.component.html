@@ -401,7 +401,7 @@
           </div>
 
           <!-- Checkbox -->
-          <label class="flex w-full justify-center">
+          <label class="flex w-full justify-center items-center">
             <input type="checkbox" class="mr-1" id="termsAndconditions" name="termsAndconditions"
               formControlName="termsAndconditions"
               [attr.aria-checked]="contactForm.get('termsAndconditions')?.value ? 'true' : 'false'">
@@ -422,6 +422,9 @@
               id="button_register"
               class=" flex flex-row justify-center items-center w-44 h-12 bg-[#006186] text-white text-lg border rounded-lg border-r-2 border-b-2 border-l-0 border-t-0 border-black mt-6"
               (click)="onSubmit()">Registrarme</button>
+          </div><br>
+          <div class="text-center mt-2">
+            ¿Ya tienes cuenta? <a href="/" style="color: blue; text-decoration: underline;">Iniciar sesión</a>
           </div>
         </div>
       </form>
