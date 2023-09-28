@@ -1,0 +1,4 @@
+.youtube-link-youtube {
+  color: blue !important; /*priorizar este estilo */
+  text-decoration: underline;
+}
