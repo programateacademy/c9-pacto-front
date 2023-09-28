@@ -23,7 +23,7 @@ export class ProfileService {
   // Metodo par aobtener los datos del usuario logeado por su ID
   getUser(id: string): Observable<User> {
     const url = `${this.URL}users/${id}`;
-    console.log('Requesting user data from:', url);
+    // console.log('Requesting user data from:', url);
     return this.http.get<User>(url);
   }
 
@@ -32,8 +32,8 @@ export class ProfileService {
     const url = `${this.URL}publictpacto/delete/${publicationId}`;
     const headers = { 'Authorization': `Bearer ${token}` };
 
-    console.log('token desde deleteService', headers)
-    console.log('id from Service profile', publicationId)
+    // console.log('token desde deleteService', headers)
+    // console.log('id from Service profile', publicationId)
 
     return this.http.delete(url, { headers });
   }

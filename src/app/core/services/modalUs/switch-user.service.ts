@@ -16,12 +16,12 @@ export class SwitchUserService {
   sendUserData(user: any): void {
     // Emitir datos del user al componente modal
     this.userData.emit(user);
-    console.log('dataUser switchService: ', user)
+    // console.log('dataUser switchService: ', user)
   }
 
   updateUser(userId: string, userData: any): Observable<any> {
     const url = `${this.URL}users/update/${userId}`;
-    console.log('userData switchUser', userData)
+    // console.log('userData switchUser', userData)
     return this.http.put(url, userData);
   }
 
