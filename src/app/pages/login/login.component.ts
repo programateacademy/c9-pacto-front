@@ -55,9 +55,13 @@ export class LoginComponent {
           console.log(err);
           this.errorMessage = ' Usuario o contraseña incorrectos'; // Asignar mensaje de error
           this.isLoading = false;
-        }
-      );
-  }
+        // Establecer un temporizador para ocultar la alerta después de 3 segundos
+        setTimeout(() => {
+          this.errorMessage = null;
+        }, 2000); // 2000 milisegundos = 2 segundos
+      }
+    );
+}
 
   initFrom(): FormGroup {
     return this.fb.group({
