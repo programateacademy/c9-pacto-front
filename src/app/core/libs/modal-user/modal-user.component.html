@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <section class="relative max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 ">
+  <section class="relative max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md ">
     <div class="absolute top-2 right-2">
       <div class="icon-background">
         <button
@@ -20,14 +20,14 @@
       </div>
 
     </div>
-    <h2 class="text-lg font-semibold text-black capitalize dark:text-white" tabindex="0"
+    <h2 class="text-lg font-semibold text-black capitalize" tabindex="0"
       aria-label="Formulario para actualizar mis datos">Actualizar perfil</h2>
 
     <form class="mt-12" [formGroup]="contactForm">
       <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
 
         <div class="relative">
-          <label class="text-black dark:text-gray-200" for="name">
+          <label class="text-black " for="name">
             Nombres
             <a href="https://www.youtube.com/watch?v=V9auOG6U0rY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=16"
               aria-label="Link a video explicativo nombre con lenguaje de señas" target="_blank"
@@ -36,7 +36,7 @@
             </a>
           </label>
           <input id="name" type="text" name="names" formControlName="names" placeholder="Inserte sus nombres"
-            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
             required>
 
 
@@ -54,7 +54,7 @@
         </div>
 
         <div class="relative">
-          <label class="text-black dark:text-gray-200" for="SocialActor">
+          <label class="text-black" for="SocialActor">
             Apellidos
             <a href="https://www.youtube.com/watch?v=aNWSJpAvs1g&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=23"
               target="_blank" class="ml-2 p-2 text-red-600">
@@ -63,7 +63,7 @@
           </label>
           <input id="SocialActor" name="surNames" formControlName="surNames" type="text"
             placeholder="Inserte sus Apellidos"
-            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring">
 
           <div
             *ngIf="contactForm.controls['names'].invalid && (contactForm.controls['surNames'].dirty || contactForm.controls['surNames'].touched)"
@@ -78,7 +78,7 @@
         </div>
 
         <div class="relative">
-          <label class="text-black dark:text-gray-200" for="person">Soy una
+          <label class="text-black " for="person">Soy una
             persona
             <a href="https://www.youtube.com/watch?v=Gd2-ldzBTZk&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=5"
               target="_blank" class="ml-2 p-2 text-red-600">
@@ -86,7 +86,7 @@
             </a>
           </label>
           <select id="person" name="person" formControlName="person" placeholder="Con discapacidad"
-            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring">
 
             <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="Con discapacidad auditiva">Con
               discapacidad auditiva
@@ -106,7 +106,7 @@
         </div>
 
         <div class="relative">
-          <label class="text-black dark:text-gray-200" for="gender">
+          <label class="text-black " for="gender">
             ¿Con qué género te identificas?
             <a href="https://www.youtube.com/watch?v=__kMM2bBTgI&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=19"
               target="_blank" class="ml-2 p-2 text-red-600">
@@ -114,7 +114,7 @@
             </a>
           </label>
           <select id="gender" name="gender" formControlName="gender"
-            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring">
             <option value="Mujer">Mujer</option>
             <option value="Hombre">Hombre</option>
             <option value="Hombre trans">Hombre trans(transexual, transgenero, travesti)</option>
@@ -129,14 +129,14 @@
         </div>
 
         <div class="relative">
-          <label class="text-black dark:text-gray-200" for="years">Edad
+          <label class="text-black " for="years">Edad
             <a href="https://www.youtube.com/watch?v=nIMLCn9S0VY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=24"
               target="_blank" class="ml-2 p-2 text-red-600">
               <i class="fab fa-youtube"></i>
             </a>
           </label>
           <input id="years" type="number" name="years" formControlName="years" placeholder="Ingrese su edad"
-            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring">
           <!--Validators years-->
           <div *ngIf="contactForm.get('years')?.touched && contactForm.get('years')?.errors?.['required']"
             class="alert alert-danger">Este campo es obligatorio.</div>
@@ -147,7 +147,7 @@
         </div>
 
         <div class="relative">
-          <label class="text-black dark:text-gray-200" for="ethnicity">
+          <label class="text-black " for="ethnicity">
             ¿Cúal de estas opciones te describen mejor?
             <a href="https://www.youtube.com/watch?v=u7YTICI2qcE&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=26"
               target="_blank" class="ml-2 p-2 text-red-600">
@@ -155,7 +155,7 @@
             </a>
           </label>
           <select id="ethnicity" name="ethnicity" formControlName="ethnicity"
-            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring">
             <option value="Indigena">Indigena</option>
             <option value="Gitano">Gitano (Rom)</option>
             <option value="Palenquero">Palenquero</option>
@@ -169,7 +169,7 @@
         </div>
 
         <div class="relative">
-          <label class="text-black dark:text-gray-200" for="phoneNumber">
+          <label class="text-black " for="phoneNumber">
             Celular
             <a href="https://www.youtube.com/watch?v=q7jhWAhy_Vg&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=25"
               target="_blank" class="ml-2 p-2 text-red-600">
@@ -178,7 +178,7 @@
           </label>
           <input id="phoneNumber" name="phoneNumber" formControlName="phoneNumber"
             placeholder="Inserte su número de celular"
-            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md   focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring">
           <!--Validators phoneNumber-->
           <div *ngIf="contactForm.get('phoneNumber')?.touched && contactForm.get('phoneNumber')?.errors?.['required']"
             class="alert alert-danger">Este campo es obligatorio.
@@ -186,7 +186,7 @@
         </div>
 
         <div class="relative">
-          <label class="text-black dark:text-gray-200" for="ethnicity">
+          <label class="text-black " for="ethnicity">
             Tipo de entidad o actor social
             <a href="https://www.youtube.com/watch?v=CrY7GS6KKnM&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=3"
               class="ml-2 p-2 text-red-600">
@@ -194,7 +194,7 @@
             </a>
           </label>
           <select id="ethnicity" name="typEntitySocialActor" formControlName="typEntitySocialActor"
-            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring">
             <option class="grid grid-flow-row sm:grid-flow-col gap-3" value="Empresa privada">Empresa privada
             </option>
             <option value="Organización de personas con discapacidad">Organización de personas con discapacidad
@@ -221,15 +221,15 @@
         </div>
 
         <div class="relative">
-          <label class="text-black dark:text-gray-200" for="country">
+          <label class="text-black " for="country">
             Pais
           </label>
           <input id="country" name="country" formControlName="country" placeholder="Colombia"
-            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring">
         </div>
 
         <div class="relative">
-          <label class="text-black dark:text-gray-200" for="companyNameOrentity">
+          <label class="text-black " for="companyNameOrentity">
             Razon social o nombre de la entidad
             <a href="https://www.youtube.com/watch?v=ZcMy1mrsO0A&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=18"
               target="_blank" class="ml-2 p-2 text-red-600">
@@ -238,7 +238,7 @@
           </label>
           <input id="companyNameOrentity" name="companyNameOrentity" formControlName="companyNameOrentity"
             placeholder="Inserte la razon social"
-            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            class="block w-full px-4 py-2 mt-2 text-black bg-white border border-black rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring">
           <!--Validators companyNameOrentity-->
           <div
             *ngIf="contactForm.get('companyNameOrentity')?.touched && contactForm.get('companyNameOrentity')?.errors?.['required']"
@@ -247,7 +247,7 @@
         </div>
 
         <div class="relative">
-          <label class="text-black dark:text-gray-200" for="departments">Departamentos
+          <label class="text-black " for="departments">Departamentos
 
             <a href="https://www.youtube.com/watch?v=Gd2-ldzBTZk&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=5"
               target="_blank" class="ml-2 p-2 text-red-600">
@@ -256,7 +256,7 @@
           </label>
           <select id="departments" name="departamento" formControlName="departamento"
             (change)="onDepartamentoChange(user.departamento.toString())" placeholder=" Con discapacidad"
-            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring">
             <option *ngFor="let departamento of departamentosUnicos" [value]="departamento">{{departamento}}
 
             </option>
@@ -269,7 +269,7 @@
         </div>
 
         <div class="relative">
-          <label class="text-black dark:text-gray-200" for="city">
+          <label class="text-black " for="city">
             En que ciudad esta ubicado
             <a href="https://www.youtube.com/watch?v=v9JDSXL9fZY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=29"
               target="_blank" class="ml-2 p-2 text-red-600">
@@ -277,7 +277,7 @@
             </a>
           </label>
           <select id="city" name="municipio" formControlName="municipio"
-            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            class="block w-full px-4 py-3 mt-2 text-black bg-white border border-black rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring">
             <option *ngFor="let municipio of filteredMunicipios" [value]="municipio">{{municipio}}
             </option>
           </select>
@@ -289,7 +289,7 @@
         </div>
 
         <div class="relative">
-          <label class="text-black dark:text-gray-200" for="descriptionUser">
+          <label class="text-black " for="descriptionUser">
             Descripcion del perfil
             <a href="https://www.youtube.com/watch?v=V9auOG6U0rY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=16"
               target="_blank" class="ml-2 p-2 text-red-600">
@@ -298,11 +298,11 @@
           </label>
           <input type="text" id="descriptionUser" name="descriptionUser" formControlName="descriptionUser"
             placeholder="Ingrese la descripción de su perfil"
-            class="block w-full px-4 py-6 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            class="block w-full px-4 py-6 mt-2 text-black bg-white border border-black rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring">
         </div>
 
         <div class="relative">
-          <label class="text-black dark:text-gray-200" for="interests">
+          <label class="text-black " for="interests">
             Intereses de Conocimiento
             <a href="https://www.youtube.com/watch?v=OlBMrAd57Io&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=11&ab_channel=PactodeProductividad"
               target="_blank" class="ml-2 p-2 text-red-600">
@@ -311,7 +311,7 @@
           </label>
           <input id="interests" type="text" name="interests" formControlName="interests"
             placeholder="Ingrese los interses de Conocimiento"
-            class="block w-full px-4 py-6 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            class="block w-full px-4 py-6 mt-2 text-black bg-white border border-black rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring">
         </div>
 
       </div>
