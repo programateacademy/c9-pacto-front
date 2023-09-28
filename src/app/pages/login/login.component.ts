@@ -37,32 +37,21 @@ export class LoginComponent {
     this.isLoading = true;
     this.errorMessage = null; // Resetear el mensaje de error
 
-
-    this.authService.signIn(this.contactForm.value)
-      .subscribe(
-        (res) => {
-          // console.log(res);
+    this.authService.signIn(this.contactForm.value).subscribe(
+      (res) => {
+        console.log(res);
 
         localStorage.setItem('token', res.token);
 
         const userId = this.authService.getLoggedInUserId();
         const role = this.authService.getLoggedInUserRole();
 
-
-          // console.log('Role', role)
-          // console.log('Logged In User ID:', userId);
-          if (userId) {
-            this.router.navigate(['/home', userId]);
-          } else {
-            console.log('No Id found');
-          }
-          this.isLoading = false;
-        },
-        (err) => {
-          console.log(err);
-          this.errorMessage = ' Usuario o contraseña incorrectos'; // Asignar mensaje de error
-          this.isLoading = false;
-
+        console.log('Role', role);
+        console.log('Logged In User ID:', userId);
+        if (userId) {
+          this.router.navigate(['/home', userId]);
+        } else {
+          console.log('No Id found');
         }
         this.isLoading = false;
       },
@@ -70,13 +59,14 @@ export class LoginComponent {
         console.log(err);
         this.errorMessage = ' Usuario o contraseña incorrectos'; // Asignar mensaje de error
         this.isLoading = false;
-        // Establecer un temporizador para ocultar la alerta después de 3 segundos
         setTimeout(() => {
           this.errorMessage = null;
         }, 2000); // 2000 milisegundos = 2 segundos
       }
     );
   }
+
+
 
   initFrom(): FormGroup {
     return this.fb.group({
