@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Renderer2 } from '@angular/core';
 import { ProfileService } from '../../core/services/profile/profile.service';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
@@ -6,6 +6,7 @@ import { User, Home } from 'src/app/models/item';
 import { SwitchUserService } from 'src/app/core/services/modalUs/switch-user.service';
 import { forkJoin } from 'rxjs';
 import { ForoService } from 'src/app/core/services/home/home.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -40,7 +41,7 @@ export class ProfileComponent {
     private route: ActivatedRoute,
     private ProfileService: ProfileService,
     private authService: AuthService,
-    private foroService: ForoService) { this.publicationId = ''; }
+    private foroService: ForoService, private renderer: Renderer2) { this.publicationId = ''; }
 
 
 
@@ -49,6 +50,7 @@ export class ProfileComponent {
     this.loadData();
     this.dataUser();
     this.checkUserNameLength();
+    this.extractYouTubeLinks();
   }
 
   showContentOne = true;
@@ -173,11 +175,53 @@ export class ProfileComponent {
             userimg: userimgs[index],
           }));
           console.log('Data Publi prfile', data);
+          this.extractYouTubeLinks();
         });
       });
     }else {
       console.error("El ID de usuario es nulo."); // Maneja el caso en que userId es nulo
     }
+  }
+
+
+  extractYouTubeLinks() {
+    console.log('Iniciando extractYouTubeLinks()');
+
+    this.listpublications.forEach((publication) => {
+      console.log('Procesando publicación:', publication);
+
+      const youtubeRegex = /https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/;
+      const match = publication.description.match(youtubeRegex);
+
+      if (match) {
+        // Se encontró una URL de YouTube en la descripción
+        publication.youtubeLink = match[0];
+        const videoID = match[1];
+        publication.youtubeThumbnail = `https://img.youtube.com/vi/${videoID}/0.jpg`;
+      }
+    });
+  }
+
+
+  formatText(text: string): { textParts: string[], youtubeLinks: string[] } {
+    const textParts: string[] = [];
+    const youtubeLinks: string[] = [];
+    const youtubeRegex = /https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)(?:&[a-zA-Z0-9_-]+=[^&]*)*/g;
+    let match;
+
+    while ((match = youtubeRegex.exec(text)) !== null) {
+      // Agregar el texto antes de la URL de YouTube
+      textParts.push(text.substring(0, match.index));
+      // Agregar la URL de YouTube
+      youtubeLinks.push(match[0]);
+      // Actualizar el texto restante
+      text = text.substring(match.index + match[0].length);
+    }
+
+    // Agregar el texto restante después de la última URL de YouTube
+    textParts.push(text);
+
+    return { textParts, youtubeLinks };
   }
 
 
@@ -204,6 +248,7 @@ export class ProfileComponent {
   openModal(user: User | null): void {
     if (user) {
       this.isModalVisible = true
+      this.renderer.setStyle(document.body, 'overflow', 'hidden');
       this.modalUser.sendUserData(user);
       console.log('dataUser profileComp: ', user)
     }

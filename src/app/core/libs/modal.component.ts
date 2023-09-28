@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, EventEmitter, Output, ChangeDetectorRef, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { SwitchService } from '../services/modal/switch.service';
 import { ForoService } from '../services/home/home.service';
 import { Home } from 'src/app/models/item';
@@ -16,7 +16,7 @@ export class ModalComponent {
   @ViewChild('publishButton') publishButton!: ElementRef<HTMLButtonElement>;
 
   constructor(private modalSS: SwitchService, private foroService: ForoService,
-    private authService:AuthService, private changeDetectorRef: ChangeDetectorRef){}
+    private authService:AuthService, private changeDetectorRef: ChangeDetectorRef, private renderer: Renderer2){}
 
   showAlert: boolean = false;
   showAlertdes: boolean = false;
@@ -28,6 +28,7 @@ export class ModalComponent {
   closeModal(){
 
     this.modalSS.$modal.emit(false)
+    this.renderer.removeStyle(document.body, 'overflow');
   }
 
 
