@@ -44,7 +44,7 @@ export class AdminComponent {
   deleteUser(_id: string) {
     this.authService.deleteUser(_id).subscribe((response) => {
       this.closeModalAndReloadPage();
-      console.log('User delete success:', response)
+      // console.log('User delete success:', response)
     })
   }
 

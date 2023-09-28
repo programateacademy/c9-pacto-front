@@ -24,7 +24,7 @@ export class HeaderComponent {
     this.userId = this.authService.getLoggedInUserId();
     // Obtiene el valor de userRole de AuthService
     const userRoleArray = this.authService.getLoggedInUserRole();
-    console.log('Valor de userRole:', userRoleArray);
+    // console.log('Valor de userRole:', userRoleArray);
 
     // Verifica si userRoleArray contiene un objeto con la propiedad 'name'
     if (Array.isArray(userRoleArray) && userRoleArray.length > 0 && userRoleArray[0].name) {
@@ -32,7 +32,7 @@ export class HeaderComponent {
     } else {
       this.isAdminUser = false;
     }
-    console.log('Valor de isAdminUser Header:', this.isAdminUser);
+    // console.log('Valor de isAdminUser Header:', this.isAdminUser);
   }
 
   scrollToTop() {
