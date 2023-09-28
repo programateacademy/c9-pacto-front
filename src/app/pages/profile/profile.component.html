@@ -12,13 +12,13 @@
   <header class="bg-blue-500 p-4">
     <app-header></app-header>
   </header>
-  <aside class="bg-gray-200 p-4">
+  <aside class="bg-gray-200">
     <app-aside></app-aside>
   </aside>
   <div *ngIf="isLoadingUs">
     <app-skeleton-profile></app-skeleton-profile>
   </div>
-  <main class="flex justify-center items-center min-h-screen sm:px-4 md:px-6 lg:px-8 xl:px-10">
+  <main class="flex justify-center items-center min-h-screen p-28 sm:px-4 md:px-6 lg:px-8 xl:px-10">
     <div class="max-w-6xl">
       <div class="bg-white sm:ml-0 sm:p-8 md:p-6 lg:p-8 rounded-lg shadow mb-4">
         <div *ngIf="user"></div>
