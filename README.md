@@ -121,6 +121,6 @@ Si tienes preguntas o sugerencias, no dudes en ponerte en contacto con el equipo
 - [@john palacios ](https://github.com/John9135)
 - [@juan andres  Ruiz](https://github.com/juan0941)
 - [@brayan Triana](https://github.com/Vincent10-o)
-- [@maribel aristizabal](https://github.com/maribel-aristizabal)
+- [@maribel aristizabal](https://github.com/maribelaristizabal).
 - [@Sebastian Beltran](https://github.com/Sebastian-Beltran-rincon-22)
 - [@julian gaitan](https://github.com/Julian9373)
