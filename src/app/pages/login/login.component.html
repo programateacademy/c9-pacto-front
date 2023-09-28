@@ -41,11 +41,27 @@
 
             <!-- Password -->
             <div class="sm:col-span-4 justify-center mt-6">
-              <label class="block text-black-700 text-lg font-bold mb2 mr-2" for="password">Contraseña:</label>
-              <input type="password" id="password" name="password" formControlName="password"
-                (keydown)="checkCapsLock($event)"
-                class="shadow appearance-none h-12 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
-                placeholder="Introduzca su contraseña" required>
+              <label class="block text-black-700 text-lg font-bold mb-2 mr-2" for="password">Contraseña:</label>
+              <div class="relative">
+                <input
+                  type="{{ isPasswordTextVisible() }}"
+                  id="password"
+                  name="password"
+                  formControlName="password"
+                  (keydown)="checkCapsLock($event)"
+                  class="shadow appearance-none h-12 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                  placeholder="Introduzca su contraseña"
+                  required
+                />
+                <button
+                  type="button"
+                  class="absolute right-2 px-2 py-0 mt-3 text-gray-600"
+                  (click)="togglePasswordVisibility()"
+                >
+                  {{ isPasswordVisible ? '' : '' }}
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
               <div *ngIf="contactForm.get('password')?.touched && contactForm.get('password')?.errors?.['required']"
                 class="alert alert-danger">Este campo es obligatorio.</div>
             </div>
