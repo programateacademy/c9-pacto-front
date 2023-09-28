@@ -11,8 +11,8 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 export class LoginComponent {
   result: string;
   contactForm!: FormGroup;
-  showAlertMessage: boolean = false;
   public isLoading: boolean = false;
+  public errorMessage: string | null = null; // Nuevo campo para el mensaje de error
 
   constructor(private authService: AuthService,
     private router: Router,
@@ -29,7 +29,9 @@ export class LoginComponent {
   }
 
   signIn() {
-    this.isLoading = true; // Agregar isLoading para mostrar el loader
+    this.isLoading = true;
+    this.errorMessage = null; // Resetear el mensaje de error
+
     this.authService.signIn(this.contactForm.value)
       .subscribe(
         (res) => {
@@ -47,16 +49,15 @@ export class LoginComponent {
           } else {
             console.log('No Id found');
           }
-          this.isLoading = false; // Establecer isLoading en falso cuando se complete la solicitud
+          this.isLoading = false;
         },
         (err) => {
           console.log(err);
-          this.showAlertMessage = true; // Mostrar el mensaje de error solo cuando los datos son incorrectos
-          this.isLoading = false; // Establecer isLoading en falso cuando se complete la solicitud
+          this.errorMessage = ' Usuario o contraseña incorrectos'; // Asignar mensaje de error
+          this.isLoading = false;
         }
       );
   }
-
 
   initFrom(): FormGroup {
     return this.fb.group({
@@ -67,6 +68,6 @@ export class LoginComponent {
 
   //Alert
   showAlert() {
-    this.showAlertMessage = true;
+    return this.errorMessage !== null; // Mostrar alerta si hay un mensaje de error
   }
 }
