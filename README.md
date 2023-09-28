@@ -10,11 +10,15 @@ Este proyecto esta generado con[Angular CLI](https://github.com/angular/angular-
 
 ![image](https://github.com/programateacademy/c9-pacto-front/assets/88947344/db3830da-a01f-48f0-92b2-7e0d7d42ca30)
 
-![image](https://github.com/programateacademy/c9-pacto-front/assets/88947344/117e2c30-047a-4600-a550-bce70478911b)
+![Captura de pantalla 2023-09-28 113140](https://github.com/programateacademy/c9-pacto-front/assets/132385582/53cd0b8c-3443-4228-b1c1-63b69a95aa07)
 
-![image](https://github.com/programateacademy/c9-pacto-front/assets/88947344/1f38b173-7cbb-4cfd-88c6-80aa60a751c9)
+
+![Captura de pantalla 2023-09-28 113531](https://github.com/programateacademy/c9-pacto-front/assets/132385582/fbabb6fc-e070-42c4-a67c-18c97275db21)
+
 
 ![image](https://github.com/programateacademy/c9-pacto-front/assets/88947344/e11baaff-1ec2-4dc5-a5b4-c24de78e42a2)
+
+## Estructurado de carpetas
 
 ![image](https://github.com/programateacademy/c9-pacto-front/assets/88947344/7d1c0021-1e52-4ce4-a2bf-700586ff9deb)
 
@@ -55,11 +59,14 @@ Este proyecto esta generado con[Angular CLI](https://github.com/angular/angular-
 - `admin` : vista para administradores para gestionar usuarios
 - `email` : Envios de correos electronicos para cambios de contraseña.
 - `password` : Para cambiar la contraseña.
+- `guards` : Guardianes para proteger las rutas al acceder y proteger admin
+- `enviroments`: desde ellos se puede configurar la URL
 
 ## Reutilizables
-- header: se cuenta con dos headers uno
-- footer: se utiliza solo el login y register contiene contactos
-- modals: Se cuentan con diferentes modales
+- `header`: header reutulizable en vista home y profile
+- `headerauth`: header reutilzable en vistas register y login
+- `footer`: se utiliza solo el login y register contiene datos de la entidad
+- `modals`: Se cuentan con diferentes modales para terminos y condiciones, actualizar perfil del usuario y creacion de publicacion
 
 ## Instalacion
 
@@ -113,6 +120,7 @@ Si tienes preguntas o sugerencias, no dudes en ponerte en contacto con el equipo
 - [Palacioalexander5@gmail.com](mailto:palacioalexander5@gmail.com)
 - [Ruizvalencia78@gmail.com](mailto:ruizvalencia78@gmail.com)
 - [Brayantandap@gmail.com](mailto:brayantandap@gmail.com)
+- [Juligaitan578@gmail.com](mailto:Juligaitan578@gmail.com)
 
 ## Autors
 
@@ -121,6 +129,6 @@ Si tienes preguntas o sugerencias, no dudes en ponerte en contacto con el equipo
 - [@john palacios ](https://github.com/John9135)
 - [@juan andres  Ruiz](https://github.com/juan0941)
 - [@brayan Triana](https://github.com/Vincent10-o)
-- [@maribel aristizabal](https://github.com/maribel-aristizabal)
+- [@maribel aristizabal](https://github.com/maribelaristizabal).
 - [@Sebastian Beltran](https://github.com/Sebastian-Beltran-rincon-22)
 - [@julian gaitan](https://github.com/Julian9373)

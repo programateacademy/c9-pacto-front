@@ -44,17 +44,21 @@
             <div class="flex">
               <img tabindex="0" aria-label="Avatar del usuario" class="w-10 h-10 rounded-full user-avatar"
                 [src]="publication.userimg" alt="Avatar de usuario">
+
               <div tabindex="0" class="ml-4 user-info">
                 <p class="font-semibold user-name">{{ publication.username }}</p>
                 <p class="text-gray-500 post-time">{{ formatDateToSpanish(publication.date_create) }}</p>
+
               </div>
             </div>
 
             <div class="mt-4">
               <ng-container *ngFor="let textPart of formatText(publication.description).textParts; let i = index">
                 <ng-container *ngIf="i < formatText(publication.description).textParts.length - 1">
-                  <span [innerHTML]="textPart"></span>
-                  <a *ngIf="formatText(publication.description).youtubeLinks[i]" [href]="formatText(publication.description).youtubeLinks[i]" target="_blank" class="youtube-link-youtube">
+                  <span tabindex="0" [innerHTML]="textPart"></span>
+                  <a *ngIf="formatText(publication.description).youtubeLinks[i]"
+                    [href]="formatText(publication.description).youtubeLinks[i]" target="_blank"
+                    class="youtube-link-youtube">
                     Ver video en YouTube
                   </a>
                 </ng-container>
@@ -62,7 +66,8 @@
                   <span [innerHTML]="textPart"></span>
                 </ng-container>
               </ng-container>
-              <a *ngIf="publication.youtubeLink" [href]="publication.youtubeLink" target="_blank" rel="noopener noreferrer">
+              <a *ngIf="publication.youtubeLink" [href]="publication.youtubeLink" target="_blank"
+                rel="noopener noreferrer">
                 <img [src]="publication.youtubeThumbnail" alt="Video Thumbnail" class="mt-4 cursor-pointer w-full">
               </a>
             </div>
@@ -78,7 +83,7 @@
                 alt={{publication.descriptionImg}}>
             </div>
 
-            <div class="mt-4 post-text font-semibold">
+            <div tabindex="0" class="mt-4 post-text font-semibold">
               {{publication.likes.length}} Reacciones
 
             </div>
@@ -93,14 +98,14 @@
                   </button>
                 </div>
 
-                  <div class="flex flex-col items-center text-center">
-                    <button aria-label="Botón para abrir comentarios"
-                      class="bg-transparent hover:bg-blue-500 text-gray-800 font-bold py-2 px-4 border-b-2 rounded comment-button w-auto"
-                      (click)="setPublicationIdAndOpenModal(publication._id)">
-                      <i class="fa-regular fa-comments"></i>
-                      Comentarios
-                    </button>
-                  </div>
+                <div class="flex flex-col items-center text-center">
+                  <button aria-label="Botón para abrir comentarios"
+                    class="bg-transparent hover:bg-blue-500 text-gray-800 font-bold py-2 px-4 border-b-2 rounded comment-button w-auto"
+                    (click)="setPublicationIdAndOpenModal(publication._id)">
+                    <i class="fa-regular fa-comments"></i>
+                    Comentarios
+                  </button>
+                </div>
 
               </div>
 
@@ -111,7 +116,7 @@
                   <div class="flex justify-between items-center mb-4">
                     <h2 tabindex="-1" class="text-xl font-semibold" tabindex="0" aria-label="Seccion para comentarios">
                       Comentar</h2>
-                    <button tabindex="0 "
+                    <button tabindex="0" aria-label="Botón para cerrar sección comentarios"
                       class="bg-red-500 hover:bg-red-700 close font-bold py-2 border-b-2 px-4 rounded  close-button"
                       (click)="closeCommentModal()">Cerrar</button>
                   </div>
