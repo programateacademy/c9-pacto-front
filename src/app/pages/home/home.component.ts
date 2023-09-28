@@ -1,4 +1,5 @@
-import { Component, ElementRef, Input } from '@angular/core';
+import { Component, LOCALE_ID, ElementRef, Input, Inject } from '@angular/core';
+import {formatDate} from '@angular/common';
 import { ForoService } from 'src/app/core/services/home/home.service';
 import { InteractionService } from 'src/app/core/services/interactions/interaction.service';
 import { Home, Comment, User } from 'src/app/models/item';
@@ -15,6 +16,7 @@ import { Renderer2 } from '@angular/core';
 })
 export class HomeComponent {
   constructor(
+    @Inject(LOCALE_ID) private locale: string,
     private foroService: ForoService,
     private interactionService: InteractionService,
     private commentService: CommentsService,
@@ -30,6 +32,10 @@ export class HomeComponent {
       console.error('El ID de usuario no está disponible.');
     }
     this.publicationId = '';
+  }
+
+  formatDateToSpanish(date: Date): string {
+    return formatDate(date, 'dd/MM/yyyy HH:mm', this.locale);
   }
 
   @Input() publication: any;

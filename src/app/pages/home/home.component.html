@@ -44,10 +44,11 @@
             <div class="flex">
               <img tabindex="0" aria-label="Avatar del usuario" class="w-10 h-10 rounded-full user-avatar"
                 [src]="publication.userimg" alt="Avatar de usuario">
-              <div class="ml-4 user-info">
-                <p tabindex="0" class="font-semibold user-name">{{ publication.username }}</p>
-                <p class="text-gray-500 post-time">{{ publication.date_create
-                  | date }}</p>
+
+              <div tabindex="0" class="ml-4 user-info">
+                <p class="font-semibold user-name">{{ publication.username }}</p>
+                <p class="text-gray-500 post-time">{{ formatDateToSpanish(publication.date_create) }}</p>
+
               </div>
             </div>
 
