@@ -13,10 +13,15 @@ export class LoginComponent {
   contactForm!: FormGroup;
   public isLoading: boolean = false;
   public errorMessage: string | null = null; // Nuevo campo para el mensaje de error
+  public isPasswordVisible: boolean = false; // Variable para rastrear la visibilidad de la contraseña
 
-  constructor(private authService: AuthService,
+  constructor(
+    private authService: AuthService,
     private router: Router,
-    private readonly fb: FormBuilder) { this.result = ''; }
+    private readonly fb: FormBuilder
+  ) {
+    this.result = '';
+  }
 
   ngOnInit(): void {
     this.contactForm = this.initFrom();
@@ -25,22 +30,24 @@ export class LoginComponent {
   capsLockOn = false;
 
   checkCapsLock(event: KeyboardEvent) {
-    this.capsLockOn = event.getModifierState('CapsLock')
+    this.capsLockOn = event.getModifierState('CapsLock');
   }
 
   signIn() {
     this.isLoading = true;
     this.errorMessage = null; // Resetear el mensaje de error
 
+
     this.authService.signIn(this.contactForm.value)
       .subscribe(
         (res) => {
           // console.log(res);
 
-          localStorage.setItem('token', res.token);
+        localStorage.setItem('token', res.token);
 
-          const userId = this.authService.getLoggedInUserId();
-          const role = this.authService.getLoggedInUserRole();
+        const userId = this.authService.getLoggedInUserId();
+        const role = this.authService.getLoggedInUserRole();
+
 
           // console.log('Role', role)
           // console.log('Logged In User ID:', userId);
@@ -55,19 +62,36 @@ export class LoginComponent {
           console.log(err);
           this.errorMessage = ' Usuario o contraseña incorrectos'; // Asignar mensaje de error
           this.isLoading = false;
+
         }
-      );
+        this.isLoading = false;
+      },
+      (err) => {
+        console.log(err);
+        this.errorMessage = ' Usuario o contraseña incorrectos'; // Asignar mensaje de error
+        this.isLoading = false;
+        // Establecer un temporizador para ocultar la alerta después de 3 segundos
+        setTimeout(() => {
+          this.errorMessage = null;
+        }, 2000); // 2000 milisegundos = 2 segundos
+      }
+    );
   }
 
   initFrom(): FormGroup {
     return this.fb.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-    })
+    });
   }
 
-  //Alert
-  showAlert() {
-    return this.errorMessage !== null; // Mostrar alerta si hay un mensaje de error
+  // Método para alternar la visibilidad de la contraseña
+  togglePasswordVisibility() {
+    this.isPasswordVisible = !this.isPasswordVisible;
+  }
+
+  // Método para determinar si se debe mostrar la contraseña en texto claro
+  isPasswordTextVisible() {
+    return this.isPasswordVisible ? 'text' : 'password';
   }
 }
