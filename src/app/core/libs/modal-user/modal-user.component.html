@@ -21,7 +21,8 @@
       </div>
 
     </div>
-    <h2 class="text-lg font-semibold text-black capitalize dark:text-white">Actualizar perfil</h2>
+    <h2 class="text-lg font-semibold text-black capitalize dark:text-white" tabindex="0"
+      aria-label="Formulario para actualizar mis datos">Actualizar perfil</h2>
 
     <form class="mt-12" [formGroup]="contactForm">
       <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
@@ -30,7 +31,8 @@
           <label class="text-black dark:text-gray-200" for="name">
             Nombres
             <a href="https://www.youtube.com/watch?v=V9auOG6U0rY&list=PLCndDt4b5CnzTI2HgQ3knxXHcl5dsGNQe&index=16"
-              target="_blank" class="ml-2 p-2 text-red-600">
+              aria-label="Link a video explicativo nombre con lenguaje de señas" target="_blank"
+              class="ml-2 p-2 text-red-600">
               <i class="fab fa-youtube"></i>
             </a>
           </label>
@@ -295,7 +297,8 @@
               <i class="fab fa-youtube"></i>
             </a>
           </label>
-          <input type="text" id="descriptionUser" name="descriptionUser" formControlName="descriptionUser" placeholder="Ingrese la descripción de su perfil"
+          <input type="text" id="descriptionUser" name="descriptionUser" formControlName="descriptionUser"
+            placeholder="Ingrese la descripción de su perfil"
             class="block w-full px-4 py-6 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
         </div>
 
@@ -307,7 +310,8 @@
               <i class="fab fa-youtube"></i>
             </a>
           </label>
-          <input id="interests" type="text"  name="interests" formControlName="interests" placeholder="Ingrese los interses de Conocimiento"
+          <input id="interests" type="text" name="interests" formControlName="interests"
+            placeholder="Ingrese los interses de Conocimiento"
             class="block w-full px-4 py-6 mt-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
         </div>
 

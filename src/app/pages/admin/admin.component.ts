@@ -13,7 +13,7 @@ export class AdminComponent {
   public users: any[] = [];
   public showDeleteConfirmation: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
 
 
@@ -37,14 +37,20 @@ export class AdminComponent {
     this.isModalOpen = false;
   }
 
-  public allusers: any= []
+  public allusers: any = []
 
 
 
-  deleteUser(_id:string){
-    this.authService.deleteUser(_id).subscribe((response) =>{
-      console.log(response)
+  deleteUser(_id: string) {
+    this.authService.deleteUser(_id).subscribe((response) => {
+      this.closeModalAndReloadPage();
+      console.log('User delete success:', response)
     })
+  }
+
+  closeModalAndReloadPage() {
+    this.closeModal();
+    window.location.reload();
   }
 
 }
