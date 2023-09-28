@@ -28,7 +28,7 @@
             <img class="imagen w-40 h-40 rounded-full" tabindex="0"
               [src]="user?.userImg || 'https://www.clipartmax.com/png/full/269-2691507_circle.png'"
               alt="Mi Foto de Perfil">
-            <button (click)="isEditingImg = true" *ngIf="!isEditingImg"
+            <button tabindex="0" (click)="isEditingImg = true" *ngIf="!isEditingImg"
               aria-label="Boton para actualizar imagen de perfil"
               class="p-2 ml-2 text-gray-500 hover:text-blue-500 focus:outline-none">
               <i class="fa-solid fa-user-pen"></i>
@@ -40,7 +40,7 @@
             <input [(ngModel)]="newUserImg" placeholder="Ingrese una URL Valida" tabindex="0"
               class="flex-grow px-4 py-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring sm:w-auto">
             <div class="flex space-x-4 mt-2 sm:mt-0">
-              <button (click)="updateUserImg()" tabindex="0"
+              <button (click)="updateUserImg()" tabindex="0" aria-label="Botón para guardar nueva URL"
                 class="px-4 py-2 text-white bg-[#006186] transition-colors rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
                 Guardar
               </button>
@@ -56,7 +56,8 @@
           <h1 [ngClass]="isUserNameLong ? 'small-text' : 'large-text' " class="font-semibold text-2xl" tabindex="0">
             {{ user?.userName }}
           </h1>
-          <button (click)="isEditingName = true" *ngIf="!isEditingName" aria-label="Boton para editar nombre de perfil"
+          <button tabindex="0" (click)="isEditingName = true" *ngIf="!isEditingName"
+            aria-label="Boton para editar nombre de perfil"
             class="p-2 text-gray-500 hover:text-blue-500 focus:outline-none">
             <i class="fa-solid fa-pen-to-square"></i>
           </button>
@@ -66,7 +67,7 @@
           <input [(ngModel)]="newUserName" placeholder="Nuevo nombre" tabindex="0"
             class="mx-auto w-1/3 px-4 py-2 text-black bg-white border border-black rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
           <div class="mx-auto mt-4 space-x-4">
-            <button (click)="updateUserName()" tabindex="0"
+            <button (click)="updateUserName()" tabindex="0" aria-label="Botón para guardar nuevo nombre de perfil"
               class="px-4 py-2 text-white bg-[#006186]  rounded-md  transition-colors hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
               Guardar
             </button>
@@ -98,17 +99,17 @@
 
           <div class="flex flex-col items-center mt-4 sm:mx-auto">
             <button type="submit" class="text-blue-700 text-lg sm:text-xl flex flex-col items-center"
-              (click)="openModal(user)" tabindex="0">
+              (click)="openModal(user)" tabindex="0" aria-label="Mi ubicación de perfil">
               <i class="fas fa-location-dot fa-bounce text-2xl mb-1"></i>
               <!-- Bogota/Colombia -->
-              {{ user?.departamento}} / {{ user?.country}}
+              <span tabindex="0"> {{ user?.departamento}} / {{ user?.country}}</span>
             </button>
 
           </div>
         </div>
         <div class="flex flex-col sm:flex-row justify-center items-center space-x-4 mt-4 sm:mt-8">
           <div class="mx-4 mb-4">
-            <button type="submit"
+            <button type="submit" aria-label="Boton para actualizar mis datos"
               class="text-white bg-[#006186] transition-colors h-11 w-52 rounded-lg shadow text-lg sm:text-xl hover:bg-[#008999]"
               (click)="openModal(user)">
               <i class="fa-solid fa-pen-to-square"></i>
@@ -122,7 +123,7 @@
             </div>
           </div>
           <div class="mx-4 mb-4">
-            <button
+            <button aria-label="Boton para ver mis Publicaciones"
               class="text-white bg-[#006186] transition-colors h-11 w-52 sm:w-52 rounded-lg shadow text-lg sm:text-xl hover:bg-[#008999] ml-6 mr-10"
               (click)="toggleContenido()">Publicaciones</button>
           </div>
@@ -138,46 +139,48 @@
               <div class="ml-4 user-info">
                 <p tabindex="0" class="font-semibold user-name text-sm" *ngIf="publication.username">{{
                   publication.username}}</p>
-                <p tabindex="0" class="text-gray-500 post-time text-xs">{{ publication.date_create | date }}</p>
+                <p class="text-gray-500 post-time text-xs">{{ publication.date_create | date }}</p>
               </div>
             </div>
 
             <div class="relative ">
-              <button (click)="toggleOptions(publication)" tabindex="0"
+              <button (click)="toggleOptions(publication)" tabindex="0" aria-label="Botón para abrir opcion de eliminar"
                 class="absolute top-[-35px] right-0 p-2  mt-0 mb-0 rounded-full bg-gray-200 hover:bg-gray-300">
                 <i class="fa-solid fa-trash fa-shake" style="color: #aa2727;"></i>
                 <div *ngIf="publication.showOptions"
                   class="absolute top-0 right-8  bg-gray-200 hover-bg-gray-300 p-1 rounded-lg  z-10">
                   <button class="block py-1 bg-none text-red-800  font-bold hover:bg-gray-300"
-                    (click)="onDeletePublication(publication._id)" tabindex="0">Eliminar</button>
+                    (click)="onDeletePublication(publication._id)" tabindex="0"
+                    aria-label="Confirmación de eliminar">Eliminar</button>
                 </div>
               </button>
             </div>
-            <div class="flex">
+            <!-- <div class="flex">
               <img class="w-8 h-8 rounded-full user-avatar" [src]="publication.userimg" alt="Avatar de usuario"
                 *ngIf="publication.userimg">
               <div class="ml-4 user-info">
                 <p class="font-semibold user-name text-sm" *ngIf="publication.username">{{ publication.username}}</p>
                 <p class="text-gray-500 post-time text-xs">{{ publication.date_create | date }}</p>
               </div>
-            </div>
+            </div> -->
             <div class="mt-4">
               <ng-container *ngFor="let textPart of formatText(publication.description).textParts; let i = index">
                 <ng-container *ngIf="i < formatText(publication.description).textParts.length - 1">
-                  <span [innerHTML]="textPart"></span>
-                  <a *ngIf="formatText(publication.description).youtubeLinks[i]"
+                  <span tabindex="0" [innerHTML]="textPart"></span>
+                  <a tabindex="0" *ngIf="formatText(publication.description).youtubeLinks[i]"
                     [href]="formatText(publication.description).youtubeLinks[i]" target="_blank"
                     class="youtube-link-youtube">
                     Ver video en YouTube
                   </a>
                 </ng-container>
                 <ng-container *ngIf="i === formatText(publication.description).textParts.length - 1">
-                  <span [innerHTML]="textPart"></span>
+                  <span tabindex="0" [innerHTML]="textPart"></span>
                 </ng-container>
               </ng-container>
               <a *ngIf="publication.youtubeLink" [href]="publication.youtubeLink" target="_blank"
                 rel="noopener noreferrer">
-                <img [src]="publication.youtubeThumbnail" alt="Video Thumbnail" class="mt-4 cursor-pointer w-full">
+                <img tabindex="0" [src]="publication.youtubeThumbnail" alt="Video Thumbnail"
+                  class="mt-4 cursor-pointer w-full">
               </a>
             </div>
             <div class="bg-blue-200 p-1 rounded mt-1 shadow-md border border-blue-400"
