@@ -46,8 +46,7 @@
                 [src]="publication.userimg" alt="Avatar de usuario">
               <div tabindex="0" class="ml-4 user-info">
                 <p class="font-semibold user-name">{{ publication.username }}</p>
-                <p class="text-gray-500 post-time">{{ publication.date_create
-                  | date }}</p>
+                <p class="text-gray-500 post-time">{{ formatDateToSpanish(publication.date_create) }}</p>
               </div>
             </div>
 
