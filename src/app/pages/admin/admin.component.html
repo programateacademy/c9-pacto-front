@@ -23,8 +23,8 @@
     <app-header></app-header>
   </div>
 
-  <div class="hidden sm:my-20 lg:block fixed float-left mt-10 px-4 w-1/4 max-h-screen overflow-y-auto -ml-10">
-    <div class="bg-white p-3 m-10 rounded-lg shadow mb-4">
+  <div class="hidden sm:my-20 lg:block fixed float-left mt-10 px-4 w-1/4 max-h-[80vh] overflow-y-auto -ml-10">
+    <div class="bg-transparent p-3 m-10 rounded-lg shadow mb-4" style="background-color: rgba(255, 255, 255, 0.5);">
       <div aria-label="Lista de Usuarios">
         <h2 class="text-lg font-semibold mb-2" tabindex="0">Lista de Usuarios</h2>
         <div class="flex items-center justify-between border-b pb-2 mb-4" *ngFor="let user of users">
@@ -38,6 +38,7 @@
       </div>
     </div>
   </div>
+
 
   <div class="fixed top-0 left-0 flex items-center justify-center w-full h-full z-50"
     [ngClass]="{ 'hidden': !isModalOpen }">
