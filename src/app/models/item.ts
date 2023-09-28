@@ -42,6 +42,9 @@ export interface Home extends User {
   likes: Like[];
   likedByUser: boolean;
   showOptions: boolean;
+  youtubeLink: string;
+  youtubeThumbnail: string;
+  textDescription: string
 }
 export interface Comment extends User {
   _id: string;
