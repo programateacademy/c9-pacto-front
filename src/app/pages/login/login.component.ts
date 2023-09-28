@@ -35,15 +35,15 @@ export class LoginComponent {
     this.authService.signIn(this.contactForm.value)
       .subscribe(
         (res) => {
-          console.log(res);
+          // console.log(res);
 
           localStorage.setItem('token', res.token);
 
           const userId = this.authService.getLoggedInUserId();
           const role = this.authService.getLoggedInUserRole();
 
-          console.log('Role', role)
-          console.log('Logged In User ID:', userId);
+          // console.log('Role', role)
+          // console.log('Logged In User ID:', userId);
           if (userId) {
             this.router.navigate(['/home', userId]);
           } else {
