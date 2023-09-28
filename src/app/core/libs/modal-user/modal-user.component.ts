@@ -24,8 +24,8 @@ export class ModalUserComponent {
     this.contactForm = this.initFrom();
     this.departamentosUnicos = this.obtenerDepartamentosUnicos();
 
-    console.log('user.municipio:', this.user.municipio);
-    console.log('filteredMunicipios:', this.filteredMunicipios);
+    // console.log('user.municipio:', this.user.municipio);
+    // console.log('filteredMunicipios:', this.filteredMunicipios);
 
     this.contactForm.patchValue(this.user);
   }
@@ -60,16 +60,15 @@ export class ModalUserComponent {
     if (!this.user) {
       console.error('Error: No se proporcionaron datos para la actualización.');
       return;
-    } console.log('carga de userData:', this.user);
+    }
 
     this.user = { ...this.user, ...this.contactForm.value };
 
     this.modalUser.updateUser(this.user._id, this.user).subscribe(
       (response) => {
         this.closeModalAndReloadPage();
-        console.log('Datos act con exito:', response);
-        console.log('Datos act usuario con id:', this.user._id);
-        console.log('carga de userData:', this.user);
+        // console.log('Datos act con exito:', response);
+        // console.log('carga de userData:', this.user);
       },
       (error) => {
         console.error('Error al actualizar los datos:', error);
@@ -103,7 +102,7 @@ export class ModalUserComponent {
     } else {
       this.filteredMunicipios = [];
     }
-    console.log(selectedDepartamento)
+    // console.log('departamento selected:', selectedDepartamento)
   }
 
   closeModal() {
