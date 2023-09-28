@@ -22,7 +22,7 @@ export class EmailComponent {
         .subscribe(
           () => {
             this.isEmailSent = true;
-            console.log('Enlace de restablecimiento de contraseña enviado con éxito.');
+            // console.log('Enlace de restablecimiento de contraseña enviado con éxito.');
           },
           (error) => {
             console.error('Error al enviar el enlace de restablecimiento de contraseña:', error);
