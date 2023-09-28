@@ -7,3 +7,24 @@ button{
   margin-left: 50px;
 
 }
+
+/* Aplica el estilo solo al elemento con la clase "scrollbar-hide" */
+.scrollbar-hide {
+  /* Oculta el scrollbar vertical */
+  scrollbar-width: none;
+  /* Para navegadores basados en WebKit, como Chrome y Safari */
+  scrollbar-color: transparent transparent;
+}
+
+/* Estilo específico para navegadores WebKit, como Chrome y Safari */
+.scrollbar-hide::-webkit-scrollbar {
+  width: 0.2rem; /* Ajusta el ancho del scrollbar a cero */
+}
+
+.scrollbar-hide::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Color del thumb (agarre) del scrollbar */
+}
+
+.scrollbar-hide::-webkit-scrollbar-track {
+  background-color: transparent; /* Color de fondo del scrollbar */
+}
